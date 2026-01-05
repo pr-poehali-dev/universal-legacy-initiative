@@ -64,14 +64,13 @@ const Index = () => {
     <div 
       className="min-h-screen relative"
       style={{
-        backgroundImage: `url(https://cdn.poehali.dev/projects/f0494d1c-d03d-4115-9113-c2c7e1c690f7/files/21d9fa33-1c1a-4257-a7d1-0700d8d43ec4.jpg)`,
-        backgroundSize: '300px 300px',
+        backgroundImage: `url(https://cdn.poehali.dev/files/Снимок%20экрана%202026-01-05%20в%2023.13.16.png)`,
+        backgroundSize: '200px 200px',
         backgroundRepeat: 'repeat',
         backgroundPosition: 'center',
-        backgroundColor: '#1a4d2e',
       }}
     >
-      <div className="absolute inset-0 bg-gradient-to-b from-white/90 via-white/85 to-green-50/90"></div>
+      <div className="absolute inset-0 bg-gradient-to-b from-white/92 via-white/88 to-green-50/85"></div>
       <div className="container mx-auto px-4 py-8 md:py-12 relative z-10">
         <section className="text-center mb-16 animate-fade-in">
           <div className="mb-8">
