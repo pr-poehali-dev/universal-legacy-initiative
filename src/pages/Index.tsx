@@ -46,7 +46,7 @@ const sections: Section[] = [
     icon: 'ChefHat',
     content: 'Каюм Насыйри татар ашлары буенча да кыйммәтле эшләр язган.\n\nУл традицион татар ашларының рецептларын җыйган, аларның әзерләү ысулларын детальләп тасвирлаган.',
     recipeTitle: 'Каюм Насыйридан алма күпертмәсе рецепты:',
-    recipe: 'Ун алманы юка гына тура. Камыр яса: биш йомырка сыт, ике кашык май сал, бик яхшы тугла, ике кашык вак шикәр сал, бер стакан каймак сал, он салып из – камыр яса, бик куе булмасын, кашык белән алырга мөмкин булсын. Табаңны яхшылап кыздыр, табага май сал. Кашык белән камырыңны алып, өстенә бер ике алма куй, табага сал. Мөрәбба белән аша.',
+    recipe: 'Ун алманы юка гына тура. Камыр яса: биш йомырка сыт, ике кашык май сал, бик яхшы тугла, ике кашык вак шикәр сал, бер стакан каймак сал, он салып из – камыр яса, бик куе булмасын, кашык белән алырга мөмкин булсын. Табаңны яхшылап кыздыр, табага май сал. Кашык белән камырыңны алып, өстенә бер ике алма куй, табага сал.\n\nМөрәбба белән аша.',
     image: 'https://cdn.poehali.dev/files/PHOTO-2025-03-30-17-01-07.jpg',
   },
   {
@@ -59,8 +59,8 @@ const sections: Section[] = [
     id: 'suzostasy',
     title: 'Сүз остасы',
     icon: 'Quote',
-    content: 'Каюм Насыйри гыйлем һәм мәгърифәт турында бик күп акыллы сүзләр әйткән. "Белем - дәрья, белем - нур" дигән аның данлыклы сүзләре бүген дә безнең өчен актуаль. Ул әйткән: "Халык мәгърифәтсез яши алмый", "Кеше белем белән көчле", "Милләтне яктырта торган гыйлем һәм мәгърифәт нурыдыр".',
-    quotesTitle: 'Гасырлар хикмәте: Каюм Насыйринең канатлы цитаталары.',
+    content: '',
+    quotesTitle: 'Гасырлар хикмәте: Каюм Насыйринең\nканатлы цитаталары.',
     quotes: [
       'Без - татарлар, телебез - татар теле, мөстәкыйль һәм төзек кагыйдәле камил тел ул',
       'Әй угыл, мал табуның юллары бик күптер. Нинди генә юл булмасын, малны хәләлдән табу фарыздыр. Хәләлдән килгән мал – тотрыклы буладыр. Хәрәм мал исә адәмгә йокмыйдыр, тиз кулыңнан китәр, җаваплылыгы һәм авырлыклары гына сиңа калыр. Әмма хәләлдән килгән малыңны саклап тот, хәрәм җиргә сарыф итмә. Малны саклау малны табу һәм җыюңан авыррак. Саклап тота белмәгәннәре сәбәпле, никадәр байлар малсыз калдылар',
@@ -254,18 +254,20 @@ const Index = () => {
                   </div>
                 )}
 
-                <div className="prose prose-lg max-w-none">
-                  <p className="text-lg leading-relaxed text-center whitespace-pre-line">
-                    {section.content}
-                  </p>
-                </div>
+                {section.content && (
+                  <div className="prose prose-lg max-w-none">
+                    <p className="text-lg leading-relaxed text-center whitespace-pre-line">
+                      {section.content}
+                    </p>
+                  </div>
+                )}
 
                 {section.recipe && (
                   <div className="mt-8">
                     <h3 className="text-xl md:text-2xl font-bold mb-4 text-center">
                       {section.recipeTitle}
                     </h3>
-                    <p className="text-base md:text-lg leading-relaxed italic text-center">
+                    <p className="text-base md:text-lg leading-relaxed italic text-center whitespace-pre-line">
                       {section.recipe}
                     </p>
                   </div>
@@ -273,7 +275,7 @@ const Index = () => {
 
                 {section.quotes && (
                   <div className="mt-8">
-                    <h3 className="text-xl md:text-2xl font-bold mb-6 text-center">
+                    <h3 className="text-xl md:text-2xl font-bold mb-6 text-center whitespace-pre-line bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent">
                       {section.quotesTitle}
                     </h3>
                     <div className="space-y-6">
