@@ -9,6 +9,7 @@ interface Section {
   icon: string;
   content: string;
   image?: string;
+  recipeTitle?: string;
   recipe?: string;
 }
 
@@ -36,7 +37,8 @@ const sections: Section[] = [
     title: 'Аш-су остасы',
     icon: 'ChefHat',
     content: 'Каюм Насыйри татар ашлары буенча да кыйммәтле эшләр язган. Ул традицион татар ашларының рецептларын җыйган, аларның әзерләү ысулларын детальләп тасвирлаган.',
-    recipe: 'Каюм Насыйридан алма күпертмәсе рецепты: Ун алманы юка гына тура. Камыр яса: биш йомырка сыт, ике кашык май сал, бик яхшы тугла, ике кашык вак шикәр сал, бер стакан каймак сал, он салып из – камыр яса, бик куе булмасын, кашык белән алырга мөмкин булсын. Табаңны яхшылап кыздыр, табага май сал. Кашык белән камырыңны алып, өстенә бер ике алма куй, табага сал. Мөрәбба белән аша.',
+    recipeTitle: 'Каюм Насыйридан алма күпертмәсе рецепты:',
+    recipe: 'Ун алманы юка гына тура. Камыр яса: биш йомырка сыт, ике кашык май сал, бик яхшы тугла, ике кашык вак шикәр сал, бер стакан каймак сал, он салып из – камыр яса, бик куе булмасын, кашык белән алырга мөмкин булсын. Табаңны яхшылап кыздыр, табага май сал. Кашык белән камырыңны алып, өстенә бер ике алма куй, табага сал. Мөрәбба белән аша.',
     image: 'https://cdn.poehali.dev/files/PHOTO-2025-03-30-17-01-07.jpg',
   },
   {
@@ -215,6 +217,11 @@ const Index = () => {
                 {sections.find((s) => s.id === activeSection)?.recipe && (
                   <div className="mt-8 pt-6 border-t-2 border-primary/20">
                     <div className="bg-gradient-to-br from-primary/5 to-secondary/5 rounded-xl p-6 md:p-8 max-w-3xl mx-auto">
+                      {sections.find((s) => s.id === activeSection)?.recipeTitle && (
+                        <h3 className="text-xl md:text-2xl font-bold text-center mb-4">
+                          {sections.find((s) => s.id === activeSection)?.recipeTitle}
+                        </h3>
+                      )}
                       <p className="text-lg leading-relaxed text-center">
                         {sections.find((s) => s.id === activeSection)?.recipe}
                       </p>
