@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import Icon from '@/components/ui/icon';
@@ -52,6 +52,14 @@ const sections: Section[] = [
 const Index = () => {
   const [activeSection, setActiveSection] = useState<string | null>(null);
   const [videoPlaceholder] = useState(true);
+  const sectionRef = useRef<HTMLElement | null>(null);
+
+  const handleSectionClick = (sectionId: string) => {
+    setActiveSection(sectionId);
+    setTimeout(() => {
+      sectionRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 100);
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-white via-green-50/30 to-blue-50/30">
@@ -59,9 +67,9 @@ const Index = () => {
         <section className="text-center mb-16 animate-fade-in">
           <div className="mb-8">
             <img
-              src="https://cdn.poehali.dev/projects/f0494d1c-d03d-4115-9113-c2c7e1c690f7/files/529a5f72-da0f-4210-8361-cf78c1997cee.jpg"
+              src="https://cdn.poehali.dev/files/E97EBA4F-BF83-4882-8E68-92BDDFF62CC1.png"
               alt="Каюм Насыйри"
-              className="w-48 h-48 md:w-64 md:h-64 rounded-full mx-auto object-cover shadow-2xl border-8 border-white"
+              className="w-48 h-48 md:w-64 md:h-64 mx-auto object-contain shadow-2xl"
             />
           </div>
           <p className="text-lg md:text-xl text-muted-foreground mb-4 font-medium tracking-wide">
@@ -93,48 +101,48 @@ const Index = () => {
           <Card className="shadow-xl border-2 hover:shadow-2xl transition-shadow duration-300">
             <CardContent className="p-8 md:p-12">
               <h2 className="text-2xl md:text-3xl font-bold mb-6 text-center">
-                Түбәндәге фәннәр буенча хезмәтләр авторы:
+                Каюм Насыйри фәннәр буенча хезмәтләр авторы:
               </h2>
               <ul className="space-y-4 text-base md:text-lg">
                 <li className="flex items-start gap-3">
-                  <Icon name="Check" size={24} className="text-primary mt-1 flex-shrink-0" />
+                  <span className="w-2 h-2 rounded-full bg-primary mt-2 flex-shrink-0"></span>
                   <span>
                     <strong>Лексикография</strong> (сүзлекләр: "Лөгать китабы", "Ләһҗәи татари")
                   </span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <Icon name="Check" size={24} className="text-primary mt-1 flex-shrink-0" />
+                  <span className="w-2 h-2 rounded-full bg-primary mt-2 flex-shrink-0"></span>
                   <span>
                     <strong>Фонетика һәм грамматика</strong> ("Кавагыйд китабет", "Әнмүзәҗ")
                   </span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <Icon name="Check" size={24} className="text-secondary mt-1 flex-shrink-0" />
+                  <span className="w-2 h-2 rounded-full bg-secondary mt-2 flex-shrink-0"></span>
                   <span>
                     <strong>Тарих, этнография, фольклор</strong>
                   </span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <Icon name="Check" size={24} className="text-secondary mt-1 flex-shrink-0" />
+                  <span className="w-2 h-2 rounded-full bg-secondary mt-2 flex-shrink-0"></span>
                   <span>
                     <strong>Табигать фәннәре</strong> ("Зирагать гыйльме", "Гөлзар вә чәмәнзар")
                   </span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <Icon name="Check" size={24} className="text-accent mt-1 flex-shrink-0" />
+                  <span className="w-2 h-2 rounded-full bg-accent mt-2 flex-shrink-0"></span>
                   <span>
                     <strong>Әдәбият</strong> ("Фәвакиһелҗөләса фил әдәбият" - беренче татар
                     энциклопедиясе)
                   </span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <Icon name="Check" size={24} className="text-accent mt-1 flex-shrink-0" />
+                  <span className="w-2 h-2 rounded-full bg-accent mt-2 flex-shrink-0"></span>
                   <span>
                     <strong>Педагогика</strong> (арифметика, геометрия, география дәреслекләре)
                   </span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <Icon name="Check" size={24} className="text-primary mt-1 flex-shrink-0" />
+                  <span className="w-2 h-2 rounded-full bg-primary mt-2 flex-shrink-0"></span>
                   <span>
                     <strong>"Казан календаре"</strong> еллык календарен нәшер иткән (1871-1897)
                   </span>
@@ -154,7 +162,7 @@ const Index = () => {
                 key={section.id}
                 className="cursor-pointer hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border-2 overflow-hidden group animate-scale-in"
                 style={{ animationDelay: `${index * 0.1}s` }}
-                onClick={() => setActiveSection(section.id)}
+                onClick={() => handleSectionClick(section.id)}
               >
                 <CardContent className="p-6 text-center">
                   <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
@@ -162,7 +170,7 @@ const Index = () => {
                   </div>
                   <h3 className="text-xl font-bold mb-2">{section.title}</h3>
                   <Button variant="ghost" size="sm" className="mt-2">
-                    Киңрәк белү <Icon name="ChevronRight" size={16} className="ml-1" />
+                    Тулырак белү <Icon name="ChevronRight" size={16} className="ml-1" />
                   </Button>
                 </CardContent>
               </Card>
@@ -171,7 +179,7 @@ const Index = () => {
         </section>
 
         {activeSection && (
-          <section className="mb-16 animate-fade-in">
+          <section ref={sectionRef} className="mb-16 animate-fade-in">
             <Card className="shadow-2xl border-4 border-primary/20">
               <CardContent className="p-8 md:p-12">
                 <div className="flex items-center justify-between mb-6">
