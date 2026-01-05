@@ -84,9 +84,10 @@ const Index = () => {
             <CardContent className="p-0">
               <div className="aspect-video">
                 <iframe
-                  src="https://disk.yandex.ru/i/meB72okbaIhIdg"
+                  src="https://disk.yandex.ru/i/meB72okbaIhIdg/embed"
                   className="w-full h-full"
                   frameBorder="0"
+                  allow="autoplay; fullscreen"
                   allowFullScreen
                   title="Каюм Насыйри видео"
                 ></iframe>
