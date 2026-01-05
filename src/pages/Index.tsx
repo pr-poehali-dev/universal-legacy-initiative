@@ -90,12 +90,12 @@ const Index = () => {
 
         <section className="mb-12 animate-fade-in">
           <div className="max-w-4xl mx-auto text-center">
-            <p className="text-lg md:text-xl leading-relaxed mb-6">
+            <h2 className="text-2xl md:text-3xl font-bold text-primary mb-6">
               Гомере буе халыкка фидакарьләрчә хезмәт итеп, милләт мәнфәгатьләрен үзенең яшәү кыйбласы дип билгеләгән Каюм Насыйри дөньяда 77 ел яшәп вафат булган. Аның ярты гасырдан артык гомере дәрвишләрчә милләткә хезмәт итүгә багышланган.
-            </p>
-            <h2 className="text-2xl md:text-3xl font-bold text-primary">
-              Безнең сайтта сез Каюм Насыйри эшчәнлеге белән таныша аласыз.
             </h2>
+            <p className="text-lg md:text-xl leading-relaxed">
+              Безнең сайтта сез Каюм Насыйри эшчәнлеге белән таныша аласыз.
+            </p>
           </div>
         </section>
 
