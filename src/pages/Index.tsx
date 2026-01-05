@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import Icon from '@/components/ui/icon';
@@ -63,6 +63,7 @@ const sections: Section[] = [
 
 const Index = () => {
   const sectionRefs = useRef<{ [key: string]: HTMLElement | null }>({});
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
   const scrollToSection = (sectionId: string) => {
     sectionRefs.current[sectionId]?.scrollIntoView({ 
@@ -234,7 +235,8 @@ const Index = () => {
                         key={idx}
                         src={img}
                         alt={`${section.title} ${idx + 1}`}
-                        className="w-full rounded-lg shadow-lg"
+                        className="w-full rounded-lg shadow-lg cursor-pointer hover:opacity-90 transition-opacity"
+                        onClick={() => setSelectedImage(img)}
                       />
                     ))}
                   </div>
@@ -267,6 +269,30 @@ const Index = () => {
           </p>
         </footer>
       </div>
+
+      {selectedImage && (
+        <div 
+          className="fixed inset-0 z-50 bg-black/80 flex items-center justify-center p-4 cursor-pointer"
+          onClick={() => setSelectedImage(null)}
+        >
+          <div className="relative max-w-5xl max-h-[90vh]">
+            <Button
+              variant="ghost"
+              size="icon"
+              className="absolute -top-12 right-0 text-white hover:bg-white/20"
+              onClick={() => setSelectedImage(null)}
+            >
+              <Icon name="X" size={32} />
+            </Button>
+            <img
+              src={selectedImage}
+              alt="Увеличенное изображение"
+              className="max-w-full max-h-[90vh] object-contain rounded-lg"
+              onClick={(e) => e.stopPropagation()}
+            />
+          </div>
+        </div>
+      )}
     </div>
   );
 };
