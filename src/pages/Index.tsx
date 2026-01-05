@@ -36,7 +36,7 @@ const sections: Section[] = [
     id: 'kulinar',
     title: 'Аш-су остасы',
     icon: 'ChefHat',
-    content: 'Каюм Насыйри татар ашлары буенча да кыйммәтле эшләр язган. Ул традицион татар ашларының рецептларын җыйган, аларның әзерләү ысулларын детальләп тасвирлаган.',
+    content: 'Каюм Насыйри татар ашлары буенча да кыйммәтле эшләр язган.\n\nУл традицион татар ашларының рецептларын җыйган, аларның әзерләү ысулларын детальләп тасвирлаган.',
     recipeTitle: 'Каюм Насыйридан алма күпертмәсе рецепты:',
     recipe: 'Ун алманы юка гына тура. Камыр яса: биш йомырка сыт, ике кашык май сал, бик яхшы тугла, ике кашык вак шикәр сал, бер стакан каймак сал, он салып из – камыр яса, бик куе булмасын, кашык белән алырга мөмкин булсын. Табаңны яхшылап кыздыр, табага май сал. Кашык белән камырыңны алып, өстенә бер ике алма куй, табага сал. Мөрәбба белән аша.',
     image: 'https://cdn.poehali.dev/files/PHOTO-2025-03-30-17-01-07.jpg',
@@ -201,15 +201,15 @@ const Index = () => {
           <section ref={sectionRef} className="mb-16 animate-fade-in">
             <Card className="shadow-2xl border-4 border-primary/20">
               <CardContent className="p-8 md:p-12">
-                <div className="flex items-center justify-between mb-6">
-                  <h2 className="text-3xl md:text-4xl font-bold">
+                <div className="flex items-center justify-center mb-6 relative">
+                  <h2 className="text-3xl md:text-4xl font-bold text-center">
                     {sections.find((s) => s.id === activeSection)?.title}
                   </h2>
                   <Button
                     variant="ghost"
                     size="icon"
                     onClick={() => setActiveSection(null)}
-                    className="hover:bg-accent/20"
+                    className="hover:bg-accent/20 absolute right-0"
                   >
                     <Icon name="X" size={24} />
                   </Button>
@@ -224,7 +224,7 @@ const Index = () => {
                   </div>
                 )}
                 <div className="prose prose-lg max-w-none">
-                  <p className="text-lg leading-relaxed text-center">
+                  <p className="text-lg leading-relaxed text-center whitespace-pre-line">
                     {sections.find((s) => s.id === activeSection)?.content}
                   </p>
                 </div>
