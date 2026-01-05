@@ -61,17 +61,8 @@ const Index = () => {
   };
 
   return (
-    <div 
-      className="min-h-screen relative"
-      style={{
-        backgroundImage: `url(https://cdn.poehali.dev/files/Снимок%20экрана%202026-01-05%20в%2023.13.16.png)`,
-        backgroundSize: '200px 200px',
-        backgroundRepeat: 'repeat',
-        backgroundPosition: 'center',
-      }}
-    >
-      <div className="absolute inset-0 bg-gradient-to-b from-white/92 via-white/88 to-green-50/85"></div>
-      <div className="container mx-auto px-4 py-8 md:py-12 relative z-10">
+    <div className="min-h-screen bg-gradient-to-b from-white via-green-50/30 to-blue-50/30">
+      <div className="container mx-auto px-4 py-8 md:py-12">
         <section className="text-center mb-16 animate-fade-in">
           <div className="mb-8">
             <img
