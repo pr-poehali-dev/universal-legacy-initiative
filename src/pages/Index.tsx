@@ -176,15 +176,20 @@ const Index = () => {
           </h2>
           <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6 max-w-4xl mx-auto">
             {sections.map((section) => (
-              <Button
+              <Card
                 key={section.id}
+                className="cursor-pointer hover:shadow-xl transition-all duration-300 hover:scale-105 border-2"
                 onClick={() => scrollToSection(section.id)}
-                className="h-auto py-6 px-4 flex flex-col items-center gap-3 text-base md:text-lg font-semibold hover:scale-105 transition-transform"
-                variant="default"
               >
-                <Icon name={section.icon} size={32} />
-                <span className="text-center leading-tight">{section.title}</span>
-              </Button>
+                <CardContent className="p-6 flex flex-col items-center gap-3">
+                  <div className="p-4 rounded-full bg-primary/10">
+                    <Icon name={section.icon} size={32} className="text-primary" />
+                  </div>
+                  <h3 className="text-base md:text-lg font-bold text-center">
+                    {section.title}
+                  </h3>
+                </CardContent>
+              </Card>
             ))}
           </div>
         </section>
@@ -201,7 +206,11 @@ const Index = () => {
                   <div className="p-4 rounded-full bg-primary/10">
                     <Icon name={section.icon} size={40} className="text-primary" />
                   </div>
-                  <h2 className="text-3xl md:text-4xl font-bold text-center">
+                  <h2 className={`text-3xl md:text-4xl font-bold text-center ${
+                    section.id === 'kulinar' 
+                      ? 'bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent'
+                      : ''
+                  }`}>
                     {section.title}
                   </h2>
                 </div>
