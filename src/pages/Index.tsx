@@ -9,6 +9,7 @@ interface Section {
   icon: string;
   content: string;
   image?: string;
+  images?: string[];
   recipeTitle?: string;
   recipe?: string;
 }
@@ -19,6 +20,11 @@ const sections: Section[] = [
     title: 'Язучы',
     icon: 'BookOpen',
     content: 'Каюм Насыйриның татар әдәбиятына керткән өлеше шактый зур. Әдип - "Әбүгалисина кыйссасы", "Кырык вәзир", "Әхлак рисаләсе", "Тәрбич китабы" һ.б. әсәрләрнең авторы. Каюм Насыйри үз әсәрләрендә гореф-гадәтләр, традицияләр, әхлак, иман, гаилә мөнәсәбәтләре, бала тәрбиясе мәсьәләләрен яктырта. Уңай әхлакый сыйфатларны галим укучы өчен үрнәк итеп куя, ә кешенең рухи үсешенә комачаулый торган сыйфатларны, киресенчә, тәнкыйтьләп фаш итә. Әсәрләрнең язылганнынан соң ике гасырга якын вакыт узувына карамастан, аларның эстетик әһәмияте әле дә үз кыйммәтен югалтмый.',
+    images: [
+      'https://cdn.poehali.dev/files/IMG_1701.jpg',
+      'https://cdn.poehali.dev/files/IMG_1696.jpg',
+      'https://cdn.poehali.dev/files/IMG_1695.jpg'
+    ],
   },
   {
     id: 'geograf',
@@ -206,11 +212,7 @@ const Index = () => {
                   <div className="p-4 rounded-full bg-primary/10">
                     <Icon name={section.icon} size={40} className="text-primary" />
                   </div>
-                  <h2 className={`text-3xl md:text-4xl font-bold text-center ${
-                    section.id === 'kulinar' 
-                      ? 'bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent'
-                      : ''
-                  }`}>
+                  <h2 className="text-3xl md:text-4xl font-bold text-center">
                     {section.title}
                   </h2>
                 </div>
@@ -225,6 +227,19 @@ const Index = () => {
                   </div>
                 )}
 
+                {section.images && (
+                  <div className="mb-8 grid grid-cols-1 md:grid-cols-3 gap-4">
+                    {section.images.map((img, idx) => (
+                      <img
+                        key={idx}
+                        src={img}
+                        alt={`${section.title} ${idx + 1}`}
+                        className="w-full rounded-lg shadow-lg"
+                      />
+                    ))}
+                  </div>
+                )}
+
                 <div className="prose prose-lg max-w-none">
                   <p className="text-lg leading-relaxed text-center whitespace-pre-line">
                     {section.content}
@@ -232,8 +247,8 @@ const Index = () => {
                 </div>
 
                 {section.recipe && (
-                  <div className="mt-8 p-6 bg-accent/10 rounded-lg border-2 border-accent/20">
-                    <h3 className="text-xl md:text-2xl font-bold mb-4 text-accent text-center">
+                  <div className="mt-8">
+                    <h3 className="text-xl md:text-2xl font-bold mb-4 text-center">
                       {section.recipeTitle}
                     </h3>
                     <p className="text-base md:text-lg leading-relaxed italic text-center">
