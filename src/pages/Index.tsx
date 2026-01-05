@@ -80,9 +80,23 @@ const Index = () => {
           <p className="text-lg md:text-xl text-muted-foreground mb-4 font-medium tracking-wide">
             ҮЗ ХАЛКЫН ДАНЛАГАН ТАТАРЛАР:
           </p>
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-8 bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent">
+          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-2 bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent">
             КАЮМ НАСЫЙРИ
           </h1>
+          <p className="text-xl md:text-2xl text-muted-foreground font-medium mb-8">
+            (1825-1902)
+          </p>
+        </section>
+
+        <section className="mb-12 animate-fade-in">
+          <div className="max-w-4xl mx-auto text-center">
+            <p className="text-lg md:text-xl leading-relaxed mb-6">
+              Гомере буе халыкка фидакарьләрчә хезмәт итеп, милләт мәнфәгатьләрен үзенең яшәү кыйбласы дип билгеләгән Каюм Насыйри дөньяда 77 ел яшәп вафат булган. Аның ярты гасырдан артык гомере дәрвишләрчә милләткә хезмәт итүгә багышланган.
+            </p>
+            <h2 className="text-2xl md:text-3xl font-bold text-primary">
+              Безнең сайтта сез Каюм Насыйри эшчәнлеге белән таныша аласыз.
+            </h2>
+          </div>
         </section>
 
         <section className="mb-16 animate-scale-in">
