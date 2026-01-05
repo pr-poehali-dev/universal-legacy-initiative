@@ -207,7 +207,7 @@ const Index = () => {
 
         <footer className="text-center py-8 border-t-2 mt-16">
           <p className="text-muted-foreground">
-            Сайтның авторы: <span className="font-semibold text-foreground">Лилия Кәримова</span>
+            © 2026 - Татар әдәбиятын өйрәнү һәм үстерү проекты. <span className="font-semibold text-foreground">Лилия Кәримова</span>
           </p>
         </footer>
       </div>
