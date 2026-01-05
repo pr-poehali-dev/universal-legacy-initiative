@@ -63,28 +63,22 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-white via-green-50/30 to-blue-50/30">
-      <section className="relative min-h-screen flex items-center justify-center animate-fade-in">
-        <div
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{
-            backgroundImage: 'url(https://cdn.poehali.dev/files/Снимок%20экрана%202026-01-05%20в%2019.48.41.png)',
-          }}
-        >
-          <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/30 to-black/50"></div>
-        </div>
-        <div className="relative z-10 text-center px-4 py-16">
-          <div className="bg-gray-900/70 backdrop-blur-sm px-8 py-12 md:px-16 md:py-16 rounded-2xl shadow-2xl max-w-4xl mx-auto">
-            <p className="text-lg md:text-2xl text-white/90 mb-6 font-medium tracking-wide">
-              ҮЗ ХАЛКЫН ДАНЛАГАН ТАТАРЛАР:
-            </p>
-            <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold text-white drop-shadow-2xl">
-              КАЮМ НАСЫЙРИ
-            </h1>
-          </div>
-        </div>
-      </section>
-
       <div className="container mx-auto px-4 py-8 md:py-12">
+        <section className="text-center mb-16 animate-fade-in">
+          <div className="mb-8">
+            <img
+              src="https://cdn.poehali.dev/files/Снимок%20экрана%202026-01-05%20в%2019.53.50.png"
+              alt="Каюм Насыйри"
+              className="w-64 h-64 md:w-80 md:h-80 lg:w-96 lg:h-96 rounded-full mx-auto object-cover shadow-2xl border-8 border-white"
+            />
+          </div>
+          <p className="text-lg md:text-xl text-muted-foreground mb-4 font-medium tracking-wide">
+            ҮЗ ХАЛКЫН ДАНЛАГАН ТАТАРЛАР:
+          </p>
+          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-8 bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent">
+            КАЮМ НАСЫЙРИ
+          </h1>
+        </section>
 
         {videoPlaceholder && (
           <section className="mb-16 animate-scale-in">
