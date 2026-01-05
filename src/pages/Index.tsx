@@ -8,6 +8,7 @@ interface Section {
   title: string;
   icon: string;
   content: string;
+  image?: string;
 }
 
 const sections: Section[] = [
@@ -31,9 +32,10 @@ const sections: Section[] = [
   },
   {
     id: 'kulinar',
-    title: 'Кулинар',
+    title: 'Аш-су остасы',
     icon: 'ChefHat',
-    content: 'Каюм Насыйри татар кулинариясе буенча да кыйммәтле эшләр язган. Ул традицион татар ашларының рецептларын җыйган, аларның әзерләү ысулларын детальле тасвирлаган. Аның эшләрендә татар халкының милли кулинар мирасы саклап калынган.',
+    content: 'Каюм Насыйри татар ашлары буенча да кыйммәтле эшләр язган. Ул традицион татар ашларының рецептларын җыйган, аларның әзерләү ысулларын детальләп тасвирлаган. Каюм Насыйридан алма күпертмәсе рецепты: Ун алманы юка гына тура. Камыр яса: биш йомырка сыт, ике кашык май сал, бик яхшы тугла, ике кашык вак шикәр сал, бер стакан каймак сал, он салып из – камыр яса, бик куе булмасын, кашык белән алырга мөмкин булсын. Табаңны яхшылап кыздыр, табага май сал. Кашык белән камырыңны алып, өстенә бер ике алма куй, табага сал. Мөрәбба белән аша.',
+    image: 'https://cdn.poehali.dev/files/PHOTO-2025-03-30-17-01-07.jpg',
   },
   {
     id: 'suzleklar',
@@ -194,6 +196,15 @@ const Index = () => {
                     <Icon name="X" size={24} />
                   </Button>
                 </div>
+                {sections.find((s) => s.id === activeSection)?.image && (
+                  <div className="mb-6">
+                    <img
+                      src={sections.find((s) => s.id === activeSection)?.image}
+                      alt={sections.find((s) => s.id === activeSection)?.title}
+                      className="w-full max-w-2xl mx-auto rounded-lg shadow-lg"
+                    />
+                  </div>
+                )}
                 <div className="prose prose-lg max-w-none">
                   <p className="text-lg leading-relaxed">
                     {sections.find((s) => s.id === activeSection)?.content}
