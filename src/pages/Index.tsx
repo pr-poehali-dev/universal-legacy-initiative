@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { useRef } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import Icon from '@/components/ui/icon';
@@ -56,14 +56,13 @@ const sections: Section[] = [
 ];
 
 const Index = () => {
-  const [activeSection, setActiveSection] = useState<string | null>(null);
-  const sectionRef = useRef<HTMLElement | null>(null);
+  const sectionRefs = useRef<{ [key: string]: HTMLElement | null }>({});
 
-  const handleSectionClick = (sectionId: string) => {
-    setActiveSection(sectionId);
-    setTimeout(() => {
-      sectionRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }, 100);
+  const scrollToSection = (sectionId: string) => {
+    sectionRefs.current[sectionId]?.scrollIntoView({ 
+      behavior: 'smooth', 
+      block: 'center' 
+    });
   };
 
   return (
@@ -172,84 +171,75 @@ const Index = () => {
         </section>
 
         <section className="mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-10">
-            Каюм Насыйриның эшчәнлек юнәлешләре
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-8">
+            Каюм Насыйри – күп яклы галим
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {sections.map((section, index) => (
-              <Card
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6 max-w-4xl mx-auto">
+            {sections.map((section) => (
+              <Button
                 key={section.id}
-                className="cursor-pointer hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border-2 overflow-hidden group animate-scale-in"
-                style={{ animationDelay: `${index * 0.1}s` }}
-                onClick={() => handleSectionClick(section.id)}
+                onClick={() => scrollToSection(section.id)}
+                className="h-auto py-6 px-4 flex flex-col items-center gap-3 text-base md:text-lg font-semibold hover:scale-105 transition-transform"
+                variant="default"
               >
-                <CardContent className="p-6 text-center">
-                  <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                    <Icon name={section.icon} size={32} className="text-white" />
-                  </div>
-                  <h3 className="text-xl font-bold mb-2">{section.title}</h3>
-                  <Button variant="ghost" size="sm" className="mt-2">
-                    Тулырак белү <Icon name="ChevronRight" size={16} className="ml-1" />
-                  </Button>
-                </CardContent>
-              </Card>
+                <Icon name={section.icon} size={32} />
+                <span className="text-center leading-tight">{section.title}</span>
+              </Button>
             ))}
           </div>
         </section>
 
-        {activeSection && (
-          <section ref={sectionRef} className="mb-16 animate-fade-in">
-            <Card className="shadow-2xl border-4 border-primary/20">
+        {sections.map((section) => (
+          <section
+            key={section.id}
+            ref={(el) => (sectionRefs.current[section.id] = el)}
+            className="mb-16 scroll-mt-8"
+          >
+            <Card className="shadow-xl border-2 hover:shadow-2xl transition-all duration-300">
               <CardContent className="p-8 md:p-12">
-                <div className="flex items-center justify-center mb-6 relative">
+                <div className="flex items-center justify-center gap-4 mb-8">
+                  <div className="p-4 rounded-full bg-primary/10">
+                    <Icon name={section.icon} size={40} className="text-primary" />
+                  </div>
                   <h2 className="text-3xl md:text-4xl font-bold text-center">
-                    {sections.find((s) => s.id === activeSection)?.title}
+                    {section.title}
                   </h2>
-                  <Button
-                    variant="ghost"
-                    size="icon"
-                    onClick={() => setActiveSection(null)}
-                    className="hover:bg-accent/20 absolute right-0"
-                  >
-                    <Icon name="X" size={24} />
-                  </Button>
                 </div>
-                {sections.find((s) => s.id === activeSection)?.image && (
-                  <div className="mb-6">
+
+                {section.image && (
+                  <div className="mb-8">
                     <img
-                      src={sections.find((s) => s.id === activeSection)?.image}
-                      alt={sections.find((s) => s.id === activeSection)?.title}
+                      src={section.image}
+                      alt={section.title}
                       className="w-full max-w-2xl mx-auto rounded-lg shadow-lg"
                     />
                   </div>
                 )}
+
                 <div className="prose prose-lg max-w-none">
                   <p className="text-lg leading-relaxed text-center whitespace-pre-line">
-                    {sections.find((s) => s.id === activeSection)?.content}
+                    {section.content}
                   </p>
                 </div>
-                {sections.find((s) => s.id === activeSection)?.recipe && (
-                  <div className="mt-8 pt-6 border-t-2 border-primary/20">
-                    <div className="bg-gradient-to-br from-primary/5 to-secondary/5 rounded-xl p-6 md:p-8 max-w-3xl mx-auto">
-                      {sections.find((s) => s.id === activeSection)?.recipeTitle && (
-                        <h3 className="text-xl md:text-2xl font-bold text-center mb-4">
-                          {sections.find((s) => s.id === activeSection)?.recipeTitle}
-                        </h3>
-                      )}
-                      <p className="text-lg leading-relaxed text-center">
-                        {sections.find((s) => s.id === activeSection)?.recipe}
-                      </p>
-                    </div>
+
+                {section.recipe && (
+                  <div className="mt-8 p-6 bg-accent/10 rounded-lg border-2 border-accent/20">
+                    <h3 className="text-xl md:text-2xl font-bold mb-4 text-accent text-center">
+                      {section.recipeTitle}
+                    </h3>
+                    <p className="text-base md:text-lg leading-relaxed italic text-center">
+                      {section.recipe}
+                    </p>
                   </div>
                 )}
               </CardContent>
             </Card>
           </section>
-        )}
+        ))}
 
-        <footer className="text-center py-8 border-t-2 mt-16">
-          <p className="text-muted-foreground">
-            © 2026 - Татар әдәбиятын өйрәнү һәм үстерү проекты. <span className="font-semibold text-foreground">Лилия Кәримова</span>
+        <footer className="text-center py-8 text-muted-foreground">
+          <p className="text-sm md:text-base">
+            © 2026 Каюм Насыйри турында мәгълүмат сайты
           </p>
         </footer>
       </div>
