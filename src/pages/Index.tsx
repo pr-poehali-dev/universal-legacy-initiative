@@ -191,7 +191,7 @@ const Index = () => {
 
         <section className="mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-8">
-            Каюм Насыйри – күп яклы галим
+            Каюм Насыйри – күпкырлы галим
           </h2>
           <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6 max-w-4xl mx-auto">
             {sections.map((section) => (
@@ -297,7 +297,7 @@ const Index = () => {
 
         <footer className="text-center py-8 text-muted-foreground">
           <p className="text-sm md:text-base">
-            © 2026 Каюм Насыйри турында мәгълүмат сайты
+            © 2026 - Татар әдәбиятын өйрәнү һәм үстерү проекты. Лилия Кәримова
           </p>
         </footer>
       </div>
