@@ -51,7 +51,6 @@ const sections: Section[] = [
 
 const Index = () => {
   const [activeSection, setActiveSection] = useState<string | null>(null);
-  const [videoPlaceholder] = useState(true);
   const sectionRef = useRef<HTMLElement | null>(null);
 
   const handleSectionClick = (sectionId: string) => {
@@ -80,22 +79,21 @@ const Index = () => {
           </h1>
         </section>
 
-        {videoPlaceholder && (
-          <section className="mb-16 animate-scale-in">
-            <Card className="overflow-hidden shadow-xl border-2">
-              <CardContent className="p-0">
-                <div className="aspect-video bg-gradient-to-br from-primary/20 via-secondary/20 to-accent/20 flex items-center justify-center">
-                  <div className="text-center p-8">
-                    <Icon name="Video" size={64} className="mx-auto mb-4 text-primary" />
-                    <p className="text-xl font-semibold text-foreground">
-                      Видео материал урнаштырылачак
-                    </p>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          </section>
-        )}
+        <section className="mb-16 animate-scale-in">
+          <Card className="overflow-hidden shadow-xl border-2">
+            <CardContent className="p-0">
+              <div className="aspect-video">
+                <iframe
+                  src="https://disk.yandex.ru/i/meB72okbaIhIdg"
+                  className="w-full h-full"
+                  frameBorder="0"
+                  allowFullScreen
+                  title="Каюм Насыйри видео"
+                ></iframe>
+              </div>
+            </CardContent>
+          </Card>
+        </section>
 
         <section className="mb-16 animate-fade-in">
           <Card className="shadow-xl border-2 hover:shadow-2xl transition-shadow duration-300">
