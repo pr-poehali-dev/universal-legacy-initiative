@@ -122,7 +122,7 @@ const Index = () => {
               <h2 className="text-2xl md:text-3xl font-bold mb-6 text-center">
                 Түбәндәге фәннәр буенча хезмәтләр авторы:
               </h2>
-              <ul className="space-y-4 text-base md:text-lg">
+              <ul className="space-y-4 text-base md:text-lg text-center">
                 <li className="flex items-start gap-3">
                   <span className="w-2 h-2 rounded-full bg-primary mt-2 flex-shrink-0"></span>
                   <span>
@@ -224,7 +224,7 @@ const Index = () => {
                   </div>
                 )}
                 <div className="prose prose-lg max-w-none">
-                  <p className="text-lg leading-relaxed">
+                  <p className="text-lg leading-relaxed text-center">
                     {sections.find((s) => s.id === activeSection)?.content}
                   </p>
                 </div>
