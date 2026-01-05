@@ -99,7 +99,7 @@ const Index = () => {
           <Card className="shadow-xl border-2 hover:shadow-2xl transition-shadow duration-300">
             <CardContent className="p-8 md:p-12">
               <h2 className="text-2xl md:text-3xl font-bold mb-6 text-center">
-                Каюм Насыйри фәннәр буенча хезмәтләр авторы:
+                Түбәндәге фәннәр буенча хезмәтләр авторы:
               </h2>
               <ul className="space-y-4 text-base md:text-lg">
                 <li className="flex items-start gap-3">
