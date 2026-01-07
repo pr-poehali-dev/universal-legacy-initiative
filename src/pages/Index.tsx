@@ -139,7 +139,7 @@ const Index = () => {
   const sectionRefs = useRef<{ [key: string]: HTMLElement | null }>({});
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [currentImageIndex, setCurrentImageIndex] = useState<{ [key: string]: number }>({});
+
 
   const scrollToSection = (sectionId: string) => {
     const navHeight = 80; // Height of sticky nav
@@ -182,40 +182,28 @@ const Index = () => {
     return () => observer.disconnect();
   }, []);
 
-  const nextImage = (sectionId: string, totalImages: number) => {
-    setCurrentImageIndex(prev => ({
-      ...prev,
-      [sectionId]: ((prev[sectionId] || 0) + 1) % totalImages
-    }));
-  };
 
-  const prevImage = (sectionId: string, totalImages: number) => {
-    setCurrentImageIndex(prev => ({
-      ...prev,
-      [sectionId]: ((prev[sectionId] || 0) - 1 + totalImages) % totalImages
-    }));
-  };
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-background to-muted/20">
       {/* Sticky Navigation Bar */}
-      <nav className="sticky top-0 z-40 bg-gradient-to-r from-primary via-secondary to-accent shadow-lg">
+      <nav className="sticky top-0 z-40 bg-white/95 backdrop-blur-sm shadow-md border-b-4 border-gradient-to-r from-primary via-secondary to-accent">
         <div className="container mx-auto px-4">
-          <div className="flex items-center justify-between h-20">
+          <div className="flex items-center justify-between h-16">
             <button 
               onClick={scrollToTop}
-              className="text-white font-bold text-lg hover:opacity-80 transition-opacity"
+              className="font-bold text-xl bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent hover:opacity-80 transition-opacity"
             >
               Каюм Насыйри
             </button>
             
             {/* Desktop Navigation */}
-            <div className="hidden md:flex items-center space-x-6">
+            <div className="hidden md:flex items-center gap-1">
               {sections.map((section) => (
                 <button
                   key={section.id}
                   onClick={() => scrollToSection(section.id)}
-                  className="text-white hover:opacity-80 transition-opacity text-sm font-medium"
+                  className="px-4 py-2 rounded-lg text-foreground hover:bg-gradient-to-r hover:from-primary/10 hover:via-secondary/10 hover:to-accent/10 transition-all font-medium"
                 >
                   {section.title}
                 </button>
@@ -224,7 +212,7 @@ const Index = () => {
 
             {/* Mobile Menu Button */}
             <button
-              className="md:hidden text-white p-2"
+              className="md:hidden text-primary p-2"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             >
               <Icon name={mobileMenuOpen ? "X" : "Menu"} className="w-6 h-6" />
@@ -233,12 +221,12 @@ const Index = () => {
 
           {/* Mobile Navigation Menu */}
           {mobileMenuOpen && (
-            <div className="md:hidden pb-4 space-y-2">
+            <div className="md:hidden pb-4 space-y-1">
               {sections.map((section) => (
                 <button
                   key={section.id}
                   onClick={() => scrollToSection(section.id)}
-                  className="block w-full text-left text-white hover:opacity-80 transition-opacity py-2 px-4"
+                  className="block w-full text-left px-4 py-2 rounded-lg text-foreground hover:bg-gradient-to-r hover:from-primary/10 hover:via-secondary/10 hover:to-accent/10 transition-all font-medium"
                 >
                   {section.title}
                 </button>
@@ -285,17 +273,15 @@ const Index = () => {
               allowFullScreen
             />
           </div>
-          <div className="max-w-4xl mx-auto space-y-4">
-            <p className="text-lg leading-relaxed text-green-600 font-bold indent-8">
+          <div className="max-w-4xl mx-auto">
+            <p className="text-lg leading-relaxed text-muted-foreground text-justify">
               «Ватаным Татарстан» газетасы оештырган «Каюм бабай дәресе» конкурсының «Каюм Насыйри эзләреннән» номинациясенә укытучылар һәм тәрбиячеләр, Каюм Насыйри хезмәтләрен файдаланып, билгеле бер чара уздырырга һәм ул чарадан видеоязма әзерләргә тиеш иде.
-            </p>
-            <p className="text-lg leading-relaxed text-muted-foreground indent-8">
               Бу юнәлештә җибәргән иҗат эшләре арасында «Адымнар – белемгә һәм бердәмлеккә юл» күптелле мәгариф комплексы укытучылары Рамил Ханнанов һәм Нариман Фәхрисламов – җиңүчеләрнең берсе. Әлеге видеоязманы сезгә дә тәкъдим итәбез.{' '}
               <a
                 href="https://vatantat.ru/news/kaium-babai-dasa-vt-ukytucylar-ham-tarbiiacelar-arasynda-uzdyrgan-baigega-iomgak-iasady-110417"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-1 text-primary hover:text-primary/80 transition-colors"
+                className="inline-flex items-center gap-1 text-muted-foreground hover:text-primary transition-colors"
               >
                 Тулырак укырга
                 <Icon name="ExternalLink" className="w-4 h-4" />
@@ -369,7 +355,7 @@ const Index = () => {
                   )}
                   
                   {section.content && (
-                    <p className="text-lg leading-relaxed text-foreground/90 mb-6 whitespace-pre-line indent-8">
+                    <p className="text-lg leading-relaxed text-muted-foreground mb-6 whitespace-pre-line text-justify">
                       {section.content}
                     </p>
                   )}
@@ -379,8 +365,11 @@ const Index = () => {
                       <h3 className="text-xl font-bold text-primary mb-4 text-center">
                         {section.recipeTitle}
                       </h3>
-                      <p className="text-lg leading-relaxed whitespace-pre-line text-foreground/90 indent-8">
-                        {section.recipe}
+                      <p className="text-lg leading-relaxed whitespace-pre-line text-muted-foreground text-justify">
+                        {section.recipe.split('\n\n')[0]}
+                      </p>
+                      <p className="text-lg leading-relaxed text-muted-foreground text-center mt-4">
+                        {section.recipe.split('\n\n')[1]}
                       </p>
                     </div>
                   )}
@@ -395,7 +384,7 @@ const Index = () => {
                           key={index}
                           className="p-4 bg-muted/30 rounded-lg border-l-4 border-primary hover:bg-muted/50 transition-colors"
                         >
-                          <p className="text-lg leading-relaxed text-foreground/90 italic indent-8">
+                          <p className="text-lg leading-relaxed text-foreground/90 italic">
                             {quote}
                           </p>
                         </div>
@@ -404,62 +393,16 @@ const Index = () => {
                   )}
 
                   {section.images && section.images.length > 0 && (
-                    <div className="mt-6">
-                      {section.imageGallery ? (
-                        <div className="relative">
-                          <div className="overflow-hidden rounded-lg">
-                            <div className="flex items-center justify-center">
-                              <img 
-                                src={section.images[currentImageIndex[section.id] || 0]} 
-                                alt={`${section.title} ${(currentImageIndex[section.id] || 0) + 1}`}
-                                className="rounded-lg shadow-lg max-h-96 object-contain cursor-pointer"
-                                onClick={() => setSelectedImage(section.images![currentImageIndex[section.id] || 0])}
-                              />
-                            </div>
-                          </div>
-                          {section.images.length > 1 && (
-                            <>
-                              <button
-                                onClick={() => prevImage(section.id, section.images!.length)}
-                                className="absolute left-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-2 rounded-full transition-colors"
-                              >
-                                <Icon name="ChevronLeft" className="w-6 h-6" />
-                              </button>
-                              <button
-                                onClick={() => nextImage(section.id, section.images!.length)}
-                                className="absolute right-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-2 rounded-full transition-colors"
-                              >
-                                <Icon name="ChevronRight" className="w-6 h-6" />
-                              </button>
-                              <div className="flex justify-center gap-2 mt-4">
-                                {section.images.map((_, index) => (
-                                  <button
-                                    key={index}
-                                    onClick={() => setCurrentImageIndex(prev => ({ ...prev, [section.id]: index }))}
-                                    className={`w-2 h-2 rounded-full transition-all ${
-                                      (currentImageIndex[section.id] || 0) === index 
-                                        ? 'bg-primary w-8' 
-                                        : 'bg-primary/30'
-                                    }`}
-                                  />
-                                ))}
-                              </div>
-                            </>
-                          )}
-                        </div>
-                      ) : (
-                        <div className="flex flex-wrap justify-center gap-4">
-                          {section.images.map((image, index) => (
-                            <img 
-                              key={index}
-                              src={image} 
-                              alt={`${section.title} ${index + 1}`}
-                              className="rounded-lg shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer hover:scale-105 max-w-xs h-64 object-cover"
-                              onClick={() => setSelectedImage(image)}
-                            />
-                          ))}
-                        </div>
-                      )}
+                    <div className="mt-6 flex flex-wrap justify-center gap-4">
+                      {section.images.map((image, index) => (
+                        <img 
+                          key={index}
+                          src={image} 
+                          alt={`${section.title} ${index + 1}`}
+                          className="rounded-lg shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer hover:scale-105 max-w-xs h-64 object-cover"
+                          onClick={() => setSelectedImage(image)}
+                        />
+                      ))}
                     </div>
                   )}
                 </CardContent>
@@ -475,7 +418,7 @@ const Index = () => {
           </h2>
           <Card className="border-2 border-primary/20 shadow-lg">
             <CardContent className="p-6 md:p-8">
-              <p className="text-xl font-bold text-primary mb-6 indent-8">
+              <p className="text-xl font-bold text-primary mb-6 text-justify">
                 Каюм Насыйри – энциклопедист галим. Аның эшчәнлеге – милләткә фидакарьләрчә хезмәт итүнең бөек үрнәге. Китаплары – хәзерге милли тормышыбыз өчен дә аваздаш булган бай хәзинә ул. Ул үз халкының дөньяви белемен булдыруга зур өлеш кертә, реформачыл агымның беренче новаторларыннан берсе була һәм татар халкы арасында фән һәм белем, мәдәниятне таратуны тормышының максаты итеп күрә.
               </p>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
