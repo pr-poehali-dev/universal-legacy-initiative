@@ -161,7 +161,7 @@ const Index = () => {
           }
         });
       },
-      {
+      { 
         threshold: 0.1,
         rootMargin: '0px 0px -100px 0px'
       }
@@ -179,32 +179,63 @@ const Index = () => {
         <section className="mb-16 text-center reveal-section opacity-0">
           <div className="inline-block mb-6">
             <img 
-              src="https://cdn.poehali.dev/files/nasiri-art.jpg" 
+              src="https://cdn.poehali.dev/files/Снимок экрана 2026-01-05 в 19.53.50.png" 
               alt="Каюм Насыйри"
               className="w-80 h-80 md:w-96 md:h-96 lg:w-[28rem] lg:h-[28rem] rounded-full object-cover shadow-2xl border-4 border-primary/20 hover:scale-105 transition-transform duration-300"
             />
           </div>
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent">
-            Каюм Насыйри
+          <h2 className="text-2xl md:text-3xl font-medium text-primary mb-4">
+            ҮЗ ХАЛКЫН ДАНЛАГАН ТАТАРЛАР:
+          </h2>
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-primary">
+            КАЮМ НАСЫЙРИ
           </h1>
           <p className="text-xl md:text-2xl text-muted-foreground mb-6">
-            1825-1902
+            (1825-1902)
           </p>
           <div className="max-w-3xl mx-auto space-y-4 text-lg text-foreground/90">
-            <p className="text-2xl font-bold text-primary">
-              Гомере буе халыкка фидакарьләрчә хезмәт итеп, җәмәгатькә зур хезмәт күрсәткән галим.
-            </p>
-            <p>
-              Каюм Насыйри - беренче татар галиме, җәмәгать эшлеклесе. Казанда туып үскән. Әтисе - мәчет имамы. Яшь чагыннан укырга, язарга өйрәнгән. Ике медрәсәдә белем алып чыккач, Казан университеты янындагы Мөгаллимнәр семинариясенә укырга керә. <a href="https://tt.wikipedia.org/wiki/%D0%9A%D0%B0%D1%8E%D0%BC_%D0%9D%D0%B0%D1%81%D1%8B%D0%B9%D1%80%D0%B8" target="_blank" rel="noopener noreferrer" className="text-primary underline hover:text-primary/80">Тулырак укырга</a>
-            </p>
-            <p className="text-2xl font-bold text-primary">
-              Каюм Насыйри тел гыйлеме, әдәбият, фольклор, география, тарих, биология, химия, астрономия өлкәсендә беренче татар галиме.
+            <p className="text-xl md:text-2xl font-bold text-primary indent-8">
+              Гомере буе халыкка фидакарьләрчә хезмәт итеп, милләт мәнфәгатьләрен үзенең яшәү кыйбласы дип билгеләгән Каюм Насыйри дөньяда 77 ел яшәп вафат булган. Аның ярты гасырдан артык гомере дәрвишләрчә милләткә хезмәт итүгә багышланган.
             </p>
           </div>
         </section>
 
         <section className="mb-16 reveal-section opacity-0">
-          <h2 className="text-3xl font-bold mb-8 text-center flex items-center justify-center gap-3">
+          <h2 className="text-3xl font-bold mb-8 text-center text-primary">
+            Каюм Насыйри турында видео
+          </h2>
+          <div className="aspect-video bg-black/5 rounded-lg overflow-hidden shadow-xl mb-8">
+            <iframe
+              width="100%"
+              height="100%"
+              src="https://www.youtube.com/embed/yPQOYb_cBck"
+              title="Каюм Насыйри турында видео"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            />
+          </div>
+          <div className="max-w-4xl mx-auto space-y-4">
+            <p className="text-lg leading-relaxed text-primary font-bold indent-8">
+              Каюм Насыйри тел гыйлеме, әдәбият, фольклор, география, тарих, биология, химия, астрономия өлкәсендә беренче татар галиме.
+            </p>
+            <p className="text-lg leading-relaxed text-muted-foreground indent-8">
+              "Ватаным Татарстан" газетасы Каюм Насыйри турында укучыларына бик кызыклы видеоязма тәкъдим иткән. Әлеге видеоязманы сезгә дә тәкъдим итәбез.{' '}
+              <a
+                href="https://inde.io/article/39653-kayum-nasyri-iske-alimlary-zamanybyzga-tanytyru"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1 text-primary hover:text-primary/80 transition-colors"
+              >
+                Тулырак укырга
+                <Icon name="ExternalLink" className="w-4 h-4" />
+              </a>
+            </p>
+          </div>
+        </section>
+
+        <section className="mb-16 reveal-section opacity-0">
+          <h2 className="text-3xl font-bold mb-8 text-center flex items-center justify-center gap-3 text-primary">
             <Icon name="BookMarked" className="w-8 h-8 text-primary" />
             Түбәндәге фәннәр буенча хезмәтләр авторы
           </h2>
@@ -216,7 +247,7 @@ const Index = () => {
                     key={index}
                     className="flex items-center gap-2 p-3 rounded-lg bg-muted/50 hover:bg-primary/10 transition-colors"
                   >
-                    <Icon name="CheckCircle" className="w-5 h-5 text-primary flex-shrink-0" />
+                    <span className="w-2 h-2 rounded-full bg-gradient-to-r from-primary to-secondary flex-shrink-0 mt-1" />
                     <span className="text-foreground">{achievement}</span>
                   </div>
                 ))}
@@ -226,7 +257,7 @@ const Index = () => {
         </section>
 
         <section className="mb-16 reveal-section opacity-0">
-          <h2 className="text-3xl font-bold mb-8 text-center flex items-center justify-center gap-3">
+          <h2 className="text-3xl font-bold mb-8 text-center flex items-center justify-center gap-3 text-primary">
             <Icon name="Navigation" className="w-8 h-8 text-primary" />
             Бүлекләр
           </h2>
@@ -262,23 +293,23 @@ const Index = () => {
                   </h2>
                   
                   {section.subtitle && (
-                    <p className="text-xl font-bold text-accent mb-6">
+                    <p className="text-xl font-bold text-primary mb-6 text-center">
                       {section.subtitle}
                     </p>
                   )}
                   
                   {section.content && (
-                    <p className="text-lg leading-relaxed text-foreground/90 mb-6 whitespace-pre-line">
+                    <p className="text-lg leading-relaxed text-foreground/90 mb-6 whitespace-pre-line indent-8">
                       {section.content}
                     </p>
                   )}
 
                   {section.recipeTitle && section.recipe && (
                     <div className="mt-6 p-6 bg-muted/50 rounded-lg border-2 border-primary/10">
-                      <h3 className="text-xl font-bold text-accent mb-4">
+                      <h3 className="text-xl font-bold text-primary mb-4 text-center">
                         {section.recipeTitle}
                       </h3>
-                      <p className="text-lg leading-relaxed whitespace-pre-line text-foreground/90">
+                      <p className="text-lg leading-relaxed whitespace-pre-line text-foreground/90 indent-8">
                         {section.recipe}
                       </p>
                     </div>
@@ -286,7 +317,7 @@ const Index = () => {
 
                   {section.quotesTitle && section.quotes && (
                     <div className="space-y-4">
-                      <h3 className="text-2xl font-bold text-accent mb-6 whitespace-pre-line">
+                      <h3 className="text-2xl font-bold text-primary mb-6 whitespace-pre-line text-center">
                         {section.quotesTitle}
                       </h3>
                       {section.quotes.map((quote, index) => (
@@ -294,7 +325,7 @@ const Index = () => {
                           key={index}
                           className="p-4 bg-muted/30 rounded-lg border-l-4 border-primary hover:bg-muted/50 transition-colors"
                         >
-                          <p className="text-lg leading-relaxed text-foreground/90 italic">
+                          <p className="text-lg leading-relaxed text-foreground/90 italic indent-8">
                             {quote}
                           </p>
                         </div>
@@ -303,15 +334,13 @@ const Index = () => {
                   )}
 
                   {section.images && section.images.length > 0 && (
-                    <div className={`mt-6 ${section.imageGallery ? 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4' : 'flex justify-center'}`}>
+                    <div className="mt-6 flex flex-wrap justify-center gap-4">
                       {section.images.map((image, index) => (
                         <img 
                           key={index}
                           src={image} 
                           alt={`${section.title} ${index + 1}`}
-                          className={`rounded-lg shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer hover:scale-105 ${
-                            section.imageGallery ? 'w-full h-64 object-cover' : 'max-w-md'
-                          }`}
+                          className="rounded-lg shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer hover:scale-105 max-w-xs h-64 object-cover"
                           onClick={() => setSelectedImage(image)}
                         />
                       ))}
@@ -324,13 +353,13 @@ const Index = () => {
         </div>
 
         <section className="mt-16 reveal-section opacity-0">
-          <h2 className="text-3xl font-bold mb-8 text-center flex items-center justify-center gap-3">
+          <h2 className="text-3xl font-bold mb-8 text-center flex items-center justify-center gap-3 text-primary">
             <Icon name="Sparkles" className="w-8 h-8 text-primary" />
             Каюм Насыйри исеме мәңгелек
           </h2>
           <Card className="border-2 border-primary/20 shadow-lg">
             <CardContent className="p-6 md:p-8">
-              <p className="text-xl font-bold text-accent mb-6">
+              <p className="text-xl font-bold text-primary mb-6 indent-8">
                 Каюм Насыйри – энциклопедист галим. Аның эшчәнлеге – милләткә фидакарьләрчә хезмәт итүнең бөек үрнәге. Китаплары – хәзерге милли тормышыбыз өчен дә аваздаш булган бай хәзинә ул. Ул үз халкының дөньяви белемен булдыруга зур өлеш кертә, реформачыл агымның беренче новаторларыннан берсе була һәм татар халкы арасында фән һәм белем, мәдәниятне таратуны тормышының максаты итеп күрә.
               </p>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -345,7 +374,7 @@ const Index = () => {
                       alt={photo.caption}
                       className="w-full h-64 object-cover rounded-lg shadow-lg group-hover:shadow-2xl transition-all duration-300 group-hover:scale-105"
                     />
-                    <p className="mt-3 text-center text-sm font-bold text-accent">
+                    <p className="mt-3 text-center text-sm font-bold text-primary">
                       {photo.caption}
                     </p>
                   </div>
@@ -361,19 +390,11 @@ const Index = () => {
           className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4 cursor-pointer animate-in fade-in duration-200"
           onClick={() => setSelectedImage(null)}
         >
-          <div className="relative max-w-7xl max-h-[90vh]">
-            <img 
-              src={selectedImage} 
-              alt="Зурайтылган рәсем"
-              className="max-w-full max-h-[90vh] object-contain rounded-lg shadow-2xl"
-            />
-            <button 
-              className="absolute top-4 right-4 bg-white/10 hover:bg-white/20 rounded-full p-2 transition-colors"
-              onClick={() => setSelectedImage(null)}
-            >
-              <Icon name="X" className="w-6 h-6 text-white" />
-            </button>
-          </div>
+          <img 
+            src={selectedImage} 
+            alt="Full size" 
+            className="max-w-full max-h-full object-contain"
+          />
         </div>
       )}
     </div>
