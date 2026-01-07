@@ -442,6 +442,12 @@ const Index = () => {
             </CardContent>
           </Card>
         </section>
+
+        <footer className="mt-16 py-8 border-t-2 border-primary/20 reveal-section opacity-0">
+          <p className="text-center text-muted-foreground text-sm">
+            © 2026 - Татар мәдәниятен саклау һәм үстерү бренча проект. Лилия Кәримова
+          </p>
+        </footer>
       </div>
 
       {selectedImage && (
