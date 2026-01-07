@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import Icon from '@/components/ui/icon';
@@ -121,13 +121,36 @@ const Index = () => {
     setIsMenuOpen(false);
   };
 
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('animate-in');
+          }
+        });
+      },
+      {
+        threshold: 0.1,
+        rootMargin: '0px 0px -100px 0px'
+      }
+    );
+
+    const sections = document.querySelectorAll('.reveal-section');
+    sections.forEach((section) => observer.observe(section));
+
+    return () => {
+      sections.forEach((section) => observer.unobserve(section));
+    };
+  }, []);
+
   return (
-    <div className="min-h-screen bg-gradient-to-b from-amber-50 via-orange-50 to-green-100">
+    <div className="min-h-screen bg-gradient-to-b from-white via-green-50/30 to-blue-50/30">
       {/* Адаптивная навигация */}
       <nav className="sticky top-0 z-40 bg-white/95 backdrop-blur-sm shadow-md">
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between py-4">
-            <h2 className="text-xl font-bold text-orange-700">Каюм Насыйри</h2>
+            <h2 className="text-xl font-bold text-primary">Каюм Насыйри</h2>
             
             {/* Мобильная кнопка меню */}
             <button
@@ -147,8 +170,8 @@ const Index = () => {
                   className="flex items-center gap-2"
                   onClick={() => scrollToSection(section.id)}
                 >
-                  <Icon name={section.icon as any} size={20} />
-                  <span className="text-sm">{section.title}</span>
+                  <Icon name={section.icon as any} size={16} />
+                  <span className="hidden lg:inline">{section.title}</span>
                 </Button>
               ))}
             </div>
@@ -156,171 +179,234 @@ const Index = () => {
 
           {/* Мобильное меню */}
           {isMenuOpen && (
-            <div className="md:hidden pb-4 animate-fade-in">
-              <div className="flex flex-col gap-2">
-                {sections.map((section) => (
-                  <Button
-                    key={section.id}
-                    variant="ghost"
-                    className="justify-start gap-3 w-full"
-                    onClick={() => scrollToSection(section.id)}
-                  >
-                    <Icon name={section.icon as any} size={20} />
-                    <span>{section.title}</span>
-                  </Button>
-                ))}
-              </div>
+            <div className="md:hidden pb-4 space-y-2">
+              {sections.map((section) => (
+                <button
+                  key={section.id}
+                  className="w-full flex items-center gap-3 p-3 hover:bg-gray-100 rounded-lg transition-colors text-left"
+                  onClick={() => scrollToSection(section.id)}
+                >
+                  <Icon name={section.icon as any} size={20} />
+                  <span>{section.title}</span>
+                </button>
+              ))}
             </div>
           )}
         </div>
       </nav>
 
-      {/* Основной контент */}
-      <div className="container mx-auto px-4 py-12">
-        {/* Заголовок */}
-        <header className="text-center mb-16 animate-fade-in">
-          <h1 className="text-4xl md:text-6xl font-bold mb-4 text-orange-700">
-            Каюм Насыйри
-          </h1>
-          <p className="text-lg md:text-xl text-gray-700 max-w-3xl mx-auto">
-            Татар халкының күренекле галиме, язучысы, тел белгече, географ һәм этнограф
-          </p>
-          <div className="mt-8 text-sm text-gray-600">
-            <p>1825 - 1902</p>
-          </div>
-        </header>
-
-        {/* Секции с кнопками */}
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 mb-16">
-          {sections.map((section) => (
-            <Card
-              key={section.id}
-              className="hover:shadow-lg transition-all cursor-pointer bg-orange-100 border-orange-200 hover:border-orange-300 animate-fade-in"
-              onClick={() => scrollToSection(section.id)}
-            >
-              <CardContent className="p-6 text-center">
-                <Icon name={section.icon as any} size={40} className="mx-auto mb-3 text-orange-700" />
-                <h3 className="text-sm font-semibold text-orange-700">{section.title}</h3>
+      {/* Hero секция */}
+      <section className="relative py-16 md:py-24 overflow-hidden reveal-section">
+        <div className="absolute inset-0 bg-gradient-to-r from-primary via-secondary to-accent opacity-5"></div>
+        <div className="container mx-auto px-4 relative">
+          <div className="max-w-4xl mx-auto text-center">
+            <div className="mb-6 md:mb-8">
+              <div className="w-32 h-32 md:w-40 md:h-40 mx-auto mb-6 rounded-full overflow-hidden border-4 border-primary/20 shadow-xl">
+                <img 
+                  src="https://cdn.poehali.dev/files/PHOTO-2025-03-30-17-08-30.jpg" 
+                  alt="Каюм Насыйри"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <h1 className="text-4xl md:text-6xl font-bold bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent mb-4">
+                Каюм Насыйри
+              </h1>
+              <p className="text-lg md:text-xl text-muted-foreground mb-6">
+                1825-1902
+              </p>
+              <div className="flex flex-wrap justify-center gap-3 mb-8">
+                <span className="px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-medium">
+                  Язучы
+                </span>
+                <span className="px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-medium">
+                  Галим
+                </span>
+                <span className="px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-medium">
+                  Педагог
+                </span>
+              </div>
+            </div>
+            
+            <Card className="bg-white/80 backdrop-blur-sm border-primary/20 shadow-xl">
+              <CardContent className="p-6 md:p-8">
+                <p className="text-base md:text-lg leading-relaxed text-foreground">
+                  Каюм Насыйри - XIX гасыр татар фәне, мәгърифәте һәм әдәбиятының күренекле вәкиле. Ул татар халкының мәдәни һәм фәнни мирасын саклау һәм үстерүдә зур роль уйнаган. Аның эшчәнлеге язу, фән, педагогика һәм башка күп өлкәләрне үз эченә ала.
+                </p>
               </CardContent>
             </Card>
-          ))}
-        </div>
 
-        {/* Контент секций */}
-        {sections.map((section, idx) => (
+            <div className="mt-8">
+              <Button 
+                onClick={() => navigate('/video')}
+                size="lg"
+                className="gap-2"
+              >
+                <Icon name="Play" size={20} />
+                Видеоязмага күчү
+              </Button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Основные секции */}
+      <div className="container mx-auto px-4 py-12 space-y-16 md:space-y-24">
+        {sections.map((section, index) => (
           <section
             key={section.id}
             ref={(el) => (sectionRefs.current[section.id] = el)}
-            className="mb-16 animate-fade-in"
-            style={{ animationDelay: `${idx * 0.1}s` }}
+            className="reveal-section opacity-0 translate-y-8 transition-all duration-700"
           >
-            <Card className="overflow-hidden border-orange-200 shadow-lg">
-              <CardContent className="p-8">
+            <Card className="overflow-hidden border-primary/20 shadow-lg hover:shadow-xl transition-shadow">
+              <CardContent className="p-6 md:p-8">
                 <div className="flex items-center gap-3 mb-6">
-                  <Icon name={section.icon as any} size={32} className="text-orange-700" />
-                  <h2 className="text-3xl font-bold text-orange-700">{section.title}</h2>
+                  <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
+                    <Icon name={section.icon as any} size={24} className="text-primary" />
+                  </div>
+                  <h2 className="text-2xl md:text-3xl font-bold text-primary">
+                    {section.title}
+                  </h2>
                 </div>
 
                 {section.subtitle && (
-                  <p className="text-lg text-gray-700 mb-4 italic">{section.subtitle}</p>
-                )}
-
-                {section.quotesTitle && (
-                  <h3 className="text-2xl font-bold text-orange-700 mb-6 whitespace-pre-line text-center">
-                    {section.quotesTitle}
-                  </h3>
-                )}
-
-                {section.content && (
-                  <p className="text-gray-700 leading-relaxed mb-6 whitespace-pre-line">
-                    {section.content}
+                  <p className="text-lg text-muted-foreground mb-6 italic">
+                    {section.subtitle}
                   </p>
                 )}
 
-                {section.recipeTitle && (
-                  <div className="bg-orange-50 border-l-4 border-orange-700 p-6 mb-6 rounded">
-                    <h3 className="text-xl font-bold text-orange-700 mb-4">{section.recipeTitle}</h3>
-                    <p className="text-gray-700 leading-relaxed whitespace-pre-line">{section.recipe}</p>
-                  </div>
-                )}
-
-                {section.quotes && (
-                  <div className="space-y-4">
-                    {section.quotes.map((quote, idx) => (
-                      <div
-                        key={idx}
-                        className="bg-orange-50 border-l-4 border-orange-700 p-6 rounded hover:shadow-md transition-shadow"
-                      >
-                        <p className="text-gray-800 leading-relaxed italic">«{quote}</p>
-                      </div>
+                {section.content && (
+                  <div className="prose prose-lg max-w-none mb-6">
+                    {section.content.split('\n\n').map((paragraph, idx) => (
+                      <p key={idx} className="mb-4 text-foreground leading-relaxed">
+                        {paragraph}
+                      </p>
                     ))}
                   </div>
                 )}
 
+                {section.recipeTitle && section.recipe && (
+                  <div className="bg-primary/5 border-l-4 border-primary p-6 rounded-r-lg mb-6">
+                    <h3 className="text-xl font-semibold text-primary mb-4">
+                      {section.recipeTitle}
+                    </h3>
+                    <div className="space-y-3">
+                      {section.recipe.split('\n\n').map((part, idx) => (
+                        <p key={idx} className="text-foreground leading-relaxed">
+                          {part}
+                        </p>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {section.quotesTitle && section.quotes && (
+                  <div>
+                    <h3 className="text-2xl font-bold text-primary mb-8 text-center whitespace-pre-line">
+                      {section.quotesTitle}
+                    </h3>
+                    <div className="grid gap-6 md:grid-cols-2">
+                      {section.quotes.map((quote, idx) => (
+                        <Card key={idx} className="bg-gradient-to-br from-primary/5 to-secondary/5 border-primary/20 hover:shadow-md transition-shadow">
+                          <CardContent className="p-6">
+                            <div className="flex gap-4">
+                              <Icon name="Quote" size={24} className="text-primary flex-shrink-0 mt-1" />
+                              <p className="text-foreground leading-relaxed">
+                                {quote}
+                              </p>
+                            </div>
+                          </CardContent>
+                        </Card>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
                 {section.images && section.images.length > 0 && (
-                  <div className={section.imageGallery ? "mt-6" : "mt-6 space-y-4"}>
-                    {section.imageGallery ? (
-                      <div className="flex gap-4 overflow-x-auto pb-4 scrollbar-hide">
-                        {section.images.map((img, idx) => (
-                          <img
-                            key={idx}
-                            src={img}
-                            alt={`${section.title} ${idx + 1}`}
-                            className="w-72 h-64 object-cover rounded-lg shadow-lg cursor-pointer hover:shadow-xl transition-shadow flex-shrink-0"
-                            onClick={() => setSelectedImage(img)}
-                          />
-                        ))}
-                      </div>
-                    ) : (
-                      section.images.map((img, idx) => (
+                  <div className={`grid gap-4 mt-6 ${
+                    section.imageGallery 
+                      ? 'md:grid-cols-3' 
+                      : 'md:grid-cols-1 max-w-2xl mx-auto'
+                  }`}>
+                    {section.images.map((image, idx) => (
+                      <div 
+                        key={idx}
+                        className="relative group cursor-pointer overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-all"
+                        onClick={() => setSelectedImage(image)}
+                      >
                         <img
-                          key={idx}
-                          src={img}
+                          src={image}
                           alt={`${section.title} ${idx + 1}`}
-                          className="w-full rounded-lg shadow-lg cursor-pointer hover:shadow-xl transition-shadow"
-                          onClick={() => setSelectedImage(img)}
+                          className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300"
                         />
-                      ))
-                    )}
+                        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors flex items-center justify-center">
+                          <Icon 
+                            name="ZoomIn" 
+                            size={32} 
+                            className="text-white opacity-0 group-hover:opacity-100 transition-opacity"
+                          />
+                        </div>
+                      </div>
+                    ))}
                   </div>
                 )}
               </CardContent>
             </Card>
           </section>
         ))}
-
-        {/* Кнопка-призыв */}
-        <section className="mb-16 animate-fade-in text-center">
-          <Button
-            size="lg"
-            className="text-lg px-8 py-6 bg-gradient-to-r from-orange-600 to-amber-600 hover:from-orange-700 hover:to-amber-700 shadow-xl"
-            onClick={() => navigate('/gallery')}
-          >
-            Каюм Насыйри исеме мәңгелек
-            <Icon name="ArrowRight" size={24} className="ml-2" />
-          </Button>
-        </section>
       </div>
+
+      {/* Видео секция */}
+      <section className="py-16 bg-gradient-to-r from-primary/5 via-secondary/5 to-accent/5 reveal-section">
+        <div className="container mx-auto px-4">
+          <Card className="max-w-4xl mx-auto border-primary/20 shadow-xl">
+            <CardContent className="p-8">
+              <div className="text-center mb-6">
+                <h2 className="text-3xl font-bold text-primary mb-4">
+                  Әлеге видеоязманы карагыз
+                </h2>
+                <p className="text-muted-foreground">
+                  Каюм Насыйри турында тулырак мәгълүмат
+                </p>
+              </div>
+              <Button 
+                onClick={() => navigate('/video')}
+                size="lg"
+                className="w-full gap-2"
+              >
+                <Icon name="Play" size={24} />
+                Видеоны карау
+              </Button>
+            </CardContent>
+          </Card>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="bg-gradient-to-r from-primary via-secondary to-accent text-white py-8">
+        <div className="container mx-auto px-4 text-center">
+          <p className="text-sm md:text-base">
+            © 2026 - Татар мәдәниятен саклау һәм үстерү проекты. Лилия Кәримова
+          </p>
+        </div>
+      </footer>
 
       {/* Модальное окно для просмотра изображений */}
       {selectedImage && (
-        <div
-          className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4 animate-fade-in"
+        <div 
+          className="fixed inset-0 z-50 bg-black/90 flex items-center justify-center p-4"
           onClick={() => setSelectedImage(null)}
         >
-          <div className="relative max-w-7xl max-h-[90vh]">
-            <img
-              src={selectedImage}
-              alt="Увеличенное изображение"
-              className="max-w-full max-h-[90vh] object-contain rounded-lg"
-            />
-            <button
-              className="absolute top-4 right-4 bg-white/90 hover:bg-white p-2 rounded-full transition-colors"
-              onClick={() => setSelectedImage(null)}
-            >
-              <Icon name="X" size={24} />
-            </button>
-          </div>
+          <button
+            className="absolute top-4 right-4 text-white hover:text-gray-300 transition-colors"
+            onClick={() => setSelectedImage(null)}
+          >
+            <Icon name="X" size={32} />
+          </button>
+          <img
+            src={selectedImage}
+            alt="Enlarged view"
+            className="max-w-full max-h-full object-contain"
+          />
         </div>
       )}
     </div>

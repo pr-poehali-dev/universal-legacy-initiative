@@ -38,7 +38,7 @@ const Gallery = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-amber-50 via-orange-50 to-green-100">
+    <div className="min-h-screen bg-gradient-to-b from-white via-green-50/30 to-blue-50/30">
       <div className="container mx-auto px-4 py-8 md:py-12">
         <section className="text-center mb-12 animate-fade-in">
           <Button
@@ -50,12 +50,12 @@ const Gallery = () => {
             Артка кайту
           </Button>
 
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-8 bg-gradient-to-r from-orange-600 via-amber-600 to-green-600 bg-clip-text text-transparent">
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-8 bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent">
             Каюм Насыйри исеме мәңгелек
           </h1>
 
           <div className="max-w-5xl mx-auto mb-12">
-            <p className="text-xl md:text-2xl font-bold text-orange-800 leading-relaxed">
+            <p className="text-xl md:text-2xl font-bold text-primary leading-relaxed">
               Каюм Насыйри – энциклопедист галим. Аның эшчәнлеге – милләткә фидакарьләрчә хезмәт итүнең бөек үрнәге. Китаплары – хәзерге милли тормышыбыз өчен дә аваздаш булган бай хәзинә ул. Ул үз халкының дөньяви белемен булдыруга зур өлеш кертә, реформачыл агымның беренче новаторларыннан берсе була һәм татар халкы арасында фән һәм белем, мәдәниятне таратуны тормышының максаты итеп күрә.
             </p>
           </div>
@@ -65,7 +65,7 @@ const Gallery = () => {
           {galleryItems.map((item) => (
             <Card
               key={item.id}
-              className="shadow-xl border-2 border-orange-200 hover:shadow-2xl transition-all duration-300 hover:scale-[1.02] cursor-pointer bg-white/80 backdrop-blur-sm"
+              className="shadow-xl border-2 hover:shadow-2xl transition-all duration-300 hover:scale-[1.02] cursor-pointer"
               onClick={() => setSelectedImage(item.image)}
             >
               <CardContent className="p-6">
@@ -74,7 +74,7 @@ const Gallery = () => {
                   alt={item.title}
                   className="w-full h-auto rounded-lg shadow-lg mb-4 object-cover"
                 />
-                <h3 className="text-xl md:text-2xl font-bold text-center text-orange-800">
+                <h3 className="text-xl md:text-2xl font-bold text-center text-primary">
                   {item.title}
                 </h3>
               </CardContent>
@@ -82,9 +82,9 @@ const Gallery = () => {
           ))}
         </section>
 
-        <footer className="text-center py-8 text-orange-700">
-          <p className="text-sm md:text-base font-medium">
-            © 2026 - Татар әдәбиятын өйрәнү һәм үстерү проекты. Лилия Кәримова
+        <footer className="text-center py-8 text-muted-foreground">
+          <p className="text-sm md:text-base">
+            © 2026 - Татар мәдәниятен саклау һәм үстерү проекты. Лилия Кәримова
           </p>
         </footer>
       </div>
