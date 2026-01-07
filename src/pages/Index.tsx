@@ -1,8 +1,6 @@
 import { useRef, useState, useEffect } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
 import Icon from '@/components/ui/icon';
-import { useNavigate } from 'react-router-dom';
 
 interface Section {
   id: string;
@@ -52,7 +50,8 @@ const sections: Section[] = [
     icon: 'Leaf',
     content: 'Каюм Насыйри дарулар кулланмаган. Ул гомер буе дару үләннәре җыйган, шулар белән үзе дә, башкаларны да дәвалаган. Үзенең тәҗрибәсен "Гөлзар вә чаманзар" ("Чәчәкләр һәм үләннәр") китабында тасвирлаган. Бу китабында галим Россия территориясендә үскән 192 үсемлекнең үзлекләрен, 155 авыруны һәм аларны үләннәр ярдәмендә дәвалау ысулларын җентекләп тасвирлаган.',
     images: [
-      'https://cdn.poehali.dev/files/PHOTO-2025-03-27-04-15-57.jpg'
+      'https://cdn.poehali.dev/files/PHOTO-2025-03-27-04-15-57.jpg',
+      'https://cdn.poehali.dev/files/Снимок экрана 2026-01-07 в 09.55.17.png'
     ],
     imageGallery: false,
   },
@@ -107,18 +106,47 @@ const sections: Section[] = [
   },
 ];
 
+const achievements = [
+  'Татар әдәбияты',
+  'Татар теле',
+  'Татар тарихы',
+  'География',
+  'Биология',
+  'Этнография',
+  'Фольклор',
+  'Педагогика һәм дидактика',
+  'Химия',
+  'Медицина',
+];
+
+const memoryPhotos = [
+  {
+    url: 'https://cdn.poehali.dev/files/Без заголовка.jpg',
+    caption: 'Каюм Насыйри яшәгән йорт'
+  },
+  {
+    url: 'https://cdn.poehali.dev/files/PHOTO-2025-03-30-18-08-48.jpg',
+    caption: 'Бакый Урманче ясаган К. Насыйри скульптура образы'
+  },
+  {
+    url: 'https://cdn.poehali.dev/files/Снимок экрана 2026-01-07 в 08.45.32.png',
+    caption: 'Каюм Насыйри хезмәтләре'
+  },
+  {
+    url: 'https://cdn.poehali.dev/files/Снимок экрана 2026-01-07 в 09.49.09.png',
+    caption: 'Каюм Насыйри музеендагы скульптура'
+  }
+];
+
 const Index = () => {
   const sectionRefs = useRef<{ [key: string]: HTMLElement | null }>({});
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const navigate = useNavigate();
 
   const scrollToSection = (sectionId: string) => {
     sectionRefs.current[sectionId]?.scrollIntoView({ 
       behavior: 'smooth', 
       block: 'center' 
     });
-    setIsMenuOpen(false);
   };
 
   useEffect(() => {
@@ -146,269 +174,277 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-white via-green-50/30 to-blue-50/30">
-      {/* Адаптивная навигация */}
-      <nav className="sticky top-0 z-40 bg-white/95 backdrop-blur-sm shadow-md">
-        <div className="container mx-auto px-4">
-          <div className="flex items-center justify-between py-4">
-            <h2 className="text-xl font-bold text-primary">Каюм Насыйри</h2>
-            
-            {/* Мобильная кнопка меню */}
-            <button
-              className="md:hidden p-2 hover:bg-gray-100 rounded-lg transition-colors"
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-            >
-              <Icon name={isMenuOpen ? "X" : "Menu"} size={24} />
-            </button>
-
-            {/* Десктопное меню */}
-            <div className="hidden md:flex gap-2">
-              {sections.map((section) => (
-                <Button
-                  key={section.id}
-                  variant="ghost"
-                  size="sm"
-                  className="flex items-center gap-2"
-                  onClick={() => scrollToSection(section.id)}
-                >
-                  <Icon name={section.icon as any} size={16} />
-                  <span className="hidden lg:inline">{section.title}</span>
-                </Button>
-              ))}
+      {/* Hero Section */}
+      <section className="container mx-auto px-4 py-16 md:py-24">
+        <div className="max-w-4xl mx-auto text-center">
+          <div className="mb-8 flex justify-center">
+            <div className="w-48 h-48 md:w-64 md:h-64 rounded-full overflow-hidden shadow-2xl border-4 border-white">
+              <img 
+                src="https://cdn.poehali.dev/files/Снимок экрана 2026-01-05 в 19.53.50.png" 
+                alt="Каюм Насыйри"
+                className="w-full h-full object-cover"
+              />
             </div>
           </div>
-
-          {/* Мобильное меню */}
-          {isMenuOpen && (
-            <div className="md:hidden pb-4 space-y-2">
-              {sections.map((section) => (
-                <button
-                  key={section.id}
-                  className="w-full flex items-center gap-3 p-3 hover:bg-gray-100 rounded-lg transition-colors text-left"
-                  onClick={() => scrollToSection(section.id)}
-                >
-                  <Icon name={section.icon as any} size={20} />
-                  <span>{section.title}</span>
-                </button>
-              ))}
-            </div>
-          )}
+          
+          <p className="text-lg md:text-xl text-gray-600 mb-4">
+            ҮЗ ХАЛКЫН ДАНЛАГАН ТАТАРЛАР:
+          </p>
+          
+          <h1 className="text-4xl md:text-6xl font-bold text-primary mb-4">
+            КАЮМ НАСЫЙРИ
+          </h1>
+          
+          <p className="text-2xl md:text-3xl text-gray-700 mb-8">
+            (1825-1902)
+          </p>
+          
+          <p className="text-lg md:text-xl text-gray-800 leading-relaxed font-bold max-w-3xl mx-auto">
+            Гомере буе халыкка фидакарьләрчә хезмәт итеп, милләт мәнфәгатьләрен үзенең яшәү кыйбласы дип билгеләгән Каюм Насыйри дөньяда 77 ел яшәп вафат булган. Аның ярты гасырдан артык гомере дәрвишләрчә милләткә хезмәт итүгә багышланган.
+          </p>
         </div>
-      </nav>
+      </section>
 
-      {/* Hero секция */}
-      <section className="relative py-16 md:py-24 overflow-hidden reveal-section">
-        <div className="absolute inset-0 bg-gradient-to-r from-primary via-secondary to-accent opacity-5"></div>
-        <div className="container mx-auto px-4 relative">
-          <div className="max-w-4xl mx-auto text-center">
-            <div className="mb-6 md:mb-8">
-              <div className="w-32 h-32 md:w-40 md:h-40 mx-auto mb-6 rounded-full overflow-hidden border-4 border-primary/20 shadow-xl">
-                <img 
-                  src="https://cdn.poehali.dev/files/PHOTO-2025-03-30-17-08-30.jpg" 
-                  alt="Каюм Насыйри"
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              <h1 className="text-4xl md:text-6xl font-bold bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent mb-4">
-                Каюм Насыйри
-              </h1>
-              <p className="text-lg md:text-xl text-muted-foreground mb-6">
-                1825-1902
-              </p>
-              <div className="flex flex-wrap justify-center gap-3 mb-8">
-                <span className="px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-medium">
-                  Язучы
-                </span>
-                <span className="px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-medium">
-                  Галим
-                </span>
-                <span className="px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-medium">
-                  Педагог
-                </span>
-              </div>
-            </div>
-            
-            <Card className="bg-white/80 backdrop-blur-sm border-primary/20 shadow-xl">
-              <CardContent className="p-6 md:p-8">
-                <p className="text-base md:text-lg leading-relaxed text-foreground">
-                  Каюм Насыйри - XIX гасыр татар фәне, мәгърифәте һәм әдәбиятының күренекле вәкиле. Ул татар халкының мәдәни һәм фәнни мирасын саклау һәм үстерүдә зур роль уйнаган. Аның эшчәнлеге язу, фән, педагогика һәм башка күп өлкәләрне үз эченә ала.
-                </p>
-              </CardContent>
-            </Card>
-
-            <div className="mt-8">
-              <Button 
-                onClick={() => navigate('/video')}
-                size="lg"
-                className="gap-2"
-              >
-                <Icon name="Play" size={20} />
-                Видеоязмага күчү
-              </Button>
-            </div>
+      {/* Video Section */}
+      <section className="container mx-auto px-4 py-12 reveal-section">
+        <div className="max-w-4xl mx-auto">
+          <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>
+            <iframe
+              src="https://drive.google.com/file/d/1gvSNY0J0R3XYS-d4-KbL15SmvBdJlb_g/preview"
+              className="absolute top-0 left-0 w-full h-full rounded-lg shadow-xl"
+              allow="autoplay"
+              allowFullScreen
+            ></iframe>
           </div>
         </div>
       </section>
 
-      {/* Основные секции */}
-      <div className="container mx-auto px-4 py-12 space-y-16 md:space-y-24">
-        {sections.map((section, index) => (
-          <section
-            key={section.id}
-            ref={(el) => (sectionRefs.current[section.id] = el)}
-            className="reveal-section opacity-0 translate-y-8 transition-all duration-700"
-          >
-            <Card className="overflow-hidden border-primary/20 shadow-lg hover:shadow-xl transition-shadow">
-              <CardContent className="p-6 md:p-8">
-                <div className="flex items-center gap-3 mb-6">
-                  <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
-                    <Icon name={section.icon as any} size={24} className="text-primary" />
-                  </div>
-                  <h2 className="text-2xl md:text-3xl font-bold text-primary">
-                    {section.title}
-                  </h2>
+      {/* Text Blocks After Video */}
+      <section className="container mx-auto px-4 py-12 reveal-section">
+        <div className="max-w-4xl mx-auto space-y-6">
+          <p className="text-lg md:text-xl text-gray-800 leading-relaxed font-bold">
+            Каюм Насыйри тел гыйлеме, әдәбият, фольклор, тарих, педагогика һәм дидактика, география, биология, химия, медицина кебек фәннәрдә татар халкы һәм Казан губернасы өчен новатор була. Әдипнең гаять күпкырлы эшчәнлеге төп ике зур тармакка бүленә: гыйльми-мәгърифәтчелек һәм әдәби-тәрҗемәчелек юнәлешләре.
+          </p>
+          
+          <p className="text-lg md:text-xl text-gray-700 leading-relaxed">
+            Ватаным Татарстан" газетасы оештырган "Каюм бабай дәресе" конкурсының «Каюм Насыйри эзләреннән» номинациясенә укытучылар һәм тәрбиячеләр, Каюм Насыйри хезмәтләрен файдаланып, билгеле бер чара уздырырга һәм ул чарадан видеоязма әзерләргә тиеш иде. Бу юнәлештә җибәргән иҗат эшләре арасында «Адымнар – белемгә һәм бердәмлеккә юл» күптелле мәгариф комплексы укытучылары Рамил Ханнанов һәм Нариман Фәхрисламов – җиңүчеләрнең берсе. Әлеге видеоязманы сезгә дә тәкъдим итәбез.
+          </p>
+          
+          <div className="pt-4">
+            <a 
+              href="https://vatantat.ru/news/kaium-babai-dasa-vt-ukytucylar-ham-tarbiiacelar-arasynda-uzdyrgan-baigega-iomgak-iasady-110417"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 text-primary hover:text-primary/80 font-semibold text-lg transition-colors"
+            >
+              Тулырак укырга
+              <Icon name="ExternalLink" className="w-5 h-5" />
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* Sections Menu */}
+      <section className="container mx-auto px-4 py-16 reveal-section">
+        <div className="max-w-6xl mx-auto">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+            {sections.map((section) => (
+              <Card 
+                key={section.id}
+                className="cursor-pointer hover:shadow-lg transition-all duration-300 hover:-translate-y-1 bg-white/80 backdrop-blur-sm"
+                onClick={() => scrollToSection(section.id)}
+              >
+                <CardContent className="p-6 text-center">
+                  <Icon 
+                    name={section.icon} 
+                    className="w-12 h-12 mx-auto mb-3 text-primary"
+                  />
+                  <h3 className="font-semibold text-sm">{section.title}</h3>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Achievements List */}
+      <section className="container mx-auto px-4 py-16 reveal-section">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-primary">
+            Түбәндәге фәннәр буенча хезмәтләр авторы
+          </h2>
+          <div className="grid md:grid-cols-2 gap-4">
+            {achievements.map((achievement, index) => (
+              <div 
+                key={index}
+                className="flex items-center gap-3 p-4 bg-white/60 backdrop-blur-sm rounded-lg hover:bg-white/80 transition-colors"
+              >
+                <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+                  <Icon name="Check" className="w-5 h-5 text-primary" />
                 </div>
+                <span className="text-lg font-medium text-gray-800">{achievement}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
-                {section.subtitle && (
-                  <p className="text-lg text-muted-foreground mb-6 italic">
-                    {section.subtitle}
-                  </p>
-                )}
+      {/* Content Sections */}
+      {sections.map((section) => (
+        <section
+          key={section.id}
+          ref={(el) => (sectionRefs.current[section.id] = el)}
+          className="container mx-auto px-4 py-16 reveal-section"
+        >
+          <div className="max-w-4xl mx-auto">
+            <div className="flex items-center gap-4 mb-8">
+              <Icon 
+                name={section.icon} 
+                className="w-12 h-12 text-primary flex-shrink-0"
+              />
+              <h2 className="text-3xl md:text-4xl font-bold text-primary">
+                {section.title}
+              </h2>
+            </div>
 
-                {section.content && (
-                  <div className="prose prose-lg max-w-none mb-6">
-                    {section.content.split('\n\n').map((paragraph, idx) => (
-                      <p key={idx} className="mb-4 text-foreground leading-relaxed">
-                        {paragraph}
-                      </p>
-                    ))}
-                  </div>
-                )}
+            {section.subtitle && (
+              <p className="text-xl text-gray-700 mb-6 italic">
+                {section.subtitle}
+              </p>
+            )}
 
-                {section.recipeTitle && section.recipe && (
-                  <div className="bg-primary/5 border-l-4 border-primary p-6 rounded-r-lg mb-6">
-                    <h3 className="text-xl font-semibold text-primary mb-4">
-                      {section.recipeTitle}
-                    </h3>
-                    <div className="space-y-3">
-                      {section.recipe.split('\n\n').map((part, idx) => (
-                        <p key={idx} className="text-foreground leading-relaxed">
-                          {part}
-                        </p>
-                      ))}
-                    </div>
-                  </div>
-                )}
-
-                {section.quotesTitle && section.quotes && (
-                  <div>
-                    <h3 className="text-2xl font-bold text-primary mb-8 text-center whitespace-pre-line">
-                      {section.quotesTitle}
-                    </h3>
-                    <div className="grid gap-6 md:grid-cols-2">
-                      {section.quotes.map((quote, idx) => (
-                        <Card key={idx} className="bg-gradient-to-br from-primary/5 to-secondary/5 border-primary/20 hover:shadow-md transition-shadow">
-                          <CardContent className="p-6">
-                            <div className="flex gap-4">
-                              <Icon name="Quote" size={24} className="text-primary flex-shrink-0 mt-1" />
-                              <p className="text-foreground leading-relaxed">
-                                {quote}
-                              </p>
-                            </div>
-                          </CardContent>
-                        </Card>
-                      ))}
-                    </div>
-                  </div>
-                )}
-
-                {section.images && section.images.length > 0 && (
-                  <div className={`grid gap-4 mt-6 ${
-                    section.imageGallery 
-                      ? 'md:grid-cols-3' 
-                      : 'md:grid-cols-1 max-w-2xl mx-auto'
-                  }`}>
-                    {section.images.map((image, idx) => (
-                      <div 
-                        key={idx}
-                        className="relative group cursor-pointer overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-all"
-                        onClick={() => setSelectedImage(image)}
-                      >
-                        <img
-                          src={image}
-                          alt={`${section.title} ${idx + 1}`}
-                          className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300"
-                        />
-                        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors flex items-center justify-center">
-                          <Icon 
-                            name="ZoomIn" 
-                            size={32} 
-                            className="text-white opacity-0 group-hover:opacity-100 transition-opacity"
-                          />
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                )}
-              </CardContent>
-            </Card>
-          </section>
-        ))}
-      </div>
-
-      {/* Видео секция */}
-      <section className="py-16 bg-gradient-to-r from-primary/5 via-secondary/5 to-accent/5 reveal-section">
-        <div className="container mx-auto px-4">
-          <Card className="max-w-4xl mx-auto border-primary/20 shadow-xl">
-            <CardContent className="p-8">
-              <div className="text-center mb-6">
-                <h2 className="text-3xl font-bold text-primary mb-4">
-                  Әлеге видеоязманы карагыз
-                </h2>
-                <p className="text-muted-foreground">
-                  Каюм Насыйри турында тулырак мәгълүмат
+            {section.content && (
+              <div className="prose prose-lg max-w-none mb-8">
+                <p className="text-gray-800 leading-relaxed whitespace-pre-line">
+                  {section.content}
                 </p>
               </div>
-              <Button 
-                onClick={() => navigate('/video')}
-                size="lg"
-                className="w-full gap-2"
+            )}
+
+            {section.recipeTitle && section.recipe && (
+              <div className="bg-amber-50 border-l-4 border-amber-500 p-6 rounded-r-lg mb-8">
+                <h3 className="text-xl font-bold text-amber-900 mb-4">
+                  {section.recipeTitle}
+                </h3>
+                <p className="text-gray-800 leading-relaxed whitespace-pre-line">
+                  {section.recipe}
+                </p>
+              </div>
+            )}
+
+            {section.images && section.images.length > 0 && (
+              <div className={`grid gap-6 mb-8 ${
+                section.imageGallery 
+                  ? 'md:grid-cols-3' 
+                  : section.images.length === 2 
+                    ? 'md:grid-cols-2' 
+                    : 'md:grid-cols-1'
+              }`}>
+                {section.images.map((image, index) => (
+                  <div 
+                    key={index}
+                    className="cursor-pointer group overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-all duration-300"
+                    onClick={() => setSelectedImage(image)}
+                  >
+                    <img 
+                      src={image}
+                      alt={`${section.title} ${index + 1}`}
+                      className="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-300"
+                    />
+                  </div>
+                ))}
+              </div>
+            )}
+
+            {section.quotesTitle && section.quotes && (
+              <div>
+                <h3 className="text-2xl md:text-3xl font-bold text-center mb-8 text-primary whitespace-pre-line">
+                  {section.quotesTitle}
+                </h3>
+                <div className="space-y-6">
+                  {section.quotes.map((quote, index) => (
+                    <div key={index} className="flex gap-4">
+                      <Icon name="Quote" className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
+                      <p className="text-lg text-gray-800 leading-relaxed italic">
+                        {quote}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
+        </section>
+      ))}
+
+      {/* Memory Section */}
+      <section className="container mx-auto px-4 py-16 reveal-section">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-primary">
+            Каюм Насыйри исеме мәңгелек
+          </h2>
+          <div className="grid md:grid-cols-2 gap-8">
+            {memoryPhotos.map((photo, index) => (
+              <div 
+                key={index}
+                className="group cursor-pointer"
+                onClick={() => setSelectedImage(photo.url)}
               >
-                <Icon name="Play" size={24} />
-                Видеоны карау
-              </Button>
-            </CardContent>
-          </Card>
+                <div className="overflow-hidden rounded-lg shadow-lg hover:shadow-2xl transition-all duration-300">
+                  <img 
+                    src={photo.url}
+                    alt={photo.caption}
+                    className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300"
+                  />
+                </div>
+                <p className="mt-4 text-center text-lg font-medium text-gray-800">
+                  {photo.caption}
+                </p>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="bg-gradient-to-r from-primary via-secondary to-accent text-white py-8">
-        <div className="container mx-auto px-4 text-center">
-          <p className="text-sm md:text-base">
-            © 2026 - Татар мәдәниятен саклау һәм үстерү проекты. Лилия Кәримова
-          </p>
-        </div>
+      <footer className="container mx-auto px-4 py-8">
+        <p className="text-center text-gray-600">
+          © 2026 - Татар мәдәниятен саклау һәм үстерү проекты. Лилия Кәримова
+        </p>
       </footer>
 
-      {/* Модальное окно для просмотра изображений */}
+      {/* Image Modal */}
       {selectedImage && (
         <div 
-          className="fixed inset-0 z-50 bg-black/90 flex items-center justify-center p-4"
+          className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4"
           onClick={() => setSelectedImage(null)}
         >
           <button
             className="absolute top-4 right-4 text-white hover:text-gray-300 transition-colors"
             onClick={() => setSelectedImage(null)}
           >
-            <Icon name="X" size={32} />
+            <Icon name="X" className="w-8 h-8" />
           </button>
-          <img
+          <img 
             src={selectedImage}
-            alt="Enlarged view"
+            alt="Full size"
             className="max-w-full max-h-full object-contain"
           />
         </div>
       )}
+
+      <style>{`
+        .reveal-section {
+          opacity: 0;
+          transform: translateY(30px);
+          transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .reveal-section.animate-in {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      `}</style>
     </div>
   );
 };
