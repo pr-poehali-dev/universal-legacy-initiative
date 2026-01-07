@@ -281,7 +281,7 @@ const Index = () => {
                 href="https://vatantat.ru/news/kaium-babai-dasa-vt-ukytucylar-ham-tarbiiacelar-arasynda-uzdyrgan-baigega-iomgak-iasady-110417"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-1 text-muted-foreground hover:text-primary transition-colors"
+                className="inline-flex items-center gap-1 text-primary hover:text-primary/80 transition-colors"
               >
                 Тулырак укырга
                 <Icon name="ExternalLink" className="w-4 h-4" />
@@ -418,7 +418,7 @@ const Index = () => {
           </h2>
           <Card className="border-2 border-primary/20 shadow-lg">
             <CardContent className="p-6 md:p-8">
-              <p className="text-xl font-bold text-primary mb-6 text-justify">
+              <p className="text-xl text-muted-foreground mb-6 text-justify">
                 Каюм Насыйри – энциклопедист галим. Аның эшчәнлеге – милләткә фидакарьләрчә хезмәт итүнең бөек үрнәге. Китаплары – хәзерге милли тормышыбыз өчен дә аваздаш булган бай хәзинә ул. Ул үз халкының дөньяви белемен булдыруга зур өлеш кертә, реформачыл агымның беренче новаторларыннан берсе була һәм татар халкы арасында фән һәм белем, мәдәниятне таратуны тормышының максаты итеп күрә.
               </p>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
