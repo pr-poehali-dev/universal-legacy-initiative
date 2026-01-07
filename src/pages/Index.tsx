@@ -107,16 +107,10 @@ const sections: Section[] = [
 ];
 
 const achievements = [
-  'Татар әдәбияты',
-  'Татар теле',
-  'Татар тарихы',
-  'География',
-  'Биология',
-  'Этнография',
-  'Фольклор',
-  'Педагогика һәм дидактика',
-  'Химия',
-  'Медицина',
+  'Лексикография (сүзлекләр: "Лөгать китабы", "Ләһҗәи татари")',
+  'Фонетика һәм грамматика ("Кавагыйд китабет", "Әнмүзәҗ")',
+  'Тарих, этнография, фольклор',
+  'Табигать фәннәре ("Зирагать гыйльме", "Гөлзар вә чәмәнзар")',
   'Әдәбият ("Фәвакиһелҗөләса фил әдәбият" - беренче татар энциклопедиясе)',
   'Педагогика (арифметика, геометрия, география дәреслекләре)',
   '"Казан календаре" еллык календарен нәшер иткән (1871-1897)',
@@ -144,12 +138,27 @@ const memoryPhotos = [
 const Index = () => {
   const sectionRefs = useRef<{ [key: string]: HTMLElement | null }>({});
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [currentImageIndex, setCurrentImageIndex] = useState<{ [key: string]: number }>({});
 
   const scrollToSection = (sectionId: string) => {
-    sectionRefs.current[sectionId]?.scrollIntoView({ 
-      behavior: 'smooth', 
-      block: 'center' 
-    });
+    const navHeight = 80; // Height of sticky nav
+    const element = sectionRefs.current[sectionId];
+    if (element) {
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - navHeight;
+      
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
+    }
+    setMobileMenuOpen(false);
+  };
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    setMobileMenuOpen(false);
   };
 
   useEffect(() => {
@@ -173,8 +182,72 @@ const Index = () => {
     return () => observer.disconnect();
   }, []);
 
+  const nextImage = (sectionId: string, totalImages: number) => {
+    setCurrentImageIndex(prev => ({
+      ...prev,
+      [sectionId]: ((prev[sectionId] || 0) + 1) % totalImages
+    }));
+  };
+
+  const prevImage = (sectionId: string, totalImages: number) => {
+    setCurrentImageIndex(prev => ({
+      ...prev,
+      [sectionId]: ((prev[sectionId] || 0) - 1 + totalImages) % totalImages
+    }));
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-background to-muted/20">
+      {/* Sticky Navigation Bar */}
+      <nav className="sticky top-0 z-40 bg-gradient-to-r from-primary via-secondary to-accent shadow-lg">
+        <div className="container mx-auto px-4">
+          <div className="flex items-center justify-between h-20">
+            <button 
+              onClick={scrollToTop}
+              className="text-white font-bold text-lg hover:opacity-80 transition-opacity"
+            >
+              Каюм Насыйри
+            </button>
+            
+            {/* Desktop Navigation */}
+            <div className="hidden md:flex items-center space-x-6">
+              {sections.map((section) => (
+                <button
+                  key={section.id}
+                  onClick={() => scrollToSection(section.id)}
+                  className="text-white hover:opacity-80 transition-opacity text-sm font-medium"
+                >
+                  {section.title}
+                </button>
+              ))}
+            </div>
+
+            {/* Mobile Menu Button */}
+            <button
+              className="md:hidden text-white p-2"
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            >
+              <Icon name={mobileMenuOpen ? "X" : "Menu"} className="w-6 h-6" />
+            </button>
+          </div>
+
+          {/* Mobile Navigation Menu */}
+          {mobileMenuOpen && (
+            <div className="md:hidden pb-4 space-y-2">
+              {sections.map((section) => (
+                <button
+                  key={section.id}
+                  onClick={() => scrollToSection(section.id)}
+                  className="block w-full text-left text-white hover:opacity-80 transition-opacity py-2 px-4"
+                >
+                  {section.title}
+                </button>
+              ))}
+            </div>
+          )}
+        </div>
+      </nav>
+
       <div className="container mx-auto px-4 py-8 md:py-12 max-w-6xl">
         <section className="mb-16 text-center reveal-section opacity-0">
           <div className="inline-block mb-6">
@@ -184,10 +257,10 @@ const Index = () => {
               className="w-80 h-80 md:w-96 md:h-96 lg:w-[28rem] lg:h-[28rem] rounded-full object-cover shadow-2xl border-4 border-primary/20 hover:scale-105 transition-transform duration-300"
             />
           </div>
-          <h2 className="text-2xl md:text-3xl font-medium text-primary mb-4">
+          <h2 className="text-2xl md:text-3xl font-bold text-primary mb-4">
             ҮЗ ХАЛКЫН ДАНЛАГАН ТАТАРЛАР:
           </h2>
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-primary">
+          <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-4 bg-gradient-to-r from-accent via-secondary to-primary bg-clip-text text-transparent">
             КАЮМ НАСЫЙРИ
           </h1>
           <p className="text-xl md:text-2xl text-muted-foreground mb-6">
@@ -201,14 +274,11 @@ const Index = () => {
         </section>
 
         <section className="mb-16 reveal-section opacity-0">
-          <h2 className="text-3xl font-bold mb-8 text-center text-primary">
-            Каюм Насыйри турында видео
-          </h2>
           <div className="aspect-video bg-black/5 rounded-lg overflow-hidden shadow-xl mb-8">
             <iframe
               width="100%"
               height="100%"
-              src="https://www.youtube.com/embed/yPQOYb_cBck"
+              src="https://drive.google.com/file/d/1gvSNY0J0R3XYS-d4-KbL15SmvBdJlb_g/preview"
               title="Каюм Насыйри турында видео"
               frameBorder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -216,13 +286,13 @@ const Index = () => {
             />
           </div>
           <div className="max-w-4xl mx-auto space-y-4">
-            <p className="text-lg leading-relaxed text-primary font-bold indent-8">
-              Каюм Насыйри тел гыйлеме, әдәбият, фольклор, география, тарих, биология, химия, астрономия өлкәсендә беренче татар галиме.
+            <p className="text-lg leading-relaxed text-green-600 font-bold indent-8">
+              «Ватаным Татарстан» газетасы оештырган «Каюм бабай дәресе» конкурсының «Каюм Насыйри эзләреннән» номинациясенә укытучылар һәм тәрбиячеләр, Каюм Насыйри хезмәтләрен файдаланып, билгеле бер чара уздырырга һәм ул чарадан видеоязма әзерләргә тиеш иде.
             </p>
             <p className="text-lg leading-relaxed text-muted-foreground indent-8">
-              "Ватаным Татарстан" газетасы Каюм Насыйри турында укучыларына бик кызыклы видеоязма тәкъдим иткән. Әлеге видеоязманы сезгә дә тәкъдим итәбез.{' '}
+              Бу юнәлештә җибәргән иҗат эшләре арасында «Адымнар – белемгә һәм бердәмлеккә юл» күптелле мәгариф комплексы укытучылары Рамил Ханнанов һәм Нариман Фәхрисламов – җиңүчеләрнең берсе. Әлеге видеоязманы сезгә дә тәкъдим итәбез.{' '}
               <a
-                href="https://inde.io/article/39653-kayum-nasyri-iske-alimlary-zamanybyzga-tanytyru"
+                href="https://vatantat.ru/news/kaium-babai-dasa-vt-ukytucylar-ham-tarbiiacelar-arasynda-uzdyrgan-baigega-iomgak-iasady-110417"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-1 text-primary hover:text-primary/80 transition-colors"
@@ -241,13 +311,13 @@ const Index = () => {
           </h2>
           <Card className="border-2 border-primary/20 shadow-lg hover:shadow-xl transition-shadow">
             <CardContent className="p-6">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+              <div className="space-y-3">
                 {achievements.map((achievement, index) => (
                   <div 
                     key={index}
-                    className="flex items-center gap-2 p-3 rounded-lg bg-muted/50 hover:bg-primary/10 transition-colors"
+                    className="flex items-start gap-2 p-3 rounded-lg bg-muted/50 hover:bg-primary/10 transition-colors"
                   >
-                    <span className="w-2 h-2 rounded-full bg-gradient-to-r from-primary to-secondary flex-shrink-0 mt-1" />
+                    <span className="w-2 h-2 rounded-full bg-gradient-to-r from-primary to-secondary flex-shrink-0 mt-2" />
                     <span className="text-foreground">{achievement}</span>
                   </div>
                 ))}
@@ -283,7 +353,7 @@ const Index = () => {
               key={section.id}
               id={section.id}
               ref={(el) => { sectionRefs.current[section.id] = el; }}
-              className="reveal-section opacity-0 scroll-mt-8"
+              className="reveal-section opacity-0 scroll-mt-24"
             >
               <Card className="border-2 border-primary/20 shadow-lg hover:shadow-xl transition-shadow overflow-hidden">
                 <CardContent className="p-6 md:p-8">
@@ -334,16 +404,62 @@ const Index = () => {
                   )}
 
                   {section.images && section.images.length > 0 && (
-                    <div className="mt-6 flex flex-wrap justify-center gap-4">
-                      {section.images.map((image, index) => (
-                        <img 
-                          key={index}
-                          src={image} 
-                          alt={`${section.title} ${index + 1}`}
-                          className="rounded-lg shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer hover:scale-105 max-w-xs h-64 object-cover"
-                          onClick={() => setSelectedImage(image)}
-                        />
-                      ))}
+                    <div className="mt-6">
+                      {section.imageGallery ? (
+                        <div className="relative">
+                          <div className="overflow-hidden rounded-lg">
+                            <div className="flex items-center justify-center">
+                              <img 
+                                src={section.images[currentImageIndex[section.id] || 0]} 
+                                alt={`${section.title} ${(currentImageIndex[section.id] || 0) + 1}`}
+                                className="rounded-lg shadow-lg max-h-96 object-contain cursor-pointer"
+                                onClick={() => setSelectedImage(section.images![currentImageIndex[section.id] || 0])}
+                              />
+                            </div>
+                          </div>
+                          {section.images.length > 1 && (
+                            <>
+                              <button
+                                onClick={() => prevImage(section.id, section.images!.length)}
+                                className="absolute left-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-2 rounded-full transition-colors"
+                              >
+                                <Icon name="ChevronLeft" className="w-6 h-6" />
+                              </button>
+                              <button
+                                onClick={() => nextImage(section.id, section.images!.length)}
+                                className="absolute right-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-2 rounded-full transition-colors"
+                              >
+                                <Icon name="ChevronRight" className="w-6 h-6" />
+                              </button>
+                              <div className="flex justify-center gap-2 mt-4">
+                                {section.images.map((_, index) => (
+                                  <button
+                                    key={index}
+                                    onClick={() => setCurrentImageIndex(prev => ({ ...prev, [section.id]: index }))}
+                                    className={`w-2 h-2 rounded-full transition-all ${
+                                      (currentImageIndex[section.id] || 0) === index 
+                                        ? 'bg-primary w-8' 
+                                        : 'bg-primary/30'
+                                    }`}
+                                  />
+                                ))}
+                              </div>
+                            </>
+                          )}
+                        </div>
+                      ) : (
+                        <div className="flex flex-wrap justify-center gap-4">
+                          {section.images.map((image, index) => (
+                            <img 
+                              key={index}
+                              src={image} 
+                              alt={`${section.title} ${index + 1}`}
+                              className="rounded-lg shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer hover:scale-105 max-w-xs h-64 object-cover"
+                              onClick={() => setSelectedImage(image)}
+                            />
+                          ))}
+                        </div>
+                      )}
                     </div>
                   )}
                 </CardContent>
@@ -374,7 +490,7 @@ const Index = () => {
                       alt={photo.caption}
                       className="w-full h-64 object-cover rounded-lg shadow-lg group-hover:shadow-2xl transition-all duration-300 group-hover:scale-105"
                     />
-                    <p className="mt-3 text-center text-sm font-bold text-primary">
+                    <p className="mt-3 text-center text-sm font-medium text-muted-foreground">
                       {photo.caption}
                     </p>
                   </div>
