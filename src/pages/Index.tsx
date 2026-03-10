@@ -112,8 +112,8 @@ export default function Index() {
           <img
             src="https://cdn.poehali.dev/projects/f0494d1c-d03d-4115-9113-c2c7e1c690f7/bucket/7294a4d6-0a96-4bc0-975d-d1c77f79f309.jpg"
             alt="Муса Джалиль"
-            className="w-full h-full object-cover object-right"
-            style={{ filter: 'grayscale(100%) brightness(0.55)' }}
+            className="w-full h-full object-cover"
+            style={{ filter: 'grayscale(100%) brightness(0.5)', objectPosition: 'right center', transform: 'scale(0.85)', transformOrigin: 'right center' }}
           />
           {/* Размытие левой половины — blur через псевдоэлемент невозможен, делаем через отдельный слой */}
           <div className="absolute inset-0" style={{
@@ -129,15 +129,15 @@ export default function Index() {
         {/* Текст поверх */}
         <div className="relative z-10 max-w-6xl mx-auto w-full">
           <div className="max-w-xl text-center lg:text-left">
-            <h1 className="text-primary" style={{ fontFamily: 'Bebas Neue, sans-serif', lineHeight: 0.95 }}>
-              <span className="block text-2xl md:text-3xl mb-4 text-primary/80 tracking-[0.15em]">ҮЗ ХАЛКЫН ДАНЛАГАН ТАТАРЛАР:</span>
+            <h1 className="text-primary font-black" style={{ fontFamily: 'Bebas Neue, sans-serif', lineHeight: 0.95, textShadow: '0 2px 20px rgba(0,0,0,0.8)' }}>
+              <span className="block text-2xl md:text-3xl mb-4 tracking-[0.15em]" style={{ WebkitTextStroke: '0.5px currentColor' }}>ҮЗ ХАЛКЫН ДАНЛАГАН ТАТАРЛАР:</span>
               <span className="block text-6xl md:text-8xl lg:text-9xl">МУСА</span>
               <span className="block text-6xl md:text-8xl lg:text-9xl">ҖӘЛИЛ</span>
             </h1>
             <div className="gold-line max-w-xs my-6 mx-auto lg:mx-0" />
-            <div className="flex items-center justify-center lg:justify-start gap-3 mb-7 text-muted-foreground tracking-wider" style={{ fontSize: '1rem' }}>
+            <div className="flex items-center justify-center lg:justify-start gap-3 mb-7 font-bold tracking-wider text-foreground" style={{ fontSize: '1.1rem', textShadow: '0 2px 10px rgba(0,0,0,0.9)' }}>
               <span>15 февраль 1906</span>
-              <span className="text-primary text-xl">—</span>
+              <span className="text-primary text-2xl">—</span>
               <span>25 август 1944</span>
             </div>
             <blockquote className="quote-line pl-5 py-1 max-w-md mx-auto lg:mx-0 mb-10">
