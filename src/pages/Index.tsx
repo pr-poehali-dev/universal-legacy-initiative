@@ -105,39 +105,39 @@ export default function Index() {
       </nav>
 
       {/* ═══════════ БАШ БИТ ═══════════ */}
-      <section id="bash" className="hero-pattern relative min-h-screen flex items-center pb-16 px-4 overflow-hidden" style={{ paddingTop: '90px' }}>
-        {/* Фото — абсолютно справа, за текстом, большое */}
-        <div className="absolute inset-y-0 right-0 w-full lg:w-[55%] pointer-events-none select-none">
+      <section id="bash" className="relative min-h-screen flex items-center pb-16 px-4 overflow-hidden" style={{ paddingTop: '90px', background: 'hsl(220 15% 8%)' }}>
+
+        {/* Фото — полный фон, объект справа чёткий */}
+        <div className="absolute inset-0 pointer-events-none select-none">
           <img
-            src={PORTRAIT_URL}
+            src="https://cdn.poehali.dev/projects/f0494d1c-d03d-4115-9113-c2c7e1c690f7/bucket/7294a4d6-0a96-4bc0-975d-d1c77f79f309.jpg"
             alt="Муса Джалиль"
-            className="w-full h-full object-cover object-top"
-            style={{
-              maskImage: 'linear-gradient(to bottom, black 30%, transparent 95%), linear-gradient(to right, transparent 0%, black 30%, black 100%)',
-              maskComposite: 'intersect',
-              WebkitMaskImage: 'linear-gradient(to bottom, black 30%, transparent 95%), linear-gradient(to right, transparent 0%, black 30%, black 100%)',
-              WebkitMaskComposite: 'source-in',
-              opacity: 0.75,
-            }}
+            className="w-full h-full object-cover object-right"
+            style={{ filter: 'grayscale(100%) brightness(0.55)' }}
           />
-          {/* Дополнительный градиент слева для перетекания в фон */}
-          <div className="absolute inset-0" style={{ background: 'linear-gradient(to right, hsl(220 15% 8%) 0%, hsl(220 15% 8% / 0.7) 25%, transparent 60%)' }} />
+          {/* Размытие левой половины — blur через псевдоэлемент невозможен, делаем через отдельный слой */}
+          <div className="absolute inset-0" style={{
+            backdropFilter: 'blur(0px)',
+            background: 'linear-gradient(to right, hsl(220 15% 8%) 0%, hsl(220 15% 8% / 0.97) 18%, hsl(220 15% 8% / 0.85) 35%, hsl(220 15% 8% / 0.4) 55%, transparent 75%)',
+          }} />
           {/* Снизу */}
-          <div className="absolute inset-0" style={{ background: 'linear-gradient(to top, hsl(220 15% 8%) 0%, transparent 35%)' }} />
+          <div className="absolute inset-0" style={{ background: 'linear-gradient(to top, hsl(220 15% 8%) 0%, transparent 30%)' }} />
+          {/* Сверху */}
+          <div className="absolute inset-0" style={{ background: 'linear-gradient(to bottom, hsl(220 15% 8%) 0%, transparent 15%)' }} />
         </div>
 
         {/* Текст поверх */}
         <div className="relative z-10 max-w-6xl mx-auto w-full">
           <div className="max-w-xl text-center lg:text-left">
-            <h1 className="text-primary font-black" style={{ fontFamily: 'Bebas Neue, sans-serif', lineHeight: 0.95 }}>
-              <span className="block text-xl md:text-2xl mb-4 text-primary/65 tracking-[0.2em] font-normal" style={{ fontFamily: 'Outfit, sans-serif', letterSpacing: '0.15em' }}>ҮЗ ХАЛКЫН ДАНЛАГАН ТАТАРЛАР:</span>
+            <h1 className="text-primary" style={{ fontFamily: 'Bebas Neue, sans-serif', lineHeight: 0.95 }}>
+              <span className="block text-2xl md:text-3xl mb-4 text-primary/80 tracking-[0.15em]">ҮЗ ХАЛКЫН ДАНЛАГАН ТАТАРЛАР:</span>
               <span className="block text-6xl md:text-8xl lg:text-9xl">МУСА</span>
               <span className="block text-6xl md:text-8xl lg:text-9xl">ҖӘЛИЛ</span>
             </h1>
             <div className="gold-line max-w-xs my-6 mx-auto lg:mx-0" />
-            <div className="flex items-center justify-center lg:justify-start gap-3 mb-7 text-muted-foreground text-sm tracking-wider">
+            <div className="flex items-center justify-center lg:justify-start gap-3 mb-7 text-muted-foreground tracking-wider" style={{ fontSize: '1rem' }}>
               <span>15 февраль 1906</span>
-              <span className="text-primary">—</span>
+              <span className="text-primary text-xl">—</span>
               <span>25 август 1944</span>
             </div>
             <blockquote className="quote-line pl-5 py-1 max-w-md mx-auto lg:mx-0 mb-10">
