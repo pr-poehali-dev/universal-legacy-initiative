@@ -79,7 +79,7 @@ export default function Index() {
         {/* Верхняя строка — логотип */}
         <div className="max-w-7xl mx-auto px-4 md:px-6">
           <div className="flex items-center justify-between h-12 border-b border-border/40">
-            <button onClick={() => scrollTo('bash')} className="text-primary font-semibold text-sm tracking-widest uppercase" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
+            <button onClick={() => scrollTo('bash')} className="text-primary font-bold text-sm tracking-widest uppercase" style={{ fontFamily: 'Bebas Neue, sans-serif', fontSize: '1.1rem', letterSpacing: '0.15em' }}>
               Муса Җәлил
             </button>
             <span className="text-muted-foreground text-xs tracking-wider hidden sm:block">1906 — 1944</span>
@@ -104,10 +104,10 @@ export default function Index() {
         <div className="max-w-6xl mx-auto w-full">
           <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
             <div className="flex-1 text-center lg:text-left order-2 lg:order-1">
-              <h1 style={{ fontFamily: 'Cormorant Garamond, serif', lineHeight: 1.1 }} className="font-black text-primary">
-                <span className="block text-2xl md:text-3xl mb-3 tracking-wide">ҮЗ ХАЛКЫН ДАНЛАГАН ТАТАРЛАР:</span>
-                <span className="block text-5xl md:text-7xl lg:text-8xl leading-none">МУСА</span>
-                <span className="block text-5xl md:text-7xl lg:text-8xl leading-none">ҖӘЛИЛ</span>
+              <h1 className="text-primary" style={{ fontFamily: 'Bebas Neue, sans-serif', lineHeight: 1 }}>
+                <span className="block text-2xl md:text-3xl mb-4 text-primary/70 tracking-widest">ҮЗ ХАЛКЫН ДАНЛАГАН ТАТАРЛАР:</span>
+                <span className="block text-7xl md:text-9xl lg:text-[10rem] leading-none">МУСА</span>
+                <span className="block text-7xl md:text-9xl lg:text-[10rem] leading-none">ҖӘЛИЛ</span>
               </h1>
               <div className="gold-line max-w-xs my-7 mx-auto lg:mx-0" />
               <div className="flex items-center justify-center lg:justify-start gap-4 mb-8 text-muted-foreground text-sm tracking-wider">
@@ -116,7 +116,7 @@ export default function Index() {
                 <span>25 август 1944</span>
               </div>
               <blockquote className="quote-line pl-5 py-1 max-w-md mx-auto lg:mx-0 mb-10">
-                <p className="text-foreground/65 text-lg md:text-xl italic leading-relaxed" style={{ fontFamily: 'Playfair Display, serif' }}>
+                <p className="text-foreground/65 text-lg md:text-xl italic leading-relaxed">
                   Гомерем минем моңлы бер җыр иде,<br />
                   Үлемем дә яңрар җыр булып
                 </p>
@@ -134,8 +134,13 @@ export default function Index() {
               </div>
             </div>
             <div className="order-1 lg:order-2 flex-shrink-0">
-              <div className="w-60 md:w-72 rounded-2xl overflow-hidden portrait-frame" style={{ height: '22rem' }}>
-                <img src={PORTRAIT_URL} alt="Муса Джалиль" className="w-full h-full object-cover object-top" />
+              <div className="relative w-64 md:w-80" style={{ height: '26rem' }}>
+                <img
+                  src={PORTRAIT_URL}
+                  alt="Муса Джалиль"
+                  className="w-full h-full object-cover object-top"
+                  style={{ maskImage: 'linear-gradient(to bottom, black 40%, transparent 100%), linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%)', maskComposite: 'intersect', WebkitMaskImage: 'linear-gradient(to bottom, black 40%, transparent 100%), linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%)', WebkitMaskComposite: 'source-in' }}
+                />
               </div>
             </div>
           </div>
@@ -147,7 +152,7 @@ export default function Index() {
         <div className="max-w-3xl mx-auto">
           <div className="reveal-section opacity-0 mb-12">
             <p className="text-primary/50 text-xs tracking-[0.3em] uppercase mb-2">02</p>
-            <h2 className="text-3xl md:text-4xl text-foreground mb-4" style={{ fontFamily: 'Playfair Display, serif' }}>Тормыш юлы</h2>
+            <h2 className="text-3xl md:text-4xl text-foreground mb-4" style={{ fontFamily: 'Bebas Neue, sans-serif' }}>Тормыш юлы</h2>
             <div className="gold-line max-w-20" />
           </div>
           <div className="space-y-5 text-foreground/70 leading-relaxed reveal-section opacity-0">
@@ -208,7 +213,7 @@ export default function Index() {
         <div className="max-w-3xl mx-auto">
           <div className="reveal-section opacity-0 mb-12">
             <p className="text-primary/50 text-xs tracking-[0.3em] uppercase mb-2">03</p>
-            <h2 className="text-3xl md:text-4xl text-foreground mb-4" style={{ fontFamily: 'Playfair Display, serif' }}>Шәхси тормышы</h2>
+            <h2 className="text-3xl md:text-4xl text-foreground mb-4" style={{ fontFamily: 'Bebas Neue, sans-serif' }}>Шәхси тормышы</h2>
             <div className="gold-line max-w-20" />
           </div>
           <div className="space-y-5 text-foreground/70 leading-relaxed reveal-section opacity-0">
@@ -217,7 +222,7 @@ export default function Index() {
           </div>
           <div className="my-8 reveal-section opacity-0">
             <blockquote className="quote-line pl-6 py-2 max-w-sm mx-auto">
-              <p className="italic text-foreground/65 text-lg leading-relaxed" style={{ fontFamily: 'Playfair Display, serif' }}>
+              <p className="italic text-foreground/65 text-lg leading-relaxed" style={{ fontFamily: 'Bebas Neue, sans-serif' }}>
                 Чулпаным, балам минем,<br />Якты йолдызым минем.
               </p>
               <footer className="mt-2 text-primary text-xs font-medium">— Муса Джалиль</footer>
@@ -234,7 +239,7 @@ export default function Index() {
         <div className="max-w-3xl mx-auto">
           <div className="reveal-section opacity-0 mb-12">
             <p className="text-primary/50 text-xs tracking-[0.3em] uppercase mb-2">04</p>
-            <h2 className="text-3xl md:text-4xl text-foreground mb-4" style={{ fontFamily: 'Playfair Display, serif' }}>Сугыш юлы һәм әсирлек</h2>
+            <h2 className="text-3xl md:text-4xl text-foreground mb-4" style={{ fontFamily: 'Bebas Neue, sans-serif' }}>Сугыш юлы һәм әсирлек</h2>
             <div className="gold-line max-w-20" />
           </div>
           <div className="space-y-5 text-foreground/70 leading-relaxed reveal-section opacity-0">
@@ -265,7 +270,7 @@ export default function Index() {
         <div className="max-w-3xl mx-auto">
           <div className="reveal-section opacity-0 mb-12">
             <p className="text-primary/50 text-xs tracking-[0.3em] uppercase mb-2">05</p>
-            <h2 className="text-3xl md:text-4xl text-foreground mb-4" style={{ fontFamily: 'Playfair Display, serif' }}>Моабит тәфтәрләре</h2>
+            <h2 className="text-3xl md:text-4xl text-foreground mb-4" style={{ fontFamily: 'Bebas Neue, sans-serif' }}>Моабит тәфтәрләре</h2>
             <div className="gold-line max-w-20" />
           </div>
           <div className="space-y-5 text-foreground/70 leading-relaxed reveal-section opacity-0">
@@ -280,7 +285,7 @@ export default function Index() {
             ].map((poem, i) => (
               <blockquote key={i} className="quote-line pl-6 py-2">
                 <p className="text-primary/50 text-xs uppercase tracking-widest mb-2 font-medium">{poem.title}</p>
-                <p className="italic text-foreground/65 leading-relaxed text-base" style={{ fontFamily: 'Playfair Display, serif', whiteSpace: 'pre-line' }}>{poem.lines}</p>
+                <p className="italic text-foreground/65 leading-relaxed text-base" style={{ fontFamily: 'Bebas Neue, sans-serif', whiteSpace: 'pre-line' }}>{poem.lines}</p>
                 <footer className="mt-2 text-primary text-xs font-medium">— Муса Джалиль, Моабит</footer>
               </blockquote>
             ))}
@@ -293,7 +298,7 @@ export default function Index() {
               { year: '1957', text: 'Ленин премиясе' },
             ].map(item => (
               <div key={item.year} className="text-center p-4 rounded-lg border border-border bg-card">
-                <p className="text-xl font-bold text-primary mb-1" style={{ fontFamily: 'Playfair Display, serif' }}>{item.year}</p>
+                <p className="text-xl font-bold text-primary mb-1" style={{ fontFamily: 'Bebas Neue, sans-serif' }}>{item.year}</p>
                 <p className="text-xs text-muted-foreground leading-tight">{item.text}</p>
               </div>
             ))}
@@ -306,7 +311,7 @@ export default function Index() {
         <div className="max-w-3xl mx-auto">
           <div className="reveal-section opacity-0 mb-12">
             <p className="text-primary/50 text-xs tracking-[0.3em] uppercase mb-2">06</p>
-            <h2 className="text-3xl md:text-4xl text-foreground mb-4" style={{ fontFamily: 'Playfair Display, serif' }}>Джәлилчеләр</h2>
+            <h2 className="text-3xl md:text-4xl text-foreground mb-4" style={{ fontFamily: 'Bebas Neue, sans-serif' }}>Джәлилчеләр</h2>
             <div className="gold-line max-w-20" />
           </div>
           <div className="space-y-4 text-foreground/70 leading-relaxed reveal-section opacity-0">
@@ -324,7 +329,7 @@ export default function Index() {
             ))}
           </div>
           <div className="mt-8 p-5 rounded-lg border border-primary/20 bg-primary/5 text-center reveal-section opacity-0">
-            <p className="text-primary font-bold text-xl mb-1" style={{ fontFamily: 'Playfair Display, serif' }}>25 август 1944</p>
+            <p className="text-primary font-bold text-xl mb-1" style={{ fontFamily: 'Bebas Neue, sans-serif' }}>25 август 1944</p>
             <p className="text-muted-foreground text-sm">Плетзензее. Берлин. 11 батыр мәңгелеккә китте.</p>
           </div>
         </div>
@@ -335,7 +340,7 @@ export default function Index() {
         <div className="max-w-3xl mx-auto">
           <div className="reveal-section opacity-0 mb-12">
             <p className="text-primary/50 text-xs tracking-[0.3em] uppercase mb-2">07</p>
-            <h2 className="text-3xl md:text-4xl text-foreground mb-4" style={{ fontFamily: 'Playfair Display, serif' }}>Иҗат</h2>
+            <h2 className="text-3xl md:text-4xl text-foreground mb-4" style={{ fontFamily: 'Bebas Neue, sans-serif' }}>Иҗат</h2>
             <div className="gold-line max-w-20" />
           </div>
           <div className="space-y-4 text-foreground/70 leading-relaxed reveal-section opacity-0">
@@ -366,7 +371,7 @@ export default function Index() {
         <div className="max-w-3xl mx-auto">
           <div className="reveal-section opacity-0 mb-12">
             <p className="text-primary/50 text-xs tracking-[0.3em] uppercase mb-2">08</p>
-            <h2 className="text-3xl md:text-4xl text-foreground mb-4" style={{ fontFamily: 'Playfair Display, serif' }}>Бүгенге көн</h2>
+            <h2 className="text-3xl md:text-4xl text-foreground mb-4" style={{ fontFamily: 'Bebas Neue, sans-serif' }}>Бүгенге көн</h2>
             <div className="gold-line max-w-20" />
           </div>
           <div className="space-y-4 text-foreground/70 leading-relaxed reveal-section opacity-0">
@@ -393,7 +398,7 @@ export default function Index() {
               <img src={PORTRAIT_URL} alt="Муса Джалиль" className="w-full h-full object-cover object-top" />
             </div>
             <p className="text-muted-foreground text-xs tracking-widest uppercase">1906 — 1944</p>
-            <p className="text-primary mt-1 text-lg" style={{ fontFamily: 'Playfair Display, serif' }}>Муса Мостафа улы Джалилов</p>
+            <p className="text-primary mt-1 text-lg" style={{ fontFamily: 'Bebas Neue, sans-serif' }}>Муса Мостафа улы Джалилов</p>
           </div>
         </div>
       </section>
@@ -404,7 +409,7 @@ export default function Index() {
         <p className="text-muted-foreground text-xs tracking-wider mb-2">
           © 2026 — Муса Мостафа улы Җәлил (1906–1944). Барлык хокуклар сакланган.
         </p>
-        <p className="text-primary/60 text-xs tracking-widest uppercase" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
+        <p className="text-primary/60 text-xs tracking-widest uppercase" style={{ fontFamily: 'Bebas Neue, sans-serif', letterSpacing: '0.2em' }}>
           Лилия Кәримова
         </p>
       </footer>
