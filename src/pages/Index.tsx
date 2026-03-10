@@ -105,9 +105,9 @@ export default function Index() {
       </nav>
 
       {/* ═══════════ БАШ БИТ ═══════════ */}
-      <section id="bash" className="relative min-h-screen flex items-center pb-16 px-4 overflow-hidden" style={{ paddingTop: '90px', background: 'hsl(220 15% 8%)' }}>
+      <section id="bash" className="relative overflow-hidden" style={{ height: 'calc(100vh - 90px)', marginTop: '90px', background: 'hsl(220 15% 8%)' }}>
 
-        {/* Фото — полный фон, объект справа чёткий */}
+        {/* Фото — полный фон */}
         <div className="absolute inset-0 pointer-events-none select-none">
           <img
             src="https://cdn.poehali.dev/projects/f0494d1c-d03d-4115-9113-c2c7e1c690f7/bucket/7294a4d6-0a96-4bc0-975d-d1c77f79f309.jpg"
@@ -115,43 +115,37 @@ export default function Index() {
             className="w-full h-full object-cover"
             style={{ filter: 'grayscale(100%) brightness(0.5)', objectPosition: 'right center', transform: 'scale(0.85)', transformOrigin: 'right center' }}
           />
-          {/* Размытие левой половины — blur через псевдоэлемент невозможен, делаем через отдельный слой */}
-          <div className="absolute inset-0" style={{
-            backdropFilter: 'blur(0px)',
-            background: 'linear-gradient(to right, hsl(220 15% 8%) 0%, hsl(220 15% 8% / 0.97) 18%, hsl(220 15% 8% / 0.85) 35%, hsl(220 15% 8% / 0.4) 55%, transparent 75%)',
-          }} />
-          {/* Снизу */}
+          <div className="absolute inset-0" style={{ background: 'linear-gradient(to right, hsl(220 15% 8%) 0%, hsl(220 15% 8% / 0.97) 18%, hsl(220 15% 8% / 0.85) 35%, hsl(220 15% 8% / 0.4) 55%, transparent 75%)' }} />
           <div className="absolute inset-0" style={{ background: 'linear-gradient(to top, hsl(220 15% 8%) 0%, transparent 30%)' }} />
-          {/* Сверху */}
           <div className="absolute inset-0" style={{ background: 'linear-gradient(to bottom, hsl(220 15% 8%) 0%, transparent 15%)' }} />
         </div>
 
-        {/* Текст поверх */}
-        <div className="relative z-10 max-w-6xl mx-auto w-full">
-          <div className="max-w-xl text-center lg:text-left">
-            <h1 className="text-primary font-black" style={{ fontFamily: 'Bebas Neue, sans-serif', lineHeight: 0.95, textShadow: '0 2px 20px rgba(0,0,0,0.8)' }}>
-              <span className="block text-2xl md:text-3xl mb-4 tracking-[0.15em]" style={{ WebkitTextStroke: '0.5px currentColor' }}>ҮЗ ХАЛКЫН ДАНЛАГАН ТАТАРЛАР:</span>
-              <span className="block text-6xl md:text-8xl lg:text-9xl">МУСА</span>
-              <span className="block text-6xl md:text-8xl lg:text-9xl">ҖӘЛИЛ</span>
+        {/* Текст — строго по центру высоты */}
+        <div className="relative z-10 h-full flex flex-col items-start justify-center px-6 md:px-12 lg:px-20">
+          <div className="max-w-lg">
+            <h1 className="text-primary font-black" style={{ fontFamily: 'Bebas Neue, sans-serif', lineHeight: 1, textShadow: '0 2px 20px rgba(0,0,0,0.8)' }}>
+              <span className="block text-lg md:text-xl mb-3 tracking-[0.18em]">ҮЗ ХАЛКЫН ДАНЛАГАН ТАТАРЛАР:</span>
+              <span className="block text-5xl md:text-7xl lg:text-8xl">МУСА</span>
+              <span className="block text-5xl md:text-7xl lg:text-8xl">ҖӘЛИЛ</span>
             </h1>
-            <div className="gold-line max-w-xs my-6 mx-auto lg:mx-0" />
-            <div className="flex items-center justify-center lg:justify-start gap-3 mb-7 font-bold tracking-wider text-foreground" style={{ fontSize: '1.1rem', textShadow: '0 2px 10px rgba(0,0,0,0.9)' }}>
+            <div className="gold-line max-w-xs my-5" />
+            <div className="flex items-center gap-3 mb-6 font-bold tracking-wider text-foreground" style={{ fontSize: '1rem', textShadow: '0 2px 10px rgba(0,0,0,0.9)' }}>
               <span>15 февраль 1906</span>
-              <span className="text-primary text-2xl">—</span>
+              <span className="text-primary text-xl">—</span>
               <span>25 август 1944</span>
             </div>
-            <blockquote className="quote-line pl-5 py-1 max-w-md mx-auto lg:mx-0 mb-10">
-              <p className="text-foreground/60 text-base md:text-lg italic leading-relaxed">
+            <blockquote className="quote-line pl-5 py-1 max-w-md mb-8">
+              <p className="text-foreground/55 text-sm md:text-base italic leading-relaxed">
                 Гомерем минем моңлы бер җыр иде,<br />
                 Үлемем дә яңрар җыр булып
               </p>
             </blockquote>
-            <div className="flex flex-wrap gap-2 justify-center lg:justify-start">
+            <div className="flex flex-wrap gap-2">
               {navItems.slice(1).map(item => (
                 <button
                   key={item.id}
                   onClick={() => scrollTo(item.id)}
-                  className="section-nav-btn px-4 py-2 rounded text-xs text-muted-foreground font-medium"
+                  className="section-nav-btn px-3 py-1.5 rounded text-xs text-muted-foreground font-medium"
                 >
                   {item.label}
                 </button>
