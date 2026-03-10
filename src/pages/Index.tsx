@@ -1,6 +1,14 @@
 import { useEffect, useRef, useState } from 'react';
+import { PhotoGallery } from '@/components/PhotoLightbox';
 
 const PORTRAIT_URL = 'https://cdn.poehali.dev/projects/f0494d1c-d03d-4115-9113-c2c7e1c690f7/bucket/5f3603c7-1b4a-45ac-a32c-56ff806489a5.jpg';
+
+// Фото по порядку из чата
+const photo1 = 'https://cdn.poehali.dev/files/b2ef1398-b697-475d-8111-368e2558df8d.jpg';  // студент рабфака ~1923
+const photo2 = 'https://cdn.poehali.dev/files/ee7c8168-dc3e-4f2c-bf34-186b2829bb81.jpg';  // шәкерт 1916
+const photo3 = 'https://cdn.poehali.dev/files/daa8cca3-c64f-4968-847c-ad93985a4b62.jpg';  // уком бюросы 1925
+const photo4 = 'https://cdn.poehali.dev/files/42c454e4-ebbf-4368-8b68-2576067662ad.jpg';  // әнисе белән 1926
+const photo5 = 'https://cdn.poehali.dev/files/23053f19-07db-480e-8ecb-f81c6215831f.jpg';  // журналистлар 1934
 
 const navItems = [
   { id: 'bash', label: 'Баш бит' },
@@ -120,10 +128,10 @@ export default function Index() {
         <div className="max-w-6xl mx-auto w-full">
           <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
             <div className="flex-1 text-center lg:text-left order-2 lg:order-1">
-              <h1 style={{ fontFamily: 'Playfair Display, serif', lineHeight: 1.05 }} className="font-black">
-                <span className="block text-xl md:text-2xl text-primary/80 mb-3 tracking-widest uppercase">ҮЗ ХАЛКЫН ДАНЛАГАН ТАТАРЛАР</span>
-                <span className="block text-5xl md:text-7xl lg:text-8xl text-primary leading-none">МУСА</span>
-                <span className="block text-5xl md:text-7xl lg:text-8xl text-primary leading-none">ҖӘЛИЛ</span>
+              <h1 style={{ fontFamily: 'Playfair Display, serif', lineHeight: 1.1 }} className="font-black text-primary">
+                <span className="block text-2xl md:text-3xl mb-3 tracking-wide">ҮЗ ХАЛКЫН ДАНЛАГАН ТАТАРЛАР:</span>
+                <span className="block text-5xl md:text-7xl lg:text-8xl leading-none">МУСА</span>
+                <span className="block text-5xl md:text-7xl lg:text-8xl leading-none">ҖӘЛИЛ</span>
               </h1>
               <div className="gold-line max-w-xs my-7 mx-auto lg:mx-0" />
               <div className="flex items-center justify-center lg:justify-start gap-4 mb-8 text-muted-foreground text-sm tracking-wider">
@@ -177,12 +185,7 @@ export default function Index() {
           </div>
 
           <div className="my-8 reveal-section opacity-0">
-            <div className="photo-card max-w-xs mx-auto">
-              <div className="h-44 bg-muted flex items-center justify-center">
-                <p className="text-muted-foreground text-sm italic px-4 text-center">Муса Джалиль — шәкерт. 1916 ел</p>
-              </div>
-              <p className="photo-caption px-4 pb-3">Муса Джалиль — шәкерт. 1916 ел</p>
-            </div>
+            <PhotoGallery photos={[{ url: photo2, caption: 'Муса Джалиль — шәкерт. 1916 ел' }]} />
           </div>
 
           <div className="interesting-fact reveal-section opacity-0 mb-6">
@@ -196,19 +199,11 @@ export default function Index() {
             <p>1922 елның ноябрендә Казанга килә, тиздән газета-журналларда басыла башлый. 1923 елда «Көрәш җырлары» жыентыгында шигырьләр циклы дөнья күрә. Казан Шәрык педагогика институты каршындагы рабфакка укырга керә.</p>
           </div>
 
-          <div className="my-8 grid grid-cols-1 sm:grid-cols-2 gap-5 reveal-section opacity-0">
-            <div className="photo-card">
-              <div className="h-36 bg-muted flex items-center justify-center">
-                <p className="text-muted-foreground text-sm italic px-4 text-center">Студент рабфака. 1923 ел</p>
-              </div>
-              <p className="photo-caption px-3 pb-3">Студент рабфака. 1923 ел</p>
-            </div>
-            <div className="photo-card">
-              <div className="h-36 bg-muted flex items-center justify-center">
-                <p className="text-muted-foreground text-xs italic px-4 text-center">Уком бюросы. 1925 ел</p>
-              </div>
-              <p className="photo-caption px-3 pb-3">Уком бюросы 1925 ел. Утыралар: Зайцев, Юдохин, Яковлев; басы торалар: Заикин, Джалиль, Сивожелезов</p>
-            </div>
+          <div className="my-8 reveal-section opacity-0">
+            <PhotoGallery photos={[
+              { url: photo1, caption: 'Студент рабфака. 1923 ел' },
+              { url: photo3, caption: 'Уком бюросы 1925 ел. Утыралар: Зайцев, Юдохин, Яковлев; басы торалар: Заикин, Джалиль, Сивожелезов' },
+            ]} />
           </div>
 
           <div className="space-y-5 text-foreground/70 leading-relaxed reveal-section opacity-0">
@@ -216,19 +211,11 @@ export default function Index() {
             <p>1927 ел — МДУ этнология факультеты студенты, параллель — татар балалар журналы мөхәррире. Бераз соңрак ВЛКСМ Үзәк Комитетының татар-башкорт секциясе бюросы секретаре.</p>
           </div>
 
-          <div className="my-8 grid grid-cols-1 sm:grid-cols-2 gap-5 reveal-section opacity-0">
-            <div className="photo-card">
-              <div className="h-36 bg-muted flex items-center justify-center">
-                <p className="text-muted-foreground text-xs italic px-4 text-center">Муса әнисе Рәхимә белән. 1926 ел</p>
-              </div>
-              <p className="photo-caption px-3 pb-3">Муса әнисе Рәхимә һәм сеңлесе Хәдичә белән. 1926 ел</p>
-            </div>
-            <div className="photo-card">
-              <div className="h-36 bg-muted flex items-center justify-center">
-                <p className="text-muted-foreground text-xs italic px-4 text-center">«Октябрь баласы» журналы авторлары. 1929</p>
-              </div>
-              <p className="photo-caption px-3 pb-3">М.Джалиль среди авторов журнала «Октябрь баласы». 1929 ел</p>
-            </div>
+          <div className="my-8 reveal-section opacity-0">
+            <PhotoGallery photos={[
+              { url: photo4, caption: 'Муса әнисе Рәхимә һәм сеңлесе Хәдичә белән. 1926 ел' },
+              { url: photo5, caption: 'М.Джалиль среди журналистов: З.Курмашев, Ю.Гайса, В.Садри, М.Джалиль. 10 декабря 1934 г.' },
+            ]} />
           </div>
 
           <div className="space-y-5 text-foreground/70 leading-relaxed reveal-section opacity-0">
@@ -241,14 +228,7 @@ export default function Index() {
             <p>1931 елда «Коммунист» газетасында әдәбият бүлеге мөдире. 1934 елда Мәскәү консерваториясе каршындагы Татар опера студиясенең әдәби бүлек мөдире була.</p>
           </div>
 
-          <div className="my-8 reveal-section opacity-0">
-            <div className="photo-card max-w-sm mx-auto">
-              <div className="h-36 bg-muted flex items-center justify-center">
-                <p className="text-muted-foreground text-xs italic px-4 text-center">М.Джалиль среди журналистов. 10.12.1934</p>
-              </div>
-              <p className="photo-caption px-3 pb-3">М.Джалиль среди журналистов: З.Курмашев, Ю.Гайса, В.Садри, М.Джалиль. 10 декабря 1934 г.</p>
-            </div>
-          </div>
+
         </div>
       </section>
 
