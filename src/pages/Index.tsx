@@ -115,9 +115,12 @@ export default function Index() {
             className="w-full h-full object-cover"
             style={{ filter: 'grayscale(100%) brightness(0.5)', objectPosition: 'right center', transform: 'scale(0.85)', transformOrigin: 'right center' }}
           />
-          <div className="absolute inset-0" style={{ background: 'linear-gradient(to right, hsl(220 15% 8%) 0%, hsl(220 15% 8% / 0.97) 18%, hsl(220 15% 8% / 0.85) 35%, hsl(220 15% 8% / 0.4) 55%, transparent 75%)' }} />
-          <div className="absolute inset-0" style={{ background: 'linear-gradient(to top, hsl(220 15% 8%) 0%, transparent 40%)' }} />
-          <div className="absolute inset-0" style={{ background: 'linear-gradient(to bottom, hsl(220 15% 8%) 0%, transparent 40%)' }} />
+          {/* Слева */}
+          <div className="absolute inset-0" style={{ background: 'linear-gradient(to right, hsl(220 15% 8%) 0%, hsl(220 15% 8% / 0.95) 20%, hsl(220 15% 8% / 0.6) 40%, transparent 70%)' }} />
+          {/* Снизу — большое размытие */}
+          <div className="absolute inset-0" style={{ background: 'linear-gradient(to top, hsl(220 15% 8%) 0%, hsl(220 15% 8% / 0.9) 20%, hsl(220 15% 8% / 0.5) 40%, transparent 60%)' }} />
+          {/* Сверху — большое размытие */}
+          <div className="absolute inset-0" style={{ background: 'linear-gradient(to bottom, hsl(220 15% 8%) 0%, hsl(220 15% 8% / 0.9) 20%, hsl(220 15% 8% / 0.5) 40%, transparent 60%)' }} />
         </div>
 
         {/* Текст — строго по центру высоты */}
