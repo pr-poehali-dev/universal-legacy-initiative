@@ -38,8 +38,6 @@ const jalilchelerList = [
 export default function Index() {
   const bodyRef = useRef<HTMLDivElement>(null);
   const [activeSection, setActiveSection] = useState('bash');
-  const [menuOpen, setMenuOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
     const revealObserver = new IntersectionObserver(
@@ -65,17 +63,10 @@ export default function Index() {
     return () => { revealObserver.disconnect(); activeObserver.disconnect(); };
   }, []);
 
-  useEffect(() => {
-    const handler = () => setScrolled(window.scrollY > 60);
-    window.addEventListener('scroll', handler);
-    return () => window.removeEventListener('scroll', handler);
-  }, []);
-
   const scrollTo = (id: string) => {
-    setMenuOpen(false);
     const el = document.getElementById(id);
     if (el) {
-      const top = el.getBoundingClientRect().top + window.scrollY - 56;
+      const top = el.getBoundingClientRect().top + window.scrollY - 80;
       window.scrollTo({ top, behavior: 'smooth' });
     }
   };
@@ -84,51 +75,36 @@ export default function Index() {
     <div className="min-h-screen bg-background" ref={bodyRef}>
 
       {/* NAVBAR */}
-      <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'bg-background/98 backdrop-blur-md border-b border-border' : 'bg-transparent'}`}>
+      <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-background/98 backdrop-blur-md border-b border-border`}>
+        {/* Верхняя строка — логотип */}
         <div className="max-w-7xl mx-auto px-4 md:px-6">
-          <div className="flex items-center justify-between h-14">
-            <button onClick={() => scrollTo('bash')} className="text-primary font-semibold text-sm tracking-widest uppercase">
-              М. Җәлил
+          <div className="flex items-center justify-between h-12 border-b border-border/40">
+            <button onClick={() => scrollTo('bash')} className="text-primary font-semibold text-sm tracking-widest uppercase" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
+              Муса Җәлил
             </button>
-            <div className="hidden lg:flex items-center gap-1">
-              {navItems.map(item => (
-                <button
-                  key={item.id}
-                  onClick={() => scrollTo(item.id)}
-                  className={`section-nav-btn px-3 py-1.5 rounded text-xs font-medium whitespace-nowrap ${activeSection === item.id ? 'active' : 'text-muted-foreground'}`}
-                >
-                  {item.label}
-                </button>
-              ))}
-            </div>
-            <button className="lg:hidden text-foreground/70 p-2 flex flex-col gap-1.5" onClick={() => setMenuOpen(!menuOpen)}>
-              <span className="block w-5 h-px bg-current" />
-              <span className="block w-5 h-px bg-current" />
-              <span className="block w-5 h-px bg-current" />
-            </button>
+            <span className="text-muted-foreground text-xs tracking-wider hidden sm:block">1906 — 1944</span>
           </div>
-        </div>
-        {menuOpen && (
-          <div className="lg:hidden bg-background/98 border-b border-border px-4 pb-4">
+          {/* Нижняя строка — все пункты навигации */}
+          <div className="flex items-center gap-0.5 overflow-x-auto scrollbar-hide py-1.5">
             {navItems.map(item => (
               <button
                 key={item.id}
                 onClick={() => scrollTo(item.id)}
-                className="block w-full text-left px-3 py-2.5 text-sm text-muted-foreground hover:text-primary transition-colors border-b border-border/40 last:border-0"
+                className={`section-nav-btn px-3 py-1.5 rounded text-xs font-medium whitespace-nowrap flex-shrink-0 ${activeSection === item.id ? 'active' : 'text-muted-foreground'}`}
               >
                 {item.label}
               </button>
             ))}
           </div>
-        )}
+        </div>
       </nav>
 
       {/* ═══════════ БАШ БИТ ═══════════ */}
-      <section id="bash" className="hero-pattern min-h-screen flex items-center pt-14 pb-20 px-4">
+      <section id="bash" className="hero-pattern min-h-screen flex items-center pt-20 pb-20 px-4">
         <div className="max-w-6xl mx-auto w-full">
           <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
             <div className="flex-1 text-center lg:text-left order-2 lg:order-1">
-              <h1 style={{ fontFamily: 'Playfair Display, serif', lineHeight: 1.1 }} className="font-black text-primary">
+              <h1 style={{ fontFamily: 'Cormorant Garamond, serif', lineHeight: 1.1 }} className="font-black text-primary">
                 <span className="block text-2xl md:text-3xl mb-3 tracking-wide">ҮЗ ХАЛКЫН ДАНЛАГАН ТАТАРЛАР:</span>
                 <span className="block text-5xl md:text-7xl lg:text-8xl leading-none">МУСА</span>
                 <span className="block text-5xl md:text-7xl lg:text-8xl leading-none">ҖӘЛИЛ</span>
@@ -158,13 +134,8 @@ export default function Index() {
               </div>
             </div>
             <div className="order-1 lg:order-2 flex-shrink-0">
-              <div className="relative">
-                <div className="w-60 h-76 md:w-72 md:h-96 rounded-2xl overflow-hidden portrait-frame" style={{ height: '22rem' }}>
-                  <img src={PORTRAIT_URL} alt="Муса Джалиль" className="w-full h-full object-cover object-top" />
-                </div>
-                <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 bg-primary text-primary-foreground text-xs font-semibold px-5 py-2 rounded-full whitespace-nowrap shadow-xl tracking-wide">
-                  Муса Мостафа улы Җәлилов
-                </div>
+              <div className="w-60 md:w-72 rounded-2xl overflow-hidden portrait-frame" style={{ height: '22rem' }}>
+                <img src={PORTRAIT_URL} alt="Муса Джалиль" className="w-full h-full object-cover object-top" />
               </div>
             </div>
           </div>
@@ -430,8 +401,11 @@ export default function Index() {
       {/* FOOTER */}
       <footer className="border-t border-border py-10 px-4 text-center">
         <div className="gold-line max-w-32 mx-auto mb-6" />
-        <p className="text-muted-foreground text-xs tracking-wider">
-          © 2026 — Муса Мостафа улы Джалилов (1906–1944). Барлык хокуклар сакланган.
+        <p className="text-muted-foreground text-xs tracking-wider mb-2">
+          © 2026 — Муса Мостафа улы Җәлил (1906–1944). Барлык хокуклар сакланган.
+        </p>
+        <p className="text-primary/60 text-xs tracking-widest uppercase" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
+          Лилия Кәримова
         </p>
       </footer>
 
