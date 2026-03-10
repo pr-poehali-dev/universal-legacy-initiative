@@ -116,8 +116,8 @@ export default function Index() {
             style={{ filter: 'grayscale(100%) brightness(0.5)', objectPosition: 'right center', transform: 'scale(0.85)', transformOrigin: 'right center' }}
           />
           <div className="absolute inset-0" style={{ background: 'linear-gradient(to right, hsl(220 15% 8%) 0%, hsl(220 15% 8% / 0.97) 18%, hsl(220 15% 8% / 0.85) 35%, hsl(220 15% 8% / 0.4) 55%, transparent 75%)' }} />
-          <div className="absolute inset-0" style={{ background: 'linear-gradient(to top, hsl(220 15% 8%) 0%, transparent 30%)' }} />
-          <div className="absolute inset-0" style={{ background: 'linear-gradient(to bottom, hsl(220 15% 8%) 0%, transparent 15%)' }} />
+          <div className="absolute inset-0" style={{ background: 'linear-gradient(to top, hsl(220 15% 8%) 0%, transparent 40%)' }} />
+          <div className="absolute inset-0" style={{ background: 'linear-gradient(to bottom, hsl(220 15% 8%) 0%, transparent 40%)' }} />
         </div>
 
         {/* Текст — строго по центру высоты */}
