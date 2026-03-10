@@ -75,22 +75,27 @@ export default function Index() {
     <div className="min-h-screen bg-background" ref={bodyRef}>
 
       {/* NAVBAR */}
-      <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-background/98 backdrop-blur-md border-b border-border`}>
-        {/* Верхняя строка — логотип */}
+      <nav className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-md border-b border-border/60">
         <div className="max-w-7xl mx-auto px-4 md:px-6">
-          <div className="flex items-center justify-between h-12 border-b border-border/40">
-            <button onClick={() => scrollTo('bash')} className="text-primary font-bold text-sm tracking-widest uppercase" style={{ fontFamily: 'Bebas Neue, sans-serif', fontSize: '1.1rem', letterSpacing: '0.15em' }}>
-              Муса Җәлил
+          {/* Одна строка: логотип + навигация */}
+          <div className="flex items-center gap-4 h-11 border-b border-border/30">
+            <button
+              onClick={() => scrollTo('bash')}
+              className="text-primary flex-shrink-0"
+              style={{ fontFamily: 'Bebas Neue, sans-serif', fontSize: '1.15rem', letterSpacing: '0.12em' }}
+            >
+              МУСА ҖӘЛИЛ
             </button>
-            <span className="text-muted-foreground text-xs tracking-wider hidden sm:block">1906 — 1944</span>
+            <span className="text-border">|</span>
+            <span className="text-muted-foreground text-xs tracking-wider flex-shrink-0 hidden sm:block">1906 — 1944</span>
           </div>
-          {/* Нижняя строка — все пункты навигации */}
-          <div className="flex items-center gap-0.5 overflow-x-auto scrollbar-hide py-1.5">
+          {/* Вторая строка — пункты меню, прокручиваемые */}
+          <div className="flex items-center gap-0.5 overflow-x-auto scrollbar-hide" style={{ height: '38px' }}>
             {navItems.map(item => (
               <button
                 key={item.id}
                 onClick={() => scrollTo(item.id)}
-                className={`section-nav-btn px-3 py-1.5 rounded text-xs font-medium whitespace-nowrap flex-shrink-0 ${activeSection === item.id ? 'active' : 'text-muted-foreground'}`}
+                className={`section-nav-btn px-3 py-1 rounded text-xs font-medium whitespace-nowrap flex-shrink-0 ${activeSection === item.id ? 'active' : 'text-muted-foreground'}`}
               >
                 {item.label}
               </button>
@@ -100,48 +105,57 @@ export default function Index() {
       </nav>
 
       {/* ═══════════ БАШ БИТ ═══════════ */}
-      <section id="bash" className="hero-pattern min-h-screen flex items-center pt-20 pb-20 px-4">
-        <div className="max-w-6xl mx-auto w-full">
-          <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
-            <div className="flex-1 text-center lg:text-left order-2 lg:order-1">
-              <h1 className="text-primary" style={{ fontFamily: 'Bebas Neue, sans-serif', lineHeight: 1 }}>
-                <span className="block text-2xl md:text-3xl mb-4 text-primary/70 tracking-widest">ҮЗ ХАЛКЫН ДАНЛАГАН ТАТАРЛАР:</span>
-                <span className="block text-7xl md:text-9xl lg:text-[10rem] leading-none">МУСА</span>
-                <span className="block text-7xl md:text-9xl lg:text-[10rem] leading-none">ҖӘЛИЛ</span>
-              </h1>
-              <div className="gold-line max-w-xs my-7 mx-auto lg:mx-0" />
-              <div className="flex items-center justify-center lg:justify-start gap-4 mb-8 text-muted-foreground text-sm tracking-wider">
-                <span>15 февраль 1906</span>
-                <span className="text-primary text-lg">—</span>
-                <span>25 август 1944</span>
-              </div>
-              <blockquote className="quote-line pl-5 py-1 max-w-md mx-auto lg:mx-0 mb-10">
-                <p className="text-foreground/65 text-lg md:text-xl italic leading-relaxed">
-                  Гомерем минем моңлы бер җыр иде,<br />
-                  Үлемем дә яңрар җыр булып
-                </p>
-              </blockquote>
-              <div className="flex flex-wrap gap-2 justify-center lg:justify-start">
-                {navItems.slice(1).map(item => (
-                  <button
-                    key={item.id}
-                    onClick={() => scrollTo(item.id)}
-                    className="section-nav-btn px-4 py-2 rounded text-xs text-muted-foreground font-medium"
-                  >
-                    {item.label}
-                  </button>
-                ))}
-              </div>
+      <section id="bash" className="hero-pattern relative min-h-screen flex items-center pb-16 px-4 overflow-hidden" style={{ paddingTop: '90px' }}>
+        {/* Фото — абсолютно справа, за текстом, большое */}
+        <div className="absolute inset-y-0 right-0 w-full lg:w-[55%] pointer-events-none select-none">
+          <img
+            src={PORTRAIT_URL}
+            alt="Муса Джалиль"
+            className="w-full h-full object-cover object-top"
+            style={{
+              maskImage: 'linear-gradient(to bottom, black 30%, transparent 95%), linear-gradient(to right, transparent 0%, black 30%, black 100%)',
+              maskComposite: 'intersect',
+              WebkitMaskImage: 'linear-gradient(to bottom, black 30%, transparent 95%), linear-gradient(to right, transparent 0%, black 30%, black 100%)',
+              WebkitMaskComposite: 'source-in',
+              opacity: 0.75,
+            }}
+          />
+          {/* Дополнительный градиент слева для перетекания в фон */}
+          <div className="absolute inset-0" style={{ background: 'linear-gradient(to right, hsl(220 15% 8%) 0%, hsl(220 15% 8% / 0.7) 25%, transparent 60%)' }} />
+          {/* Снизу */}
+          <div className="absolute inset-0" style={{ background: 'linear-gradient(to top, hsl(220 15% 8%) 0%, transparent 35%)' }} />
+        </div>
+
+        {/* Текст поверх */}
+        <div className="relative z-10 max-w-6xl mx-auto w-full">
+          <div className="max-w-xl text-center lg:text-left">
+            <h1 className="text-primary font-black" style={{ fontFamily: 'Bebas Neue, sans-serif', lineHeight: 0.95 }}>
+              <span className="block text-xl md:text-2xl mb-4 text-primary/65 tracking-[0.2em] font-normal" style={{ fontFamily: 'Outfit, sans-serif', letterSpacing: '0.15em' }}>ҮЗ ХАЛКЫН ДАНЛАГАН ТАТАРЛАР:</span>
+              <span className="block text-6xl md:text-8xl lg:text-9xl">МУСА</span>
+              <span className="block text-6xl md:text-8xl lg:text-9xl">ҖӘЛИЛ</span>
+            </h1>
+            <div className="gold-line max-w-xs my-6 mx-auto lg:mx-0" />
+            <div className="flex items-center justify-center lg:justify-start gap-3 mb-7 text-muted-foreground text-sm tracking-wider">
+              <span>15 февраль 1906</span>
+              <span className="text-primary">—</span>
+              <span>25 август 1944</span>
             </div>
-            <div className="order-1 lg:order-2 flex-shrink-0">
-              <div className="relative w-64 md:w-80" style={{ height: '26rem' }}>
-                <img
-                  src={PORTRAIT_URL}
-                  alt="Муса Джалиль"
-                  className="w-full h-full object-cover object-top"
-                  style={{ maskImage: 'linear-gradient(to bottom, black 40%, transparent 100%), linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%)', maskComposite: 'intersect', WebkitMaskImage: 'linear-gradient(to bottom, black 40%, transparent 100%), linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%)', WebkitMaskComposite: 'source-in' }}
-                />
-              </div>
+            <blockquote className="quote-line pl-5 py-1 max-w-md mx-auto lg:mx-0 mb-10">
+              <p className="text-foreground/60 text-base md:text-lg italic leading-relaxed">
+                Гомерем минем моңлы бер җыр иде,<br />
+                Үлемем дә яңрар җыр булып
+              </p>
+            </blockquote>
+            <div className="flex flex-wrap gap-2 justify-center lg:justify-start">
+              {navItems.slice(1).map(item => (
+                <button
+                  key={item.id}
+                  onClick={() => scrollTo(item.id)}
+                  className="section-nav-btn px-4 py-2 rounded text-xs text-muted-foreground font-medium"
+                >
+                  {item.label}
+                </button>
+              ))}
             </div>
           </div>
         </div>
