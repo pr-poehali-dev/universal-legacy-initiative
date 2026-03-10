@@ -120,12 +120,10 @@ export default function Index() {
         <div className="max-w-6xl mx-auto w-full">
           <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
             <div className="flex-1 text-center lg:text-left order-2 lg:order-1">
-              <p className="text-primary/60 text-xs tracking-[0.35em] uppercase mb-5 font-medium">
-                ҮЗ ХАЛКЫН ДАНЛАГАН ТАТАРЛАР
-              </p>
-              <h1 style={{ fontFamily: 'Playfair Display, serif', lineHeight: 1 }}>
-                <span className="block text-4xl md:text-5xl text-foreground/60 mb-2">МУСА</span>
-                <span className="block text-7xl md:text-8xl lg:text-9xl font-black text-primary">ҖӘЛИЛ</span>
+              <h1 style={{ fontFamily: 'Playfair Display, serif', lineHeight: 1.05 }} className="font-black">
+                <span className="block text-xl md:text-2xl text-primary/80 mb-3 tracking-widest uppercase">ҮЗ ХАЛКЫН ДАНЛАГАН ТАТАРЛАР</span>
+                <span className="block text-5xl md:text-7xl lg:text-8xl text-primary leading-none">МУСА</span>
+                <span className="block text-5xl md:text-7xl lg:text-8xl text-primary leading-none">ҖӘЛИЛ</span>
               </h1>
               <div className="gold-line max-w-xs my-7 mx-auto lg:mx-0" />
               <div className="flex items-center justify-center lg:justify-start gap-4 mb-8 text-muted-foreground text-sm tracking-wider">
