@@ -307,27 +307,24 @@ type OnPhoto = (photos: PhotoItem[], idx: number) => void;
 /* ══ Вспомогательный компонент фотосетки ══ */
 function PhotoGrid({ photos, cols, onPhoto }: { photos: PhotoItem[]; cols: number; onPhoto: OnPhoto }) {
   return (
-    <div className={`grid gap-3 mb-10`} style={{ gridTemplateColumns: `repeat(${cols}, 1fr)` }}>
+    <div className="grid gap-4 mb-10" style={{ gridTemplateColumns: `repeat(${cols}, 1fr)` }}>
       {photos.map((p, i) => (
-        <div
-          key={i}
-          className="cursor-pointer overflow-hidden rounded-xl border border-border/50 relative group"
-          style={{ aspectRatio: cols === 1 ? '16/9' : cols >= 4 ? '3/4' : '4/3' }}
-          onClick={() => onPhoto(photos, i)}
-        >
-          <img
-            src={p.src}
-            alt={p.caption}
-            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-          />
-          <div className="absolute inset-0 bg-black/0 group-hover:bg-black/25 transition-all flex items-center justify-center">
-            <Icon name="ZoomIn" size={24} className="opacity-0 group-hover:opacity-100 transition-opacity text-white drop-shadow" />
+        <div key={i} className="flex flex-col gap-2">
+          <div
+            className="cursor-pointer overflow-hidden rounded-xl border border-border/50 relative group"
+            onClick={() => onPhoto(photos, i)}
+          >
+            <img
+              src={p.src}
+              alt={p.caption}
+              className="w-full h-auto block group-hover:scale-105 transition-transform duration-500"
+            />
+            <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all flex items-center justify-center">
+              <Icon name="ZoomIn" size={24} className="opacity-0 group-hover:opacity-100 transition-opacity text-white drop-shadow" />
+            </div>
           </div>
           {p.caption && (
-            <div className="absolute bottom-0 left-0 right-0 py-2 px-3 text-center text-white/80 text-xs font-medium leading-snug opacity-0 group-hover:opacity-100 transition-opacity"
-              style={{ background: 'linear-gradient(transparent, rgba(0,0,0,0.75))' }}>
-              {p.caption}
-            </div>
+            <p className="text-center text-muted-foreground text-xs italic leading-snug">{p.caption}</p>
           )}
         </div>
       ))}
@@ -379,7 +376,8 @@ function SectionYazuchy({ onPhoto }: { onPhoto: OnPhoto }) {
 }
 
 const geografPhotos: PhotoItem[] = [
-  { src: 'https://cdn.poehali.dev/files/56e64cff-74f6-4098-a56f-072cae398cd9.png', caption: 'Мәчетләрнең кыйбла юнәлешен күрсәткән карта' },
+  { src: 'https://cdn.poehali.dev/files/56e64cff-74f6-4098-a56f-072cae398cd9.png', caption: '' },
+  { src: 'https://cdn.poehali.dev/files/a66903fc-b12a-48a2-87e9-06347a8de615.jpeg', caption: '' },
 ];
 
 function SectionGeograf({ onPhoto }: { onPhoto: OnPhoto }) {
@@ -387,7 +385,7 @@ function SectionGeograf({ onPhoto }: { onPhoto: OnPhoto }) {
     <section id="geograf" className="border-t border-border/30 py-16 px-4">
       <div className="max-w-3xl mx-auto">
         <SectionHeader icon="Map" title="Географ" />
-        <PhotoGrid photos={geografPhotos} cols={1} onPhoto={onPhoto} />
+        <PhotoGrid photos={geografPhotos} cols={2} onPhoto={onPhoto} />
         <div className="space-y-4 text-center">
           <p className="section-body">Каюм Насыйри – Казан губернасының беренче картасы, Россия мәчетләрендә кыйбланы төгәл билгеләү картасы һ.б. дистәләгән карталар авторы.</p>
           <p className="section-body">Казан губернасының тәүге географик картасында ул мөселман мәчетләренең төп урыны – михрабның төгәл билгеләнешен ачыклауны максат итеп куйган.</p>
