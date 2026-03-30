@@ -63,42 +63,30 @@ export default function Yazuchy() {
         </div>
       )}
 
-      <div className="space-y-6 reveal-section opacity-0 text-center">
+      <div className="space-y-5 reveal-section opacity-0">
         <p className="text-foreground/80 leading-relaxed">
           Каюм Насыйриның татар әдәбиятына керткән өлеше шактый зур. Аның иҗаты татар халкының рухи мирасының аерылгысыз бер өлешенә әйләнде.
         </p>
 
-        <div className="fact-box p-5 rounded-r-lg text-left">
-          <p className="text-foreground/85 leading-relaxed font-medium">
-            Әдип — <strong className="text-primary">"Әбүгалисина кыйссасы"</strong>, <strong className="text-primary">"Кырык вәзир"</strong>, <strong className="text-primary">"Әхлак рисаләсе"</strong>, <strong className="text-primary">"Тәрбич китабы"</strong> һ.б. әсәрләрнең авторы.
+        <div className="fact-box p-5 rounded-r-lg">
+          <p className="text-foreground/85 leading-relaxed">
+            Әдип — "Әбүгалисина кыйссасы", "Кырык вәзир", "Әхлак рисаләсе", "Тәрбич китабы" кебек мәшһүр әсәрләрнең авторы.
           </p>
         </div>
 
         <p className="text-foreground/80 leading-relaxed">
-          Каюм Насыйри үз әсәрләрендә гореф-гадәтләр, традицияләр, әхлак, иман, гаилә мөнәсәбәтләре, бала тәрбиясе мәсьәләләрен яктырта. Уңай әхлакый сыйфатларны галим укучы өчен үрнәк итеп куя, ә кешенең рухи үсешенә комачаулый торган сыйфатларны, киресенчә, тәнкыйтьләп фаш итә.
+          Каюм Насыйри үз әсәрләрендә гореф-гадәтләр, традицияләр, әхлак, иман, гаилә мөнәсәбәтләре, бала тәрбиясе мәсьәләләрен яктырта. Уңай әхлакый сыйфатларны галим укучы өчен үрнәк итеп куя, ә кешенең рухи үсешенә комачаулый торган сыйфатларны тәнкыйтьләп фаш итә.
         </p>
 
-        <div className="quote-block p-5 rounded-r-lg text-left">
+        <p className="text-foreground/80 leading-relaxed">
+          Татар укучысына борыңгы Шәрык галиме Ибн Синаны таныштырган беренче татар прозасының үрнәге — "Әбүгалисина кыйссасы". Насыйри бу хезмәтендә нафис стиль, тирән философик эчтәлек белән укучыны мәгърифәт юлына чакыра. Борыңгы Шәрык хикәяләренең татарча яңартылган тупланмасы "Кырык вәзир"дә Насыйри халыкка аңлаешлы тел белән дөнья әдәбиятының иң матур үрнәкләрен тәкъдим итте.
+        </p>
+
+        <div className="quote-block p-5 rounded-r-lg">
           <p className="text-foreground/75 italic leading-relaxed">
             Әсәрләрнең язылганнынан соң ике гасырга якын вакыт узуына карамастан, аларның эстетик әһәмияте әле дә үз кыйммәтен югалтмый.
           </p>
         </div>
-
-        <h2 className="text-2xl md:text-3xl text-foreground mt-8" style={{ fontFamily: 'Bebas Neue, sans-serif' }}>
-          "Әбүгалисина кыйссасы"
-        </h2>
-        <div className="gold-line max-w-24 mx-auto mb-4" />
-        <p className="text-foreground/80 leading-relaxed">
-          Бу әсәр — татар укучысына борыңгы Шәрык галиме Ибн Синаны таныштырган беренче татар прозасының үрнәкләреннән берсе. Насыйри бу хезмәтендә нафис стиль, тирән философик эчтәлек белән укучыны мәгърифәт юлына чакыра.
-        </p>
-
-        <h2 className="text-2xl md:text-3xl text-foreground mt-6" style={{ fontFamily: 'Bebas Neue, sans-serif' }}>
-          "Кырык вәзир"
-        </h2>
-        <div className="gold-line max-w-24 mx-auto mb-4" />
-        <p className="text-foreground/80 leading-relaxed">
-          Борыңгы Шәрык хикәяләренең татарча яңартылган тупланмасы. Насыйри аны халыкка аңлаешлы тел белән биреп, татар укучысына дөнья әдәбиятының иң матур үрнәкләрен таныштырды.
-        </p>
       </div>
     </PageLayout>
   );

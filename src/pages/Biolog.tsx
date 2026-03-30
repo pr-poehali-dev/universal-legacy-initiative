@@ -2,12 +2,16 @@ import PageLayout from '@/components/PageLayout';
 
 const photos = [
   {
+    src: 'https://cdn.poehali.dev/files/cb96834a-44b7-4eae-861d-64144948c65a.jpg',
+    caption: '"Шифалы үләннәр" — К. Насыйри',
+  },
+  {
     src: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Wild_rose_Rosa_canina.jpg/440px-Wild_rose_Rosa_canina.jpg',
     caption: 'Дару үсемлекләре',
   },
   {
     src: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Chamomile%40original_size.jpg/440px-Chamomile%40original_size.jpg',
-    caption: 'Татарстан үсемлекләре',
+    caption: 'Шифалы чәчәкләр',
   },
 ];
 
@@ -15,7 +19,7 @@ export default function Biolog() {
   return (
     <PageLayout title="БИОЛОГ" subtitle="Үсемлекләр дөньясын өйрәнүче">
 
-      <div className="reveal-section opacity-0 grid grid-cols-2 gap-4 mb-10">
+      <div className="reveal-section opacity-0 grid grid-cols-3 gap-3 mb-10">
         {photos.map((p, i) => (
           <div key={i} className="flex flex-col">
             <div className="overflow-hidden rounded-lg border border-border/60" style={{ aspectRatio: '4/3' }}>

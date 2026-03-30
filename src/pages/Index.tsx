@@ -178,14 +178,11 @@ export default function Index() {
 
         {/* Карточки разделов */}
         <div className="w-full max-w-4xl mx-auto reveal-section opacity-0 pb-6">
-          <h2 className="text-2xl md:text-3xl text-foreground mb-8 text-center" style={{ fontFamily: 'Bebas Neue, sans-serif' }}>
-            Разделларны өйрән
-          </h2>
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
             {sections.map(s => (
               <button
                 key={s.id}
-                onClick={() => navigate(s.path)}
+                onClick={() => { const el = document.getElementById(s.id); el?.scrollIntoView({ behavior: 'smooth', block: 'start' }); }}
                 className="section-card p-5 flex flex-col items-center gap-3 cursor-pointer text-center"
               >
                 <div className="w-12 h-12 rounded-full flex items-center justify-center" style={{ background: 'hsl(152 55% 40% / 0.12)' }}>
@@ -199,33 +196,177 @@ export default function Index() {
         </div>
       </section>
 
-      {/* ══ РАЗДЕЛЫ (видны при скролле) ══ */}
-      {sections.map((s) => (
-        <section key={s.id} id={s.id} className="border-t border-border/30 py-16 px-4">
-          <div className="max-w-2xl mx-auto text-center reveal-section opacity-0">
-            <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4" style={{ background: 'hsl(152 55% 40% / 0.12)' }}>
-              <Icon name={s.icon} size={28} style={{ color: 'hsl(152 55% 45%)' }} />
-            </div>
-            <h2 className="gradient-title font-black mb-2" style={{ fontFamily: 'Bebas Neue, sans-serif', fontSize: 'clamp(2rem, 6vw, 3.5rem)' }}>
-              {s.label}
-            </h2>
-            <p className="text-muted-foreground text-sm mb-6">{s.desc}</p>
-            <div className="gold-line max-w-24 mx-auto mb-6" />
-            <button
-              onClick={() => navigate(s.path)}
-              className="section-nav-btn px-6 py-2.5 rounded text-sm font-semibold"
-              style={{ color: 'hsl(152 55% 45%)' }}
-            >
-              Тулырак укырга →
-            </button>
-          </div>
-        </section>
-      ))}
+      {/* ══ РАЗДЕЛЫ — контент виден сразу ══ */}
+      <SectionYazuchy />
+      <SectionGeograf />
+      <SectionBiolog />
+      <SectionAshSu />
+      <SectionTelGalime />
+      <SectionSuzOstasy />
+
+      {/* Кнопка последней страницы */}
+      <section className="py-16 px-4 text-center border-t border-border/30">
+        <div className="max-w-xl mx-auto reveal-section opacity-0">
+          <div className="gold-line mb-8" />
+          <button
+            onClick={() => navigate('/mengelek')}
+            className="inline-flex items-center gap-3 px-8 py-4 rounded-xl font-bold text-base transition-all hover:scale-105"
+            style={{
+              background: 'linear-gradient(135deg, hsl(152 55% 35%), hsl(200 70% 45%), hsl(15 85% 55%))',
+              color: 'white',
+              boxShadow: '0 4px 24px hsl(152 55% 40% / 0.3)',
+            }}
+          >
+            <Icon name="Star" size={20} />
+            Каюм Насыйри исеме мәңгелек
+            <Icon name="ArrowRight" size={20} />
+          </button>
+        </div>
+      </section>
 
       {/* FOOTER */}
       <footer className="border-t border-border/40 py-6 text-center">
         <p className="text-muted-foreground text-sm">© 2026 — Татар әдәбиятын өйрәнү һәм үстерү проекты. Лилия Кәримова</p>
       </footer>
     </div>
+  );
+}
+
+/* ══ Инлайн-секции для главной страницы ══ */
+
+function SectionYazuchy() {
+  const navigate = useNavigate();
+  return (
+    <section id="yazuchy" className="border-t border-border/30 py-14 px-4">
+      <div className="max-w-2xl mx-auto">
+        <div className="flex items-center gap-3 mb-4">
+          <div className="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0" style={{ background: 'hsl(152 55% 40% / 0.12)' }}>
+            <Icon name="BookOpen" size={20} style={{ color: 'hsl(152 55% 45%)' }} />
+          </div>
+          <h2 className="gradient-title font-black" style={{ fontFamily: 'Bebas Neue, sans-serif', fontSize: '2rem' }}>Язучы</h2>
+        </div>
+        <div className="gold-line max-w-24 mb-5" />
+        <div className="space-y-3 text-foreground/80 text-sm md:text-base leading-relaxed">
+          <p>Каюм Насыйриның татар әдәбиятына керткән өлеше шактый зур. Аның иҗаты татар халкының рухи мирасының аерылгысыз бер өлешенә әйләнде.</p>
+          <p>Әдип — "Әбүгалисина кыйссасы", "Кырык вәзир", "Әхлак рисаләсе", "Тәрбич китабы" кебек мәшһүр әсәрләрнең авторы.</p>
+          <p>Каюм Насыйри үз әсәрләрендә гореф-гадәтләр, традицияләр, әхлак, иман, гаилә мөнәсәбәтләре, бала тәрбиясе мәсьәләләрен яктырта. Уңай әхлакый сыйфатларны галим укучы өчен үрнәк итеп куя.</p>
+          <p>Борыңгы Шәрык хикәяләренең татарча яңартылган тупланмасы булган "Кырык вәзир"дә Насыйри аны халыкка аңлаешлы тел белән биреп, татар укучысына дөнья әдәбиятының иң матур үрнәкләрен таныштырды.</p>
+          <p>Әсәрләрнең язылганнынан соң ике гасырга якын вакыт узуына карамастан, аларның эстетик әһәмияте әле дә үз кыйммәтен югалтмый.</p>
+        </div>
+        <button onClick={() => navigate('/yazuchy')} className="mt-5 text-xs font-semibold" style={{ color: 'hsl(152 55% 45%)' }}>Тулырак укырга →</button>
+      </div>
+    </section>
+  );
+}
+
+function SectionGeograf() {
+  const navigate = useNavigate();
+  return (
+    <section id="geograf" className="border-t border-border/30 py-14 px-4">
+      <div className="max-w-2xl mx-auto">
+        <div className="flex items-center gap-3 mb-4">
+          <div className="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0" style={{ background: 'hsl(200 70% 55% / 0.12)' }}>
+            <Icon name="Map" size={20} style={{ color: 'hsl(200 70% 55%)' }} />
+          </div>
+          <h2 className="gradient-title font-black" style={{ fontFamily: 'Bebas Neue, sans-serif', fontSize: '2rem' }}>Географ</h2>
+        </div>
+        <div className="gold-line max-w-24 mb-5" />
+        <div className="space-y-3 text-foreground/80 text-sm md:text-base leading-relaxed">
+          <p>Каюм Насыйри – Казан губернасының беренче картасы, Россия мәчетләрендә кыйбланы төгәл билгеләү картасы һ.б. дистәләгән карталар авторы.</p>
+          <p>Казан губернасының тәүге географик картасында ул мөселман мәчетләренең төп урыны – михрабның төгәл билгеләнешен ачыклауны максат итеп куйган.</p>
+          <p>Насыйри картасында Евразия кыйтгасының шактый өлеше өчен — Санкт-Петербургтан Көньяк Кытай диңгезенә кадәр — мәчетләрнең кыйблага дөрес юнәлешен күрсәтә.</p>
+        </div>
+        <button onClick={() => navigate('/geograf')} className="mt-5 text-xs font-semibold" style={{ color: 'hsl(200 70% 55%)' }}>Тулырак укырга →</button>
+      </div>
+    </section>
+  );
+}
+
+function SectionBiolog() {
+  const navigate = useNavigate();
+  return (
+    <section id="biolog" className="border-t border-border/30 py-14 px-4">
+      <div className="max-w-2xl mx-auto">
+        <div className="flex items-center gap-3 mb-4">
+          <div className="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0" style={{ background: 'hsl(152 55% 40% / 0.12)' }}>
+            <Icon name="Leaf" size={20} style={{ color: 'hsl(152 55% 45%)' }} />
+          </div>
+          <h2 className="gradient-title font-black" style={{ fontFamily: 'Bebas Neue, sans-serif', fontSize: '2rem' }}>Биолог</h2>
+        </div>
+        <div className="gold-line max-w-24 mb-5" />
+        <div className="space-y-3 text-foreground/80 text-sm md:text-base leading-relaxed">
+          <p>Каюм Насыйри дарулар кулланмаган. Ул гомер буе дару үләннәре җыйган, шулар белән үзе дә, башкаларны да дәвалаган.</p>
+          <p>Үзенең тәҗрибәсен "Гөлзар вә чаманзар" ("Чәчәкләр һәм үләннәр") китабында тасвирлаган. Бу китабында галим Россия территориясында үскән 192 үсемлекнең үзлекләрен, 155 авыруны һәм аларны үләннәр ярдәмендә дәвалау ысулларын тасвирлаган.</p>
+        </div>
+        <button onClick={() => navigate('/biolog')} className="mt-5 text-xs font-semibold" style={{ color: 'hsl(152 55% 45%)' }}>Тулырак укырга →</button>
+      </div>
+    </section>
+  );
+}
+
+function SectionAshSu() {
+  const navigate = useNavigate();
+  return (
+    <section id="ashsu" className="border-t border-border/30 py-14 px-4">
+      <div className="max-w-2xl mx-auto">
+        <div className="flex items-center gap-3 mb-4">
+          <div className="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0" style={{ background: 'hsl(15 85% 62% / 0.12)' }}>
+            <Icon name="UtensilsCrossed" size={20} style={{ color: 'hsl(15 85% 62%)' }} />
+          </div>
+          <h2 className="gradient-title font-black" style={{ fontFamily: 'Bebas Neue, sans-serif', fontSize: '2rem' }}>Аш-су остасы</h2>
+        </div>
+        <div className="gold-line max-w-24 mb-5" />
+        <div className="space-y-3 text-foreground/80 text-sm md:text-base leading-relaxed">
+          <p>Каюм Насыйри татар ашлары буенча да кыйммәтле эшләр язган. Ул традицион татар ашларының рецептларын җыйган, аларның әзерләү ысулларын детальльләп тасвирлаган.</p>
+          <p><strong className="text-foreground">Алма күпертмәсе:</strong> Ун алманы юка гына тура. Камыр яса: биш йомырка, ике кашык май, ике кашык шикәр, бер стакан каймак, он сал. Табада майда кыздыр, өстенә алма куй. Мөрәбба белән аша.</p>
+        </div>
+        <button onClick={() => navigate('/ashsu')} className="mt-5 text-xs font-semibold" style={{ color: 'hsl(15 85% 62%)' }}>Тулырак укырга →</button>
+      </div>
+    </section>
+  );
+}
+
+function SectionTelGalime() {
+  const navigate = useNavigate();
+  return (
+    <section id="telgalime" className="border-t border-border/30 py-14 px-4">
+      <div className="max-w-2xl mx-auto">
+        <div className="flex items-center gap-3 mb-4">
+          <div className="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0" style={{ background: 'hsl(200 70% 55% / 0.12)' }}>
+            <Icon name="Languages" size={20} style={{ color: 'hsl(200 70% 55%)' }} />
+          </div>
+          <h2 className="gradient-title font-black" style={{ fontFamily: 'Bebas Neue, sans-serif', fontSize: '2rem' }}>Тел галиме</h2>
+        </div>
+        <div className="gold-line max-w-24 mb-5" />
+        <div className="space-y-3 text-foreground/80 text-sm md:text-base leading-relaxed">
+          <p>«Татар теле ул – урам теле, ломовойлар теле», дигән карашлар яшәгән заманда Насыйри халкыбызның туган телен яклап чыга: «Без – татарлар, телебез – татар теле, мөстәкыйль һәм төзек кагыйдәле камил тел».</p>
+          <p>Ул татар лексикографиясенең нигезен салучы — "Лөгать китабы" һәм "Ләһҗәи татари" сүзлекләренең авторы.</p>
+        </div>
+        <button onClick={() => navigate('/telgalime')} className="mt-5 text-xs font-semibold" style={{ color: 'hsl(200 70% 55%)' }}>Тулырак укырга →</button>
+      </div>
+    </section>
+  );
+}
+
+function SectionSuzOstasy() {
+  const navigate = useNavigate();
+  return (
+    <section id="suzostasy" className="border-t border-border/30 py-14 px-4">
+      <div className="max-w-2xl mx-auto">
+        <div className="flex items-center gap-3 mb-4">
+          <div className="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0" style={{ background: 'hsl(15 85% 62% / 0.12)' }}>
+            <Icon name="Quote" size={20} style={{ color: 'hsl(15 85% 62%)' }} />
+          </div>
+          <h2 className="gradient-title font-black" style={{ fontFamily: 'Bebas Neue, sans-serif', fontSize: '2rem' }}>Суз остасы</h2>
+        </div>
+        <div className="gold-line max-w-24 mb-5" />
+        <div className="space-y-3 text-foreground/80 text-sm md:text-base leading-relaxed">
+          <p className="italic">«Без - татарлар, телебез - татар теле, мөстәкыйль һәм төзек кагыйдәле камил тел ул»</p>
+          <p className="italic">«Дөньяда баһадир шул кешедер ки, — нәфесен җиңәр»</p>
+          <p className="italic">«Халыкка икмәк-тоз күрсәтмәгән кешенең үлгәч тә исемен телгә алмаслар»</p>
+        </div>
+        <button onClick={() => navigate('/suzostasy')} className="mt-5 text-xs font-semibold" style={{ color: 'hsl(15 85% 62%)' }}>Барлык цитаталар →</button>
+      </div>
+    </section>
   );
 }

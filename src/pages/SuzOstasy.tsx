@@ -15,8 +15,13 @@ export default function SuzOstasy() {
     <PageLayout title="СУЗ ОСТАСЫ" subtitle="Канатлы сүзләр һәм хикмәт">
 
       <div className="space-y-6 reveal-section opacity-0 text-center">
-        <h2 className="text-xl md:text-2xl font-semibold leading-relaxed mb-6" style={{ color: 'hsl(15 85% 68%)' }}>
-          Гасырлар хикмәте: Каюм Насыйринең канатлы цитаталары
+        <h2 className="text-xl md:text-2xl font-semibold leading-relaxed mb-6" style={{
+          background: 'linear-gradient(135deg, hsl(15 85% 62%), hsl(200 70% 55%), hsl(152 55% 45%))',
+          WebkitBackgroundClip: 'text',
+          WebkitTextFillColor: 'transparent',
+          backgroundClip: 'text',
+        }}>
+          Гасырлар хикмәте:<br />Каюм Насыйринең канатлы цитаталары
         </h2>
 
         <div className="gold-line max-w-48 mx-auto mb-8" />
@@ -31,11 +36,6 @@ export default function SuzOstasy() {
           ))}
         </div>
 
-        <div className="fact-box p-5 rounded-r-lg mt-6 text-left">
-          <p className="text-foreground/85 font-medium leading-relaxed">
-            <strong className="text-primary">"Фәвакиһелҗөләса фил әдәбият"</strong> — Насыйриның иң мәшһүр хезмәтләреннән берсе. Бу татар халык мәкальләре, мәзәкләре, хикәятләрен туплаган беренче татар энциклопедиясе.
-          </p>
-        </div>
       </div>
     </PageLayout>
   );

@@ -10,6 +10,7 @@ import Biolog from "./pages/Biolog";
 import AshSu from "./pages/AshSu";
 import TelGalime from "./pages/TelGalime";
 import SuzOstasy from "./pages/SuzOstasy";
+import Mengelek from "./pages/Mengelek";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -28,6 +29,7 @@ const App = () => (
           <Route path="/ashsu" element={<AshSu />} />
           <Route path="/telgalime" element={<TelGalime />} />
           <Route path="/suzostasy" element={<SuzOstasy />} />
+          <Route path="/mengelek" element={<Mengelek />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
