@@ -4,10 +4,6 @@ import Icon from '@/components/ui/icon';
 
 const photos = [
   {
-    src: 'https://cdn.poehali.dev/files/4aaf5462-417b-4df2-9405-65c4d99fa15e.jpg',
-    caption: 'Казан губернасының географик картасы, 1873',
-  },
-  {
     src: 'https://cdn.poehali.dev/files/56e64cff-74f6-4098-a56f-072cae398cd9.png',
     caption: 'Мәчетләрнең кыйбла юнәлешен күрсәткән карта',
   },
@@ -24,7 +20,7 @@ export default function Geograf() {
     <PageLayout title="ГЕОГРАФ" subtitle="Казан губернасының беренче картасы авторы">
 
       {/* Фотогалерея в один ряд */}
-      <div className="reveal-section opacity-0 grid grid-cols-3 gap-3 mb-10">
+      <div className="reveal-section opacity-0 grid grid-cols-2 gap-3 mb-10">
         {photos.map((p, i) => (
           <div key={i} className="flex flex-col cursor-pointer" onClick={() => setLightbox(i)}>
             <div className="overflow-hidden rounded-lg border border-border/60 relative group" style={{ aspectRatio: '4/3' }}>
