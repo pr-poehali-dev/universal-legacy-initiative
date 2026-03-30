@@ -1,75 +1,84 @@
+import { useState } from 'react';
 import PageLayout from '@/components/PageLayout';
+import Icon from '@/components/ui/icon';
 
 const photos = [
   {
-    src: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Kazan_map_1895.jpg/440px-Kazan_map_1895.jpg',
-    caption: 'Казан картасы, XIX гасыр',
+    src: 'https://cdn.poehali.dev/files/4aaf5462-417b-4df2-9405-65c4d99fa15e.jpg',
+    caption: 'Казан губернасының географик картасы, 1873',
   },
   {
-    src: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/Volga_river_map.jpg/440px-Volga_river_map.jpg',
-    caption: 'Идел елгасы картасы',
+    src: 'https://cdn.poehali.dev/files/56e64cff-74f6-4098-a56f-072cae398cd9.png',
+    caption: 'Мәчетләрнең кыйбла юнәлешен күрсәткән карта',
   },
-];
-
-const geoFacts = [
-  'Россиянең төп географик объектларын татарчага тәрҗемә иткән',
-  'Казан губернасының табигый байлыклары турында язма калдырган',
-  'Татар балалары өчен беренче география дәреслеген иҗат иткән',
-  'Дөнья илләре исемлекләрен татар теленә тәрҗемә иткән',
-  'Идел буе халыкларының яшәү рәвешен тасвирлаган',
+  {
+    src: 'https://cdn.poehali.dev/files/e99c29aa-f696-4e52-9c24-d90ddac5a948.jpeg',
+    caption: 'Насыйри картографик хезмәтеннән',
+  },
 ];
 
 export default function Geograf() {
-  return (
-    <PageLayout title="ГЕОГРАФ" subtitle="Картаны сүз белән ясаучы">
+  const [lightbox, setLightbox] = useState<number | null>(null);
 
-      {/* Фотогалерея */}
-      <div className="reveal-section opacity-0 grid grid-cols-2 gap-4 mb-10">
+  return (
+    <PageLayout title="ГЕОГРАФ" subtitle="Казан губернасының беренче картасы авторы">
+
+      {/* Фотогалерея в один ряд */}
+      <div className="reveal-section opacity-0 grid grid-cols-3 gap-3 mb-10">
         {photos.map((p, i) => (
-          <div key={i} className="flex flex-col">
-            <div className="overflow-hidden rounded-lg border border-border/60" style={{ aspectRatio: '4/3' }}>
-              <img src={p.src} alt={p.caption} className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
-                onError={(e) => { (e.target as HTMLImageElement).src = 'https://placehold.co/400x300/1a2a1a/4ade80?text=Карта'; }} />
+          <div key={i} className="flex flex-col cursor-pointer" onClick={() => setLightbox(i)}>
+            <div className="overflow-hidden rounded-lg border border-border/60 relative group" style={{ aspectRatio: '4/3' }}>
+              <img src={p.src} alt={p.caption} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/25 transition-all flex items-center justify-center">
+                <Icon name="ZoomIn" size={24} className="opacity-0 group-hover:opacity-100 transition-opacity text-white" />
+              </div>
             </div>
             <p className="photo-caption">{p.caption}</p>
           </div>
         ))}
       </div>
 
-      <div className="space-y-6 reveal-section opacity-0">
-        <p className="text-foreground/80 leading-relaxed">
-          Каюм Насыйри — татар балаларына дөньяны ачып биргән географ. Ул беренче татар географиясе дәреслеген иҗат итеп, яшь буынга туган илнең табигатен, шәһәрләрен, елгаларын аңлатты.
-        </p>
-
-        <div className="fact-box p-5 rounded-r-lg">
-          <p className="text-foreground/85 font-medium leading-relaxed">
-            Насыйри дөнья картасын татарча аңлатырга тырышты. Ул география терминнарын татар теленә тәрҗемә итеп, фәнни телнең нигезен салды.
-          </p>
+      {/* Лайтбокс */}
+      {lightbox !== null && (
+        <div className="fixed inset-0 z-50 bg-black/92 flex items-center justify-center p-4" onClick={() => setLightbox(null)}>
+          <div className="relative max-w-3xl w-full" onClick={e => e.stopPropagation()}>
+            <button className="absolute -top-10 right-0 text-white/70 hover:text-white" onClick={() => setLightbox(null)}>
+              <Icon name="X" size={28} />
+            </button>
+            <div className="flex items-center gap-3">
+              <button className="text-white/70 hover:text-white flex-shrink-0"
+                onClick={() => setLightbox((lightbox - 1 + photos.length) % photos.length)}>
+                <Icon name="ChevronLeft" size={32} />
+              </button>
+              <div className="flex-1">
+                <img src={photos[lightbox].src} alt={photos[lightbox].caption} className="w-full rounded-lg max-h-[75vh] object-contain" />
+                <p className="text-white/60 text-sm text-center mt-3">{photos[lightbox].caption}</p>
+              </div>
+              <button className="text-white/70 hover:text-white flex-shrink-0"
+                onClick={() => setLightbox((lightbox + 1) % photos.length)}>
+                <Icon name="ChevronRight" size={32} />
+              </button>
+            </div>
+          </div>
         </div>
+      )}
 
-        <h2 className="text-2xl md:text-3xl text-foreground mt-6" style={{ fontFamily: 'Bebas Neue, sans-serif' }}>
-          Географик хезмәтләре
+      <div className="space-y-6 reveal-section opacity-0 text-center">
+        <h2 className="text-xl md:text-2xl font-semibold leading-relaxed" style={{ color: 'hsl(200 70% 65%)' }}>
+          Каюм Насыйри – Казан губернасының беренче картасы, Россия мәчетләрендә кыйбланы төгәл билгеләү картасы һ.б. дистәләгән карталар авторы
         </h2>
-        <div className="gold-line max-w-28 mb-5" />
 
-        <ul className="space-y-3">
-          {geoFacts.map((f, i) => (
-            <li key={i} className="flex items-start gap-3 text-foreground/80 text-sm md:text-base">
-              <span className="mt-1.5 w-2 h-2 rounded-full flex-shrink-0" style={{ background: 'hsl(200 70% 55%)' }} />
-              <span>{f}</span>
-            </li>
-          ))}
-        </ul>
-
-        <div className="quote-block p-5 rounded-r-lg mt-6">
-          <p className="text-foreground/75 italic leading-relaxed">
-            Насыйри үзенең география дәреслекләрендә татар балаларына гына түгел, ә бөтен Идел буе халкына яңа дөнья ачты.
-          </p>
-        </div>
+        <div className="gold-line max-w-40 mx-auto" />
 
         <p className="text-foreground/80 leading-relaxed">
-          Аның хезмәтләре аркасында татар балалары беренче тапкыр дөнья океаннары, материклар, тауларның исемнәрен туган теллдә укый алды. Бу — мәгариф тарихында аеруча мөһим адым иде.
+          Каюм Насыйри – казанышлары Россия фәнни җәмәгатьчелеге тарафыннан танылган беренче татар этнографы һәм географы. Казан губернасының тәүге географик картасында ул мөселман мәчетләренең төп урыны – михрабның төгәл билгеләнешен ачыклауны максат итеп куйган.
         </p>
+
+        <div className="fact-box p-5 rounded-r-lg text-left">
+          <p className="text-foreground/85 font-medium leading-relaxed">
+            Каюм Насыйри әлеге картасында Евразия кыйтгасының шактый өлеше өчен, шулай ук Көнбатышта Санкт-Петербургтан алып Көнчыгышта Көньяк Кытай диңгезе озынлыгына кадәр мәчетләрнең кыйблага дөрес юнәлешен күрсәтә.
+          </p>
+        </div>
       </div>
     </PageLayout>
   );

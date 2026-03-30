@@ -5,12 +5,12 @@ import Icon from '@/components/ui/icon';
 const PORTRAIT_URL = 'https://cdn.poehali.dev/files/4bfa03a4-20be-4ea4-9904-cdafd91e4576.png';
 
 const sections = [
-  { id: 'yazuchy', label: 'Язучы', icon: 'BookOpen', path: '/yazuchy' },
-  { id: 'geograf', label: 'Географ', icon: 'Map', path: '/geograf' },
-  { id: 'biolog', label: 'Биолог', icon: 'Leaf', path: '/biolog' },
-  { id: 'ashsu', label: 'Аш-су остасы', icon: 'UtensilsCrossed', path: '/ashsu' },
-  { id: 'suzleklar', label: 'Сүзлекләр төзүче', icon: 'Languages', path: '/suzleklar' },
-  { id: 'suzostasy', label: 'Суз остасы', icon: 'Quote', path: '/suzostasy' },
+  { id: 'yazuchy', label: 'Язучы', icon: 'BookOpen', path: '/yazuchy', desc: 'Татар әдәбияты классигы' },
+  { id: 'geograf', label: 'Географ', icon: 'Map', path: '/geograf', desc: 'Казан губернасы картасы авторы' },
+  { id: 'biolog', label: 'Биолог', icon: 'Leaf', path: '/biolog', desc: '192 үсемлекне тасвирлаган' },
+  { id: 'ashsu', label: 'Аш-су остасы', icon: 'UtensilsCrossed', path: '/ashsu', desc: 'Татар ашлары рецептлары' },
+  { id: 'telgalime', label: 'Тел галиме', icon: 'Languages', path: '/telgalime', desc: 'Татар лексикографиясенең атасы' },
+  { id: 'suzostasy', label: 'Суз остасы', icon: 'Quote', path: '/suzostasy', desc: 'Канатлы цитаталар' },
 ];
 
 const sciences = [
@@ -46,8 +46,15 @@ export default function Index() {
           <div className="flex items-center justify-between h-14">
             <button
               onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-              className="font-black tracking-widest text-primary"
-              style={{ fontFamily: 'Bebas Neue, sans-serif', fontSize: '1.2rem' }}
+              className="font-black tracking-widest"
+              style={{
+                fontFamily: 'Bebas Neue, sans-serif',
+                fontSize: '1.2rem',
+                background: 'linear-gradient(135deg, hsl(15 85% 62%), hsl(200 70% 55%), hsl(152 55% 45%))',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                backgroundClip: 'text',
+              }}
             >
               КАЮМ НАСЫЙРИ
             </button>
@@ -170,7 +177,7 @@ export default function Index() {
         </div>
 
         {/* Карточки разделов */}
-        <div className="w-full max-w-4xl mx-auto reveal-section opacity-0 pb-16">
+        <div className="w-full max-w-4xl mx-auto reveal-section opacity-0 pb-6">
           <h2 className="text-2xl md:text-3xl text-foreground mb-8 text-center" style={{ fontFamily: 'Bebas Neue, sans-serif' }}>
             Разделларны өйрән
           </h2>
@@ -185,11 +192,35 @@ export default function Index() {
                   <Icon name={s.icon} size={22} style={{ color: 'hsl(152 55% 45%)' }} />
                 </div>
                 <span className="text-foreground font-semibold text-sm">{s.label}</span>
+                <span className="text-muted-foreground text-xs">{s.desc}</span>
               </button>
             ))}
           </div>
         </div>
       </section>
+
+      {/* ══ РАЗДЕЛЫ (видны при скролле) ══ */}
+      {sections.map((s) => (
+        <section key={s.id} id={s.id} className="border-t border-border/30 py-16 px-4">
+          <div className="max-w-2xl mx-auto text-center reveal-section opacity-0">
+            <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4" style={{ background: 'hsl(152 55% 40% / 0.12)' }}>
+              <Icon name={s.icon} size={28} style={{ color: 'hsl(152 55% 45%)' }} />
+            </div>
+            <h2 className="gradient-title font-black mb-2" style={{ fontFamily: 'Bebas Neue, sans-serif', fontSize: 'clamp(2rem, 6vw, 3.5rem)' }}>
+              {s.label}
+            </h2>
+            <p className="text-muted-foreground text-sm mb-6">{s.desc}</p>
+            <div className="gold-line max-w-24 mx-auto mb-6" />
+            <button
+              onClick={() => navigate(s.path)}
+              className="section-nav-btn px-6 py-2.5 rounded text-sm font-semibold"
+              style={{ color: 'hsl(152 55% 45%)' }}
+            >
+              Тулырак укырга →
+            </button>
+          </div>
+        </section>
+      ))}
 
       {/* FOOTER */}
       <footer className="border-t border-border/40 py-6 text-center">

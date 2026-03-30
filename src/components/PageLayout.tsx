@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { useEffect, useRef, useState } from 'react';
 import Icon from '@/components/ui/icon';
 
@@ -7,7 +7,7 @@ const sections = [
   { label: 'Географ', path: '/geograf' },
   { label: 'Биолог', path: '/biolog' },
   { label: 'Аш-су остасы', path: '/ashsu' },
-  { label: 'Сүзлекләр төзүче', path: '/suzleklar' },
+  { label: 'Тел галиме', path: '/telgalime' },
   { label: 'Суз остасы', path: '/suzostasy' },
 ];
 
@@ -19,6 +19,7 @@ interface PageLayoutProps {
 
 export default function PageLayout({ title, subtitle, children }: PageLayoutProps) {
   const navigate = useNavigate();
+  const location = useLocation();
   const bodyRef = useRef<HTMLDivElement>(null);
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -39,10 +40,17 @@ export default function PageLayout({ title, subtitle, children }: PageLayoutProp
           <div className="flex items-center justify-between h-14">
             <button
               onClick={() => navigate('/')}
-              className="font-black tracking-widest text-primary flex items-center gap-2"
-              style={{ fontFamily: 'Bebas Neue, sans-serif', fontSize: '1.1rem' }}
+              className="font-black tracking-widest flex items-center gap-2"
+              style={{
+                fontFamily: 'Bebas Neue, sans-serif',
+                fontSize: '1.1rem',
+                background: 'linear-gradient(135deg, hsl(15 85% 62%), hsl(200 70% 55%), hsl(152 55% 45%))',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                backgroundClip: 'text',
+              }}
             >
-              <Icon name="ArrowLeft" size={16} />
+              <span style={{ WebkitTextFillColor: 'hsl(15 85% 62%)' }}>←</span>
               КАЮМ НАСЫЙРИ
             </button>
             <div className="hidden md:flex items-center gap-1">
@@ -50,7 +58,7 @@ export default function PageLayout({ title, subtitle, children }: PageLayoutProp
                 <button
                   key={s.path}
                   onClick={() => navigate(s.path)}
-                  className="section-nav-btn px-3 py-1.5 rounded text-xs font-medium text-muted-foreground"
+                  className={`section-nav-btn px-3 py-1.5 rounded text-xs font-medium ${location.pathname === s.path ? 'active' : 'text-muted-foreground'}`}
                 >
                   {s.label}
                 </button>
@@ -80,7 +88,8 @@ export default function PageLayout({ title, subtitle, children }: PageLayoutProp
       <div className="pt-14 hero-pattern">
         <div className="max-w-3xl mx-auto px-4 py-14 text-center">
           <p className="text-xs tracking-[0.3em] mb-2" style={{ color: 'hsl(200 70% 60%)' }}>КАЮМ НАСЫЙРИ</p>
-          <h1 className="text-4xl md:text-6xl text-foreground mb-3" style={{ fontFamily: 'Bebas Neue, sans-serif' }}>
+          <h1 className="gradient-title font-black leading-none mb-3"
+            style={{ fontFamily: 'Bebas Neue, sans-serif', fontSize: 'clamp(2.5rem, 8vw, 5rem)' }}>
             {title}
           </h1>
           {subtitle && <p className="text-muted-foreground text-sm md:text-base">{subtitle}</p>}

@@ -1,79 +1,37 @@
 import PageLayout from '@/components/PageLayout';
 
-const photos = [
-  {
-    src: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Kayum_Nasyri.jpg/440px-Kayum_Nasyri.jpg',
-    caption: 'Каюм Насыйри, галим-мәгърифәтче',
-    fallback: 'https://cdn.poehali.dev/files/4bfa03a4-20be-4ea4-9904-cdafd91e4576.png',
-  },
-  {
-    src: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/Kazan_kremlin_2010.jpg/440px-Kazan_kremlin_2010.jpg',
-    caption: 'Казан кирмәне — тарихи мирас',
-    fallback: 'https://placehold.co/400x300/0a1a2a/60a5fa?text=Казан',
-  },
-];
-
 const quotes = [
-  {
-    text: 'Белемсез кеше — яктысыз лампа кебек.',
-    note: 'Насыйри афоризмы',
-  },
-  {
-    text: 'Тел — халыкның рухы, мирасы, килечәге.',
-    note: 'Тел турында',
-  },
-  {
-    text: 'Балаларга белем бир — илгә кирәкле кеше яса.',
-    note: 'Педагогика турында',
-  },
-  {
-    text: 'Укымаган кешенең күзе ачык булса да, ул сукыр кебек.',
-    note: 'Мәгариф турында',
-  },
-  {
-    text: 'Хезмәт кылган кеше генә үзенең тормышын камилләштерә ала.',
-    note: 'Хезмәт турында',
-  },
-  {
-    text: 'Халыкны сөю — халык өчен эшләүдән башлана.',
-    note: 'Ватанпәрварлык турында',
-  },
+  'Без - татарлар, телебез - татар теле, мөстәкыйль һәм төзек кагыйдәле камил тел ул',
+  'Әй угыл, мал табуның юллары бик күптер. Нинди генә юл булмасын, малны хәләлдән табу фарыздыр. Хәләлдән килгән мал – тотрыклы буладыр. Хәрәм мал исә адәмгә йокмыйдыр, тиз кулыңнан китәр, җаваплылыгы һәм авырлыклары гына сиңа калыр. Әмма хәләлдән килгән малыңны саклап тот, хәрәм җиргә сарыф итмә. Малны саклау малны табу һәм җыюңан авыррак. Саклап тота белмәгәннәре сәбәпле, никадәр байлар малсыз калдылар',
+  'Бәс, әй угыл, нәфсең симергән саен, ул сине һәлакәткә тартыр. Дөньяда баһадир шул кешедер ки, — нәфесен җиңәр',
+  'Балыкчы — насыйб булмаган балыкны тоталмый.\nБалыкның әҗәле җитмәсә, кармакка эләкми.\nШулай инде, халык арасында гел фәкыйрь шелтәгә тарый',
+  'Халыкка икмәк-тоз күрсәтмәгән кешенең үлгәч тә исемен телгә алмаслар. Тереклеге белән сөендермәгән кешенең үлеменә дә бик кайгырмаслар',
+  'Әй угыл, яхшылыкның кадерен белмәгән кешедән ерак булган яхшы. Берәүгә бер яхшылыгың тисә — сөйләп йөрмә, берәүдән яхшылык күрсәң — фаш кыйл, онытма',
+  'Берәүнең мохтаҗ икәнен беләсән икән, вә һәм, миннән хаҗәт теләр, дигән уең бар икән, үзе сорамас борын тизрәк бирә күр',
 ];
 
 export default function SuzOstasy() {
   return (
-    <PageLayout title="СУЗ ОСТАСЫ" subtitle="Каюм Насыйри афоризмнары һәм фикерләре">
+    <PageLayout title="СУЗ ОСТАСЫ" subtitle="Канатлы сүзләр һәм хикмәт">
 
-      {/* Фотогалерея */}
-      <div className="reveal-section opacity-0 grid grid-cols-2 gap-4 mb-10">
-        {photos.map((p, i) => (
-          <div key={i} className="flex flex-col">
-            <div className="overflow-hidden rounded-lg border border-border/60" style={{ aspectRatio: '4/3' }}>
-              <img src={p.src} alt={p.caption} className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
-                onError={(e) => { (e.target as HTMLImageElement).src = p.fallback; }} />
-            </div>
-            <p className="photo-caption">{p.caption}</p>
-          </div>
-        ))}
-      </div>
+      <div className="space-y-6 reveal-section opacity-0 text-center">
+        <h2 className="text-xl md:text-2xl font-semibold leading-relaxed mb-6" style={{ color: 'hsl(15 85% 68%)' }}>
+          Гасырлар хикмәте: Каюм Насыйринең канатлы цитаталары
+        </h2>
 
-      <div className="space-y-5 reveal-section opacity-0">
-        <p className="text-foreground/80 leading-relaxed mb-6">
-          Каюм Насыйри — сүзнең асыл кодрәтен белгән остаз. Аның афоризмнары, фикерләре гасырлар аша килеп безгә ирешкән хикмәт хәзинәсе.
-        </p>
+        <div className="gold-line max-w-48 mx-auto mb-8" />
 
-        <div className="grid gap-4">
+        <div className="space-y-4 text-left">
           {quotes.map((q, i) => (
             <div key={i} className="quote-block p-5 rounded-r-lg">
-              <p className="text-foreground text-base md:text-lg italic font-medium leading-relaxed mb-2">
-                «{q.text}»
+              <p className="text-foreground text-sm md:text-base leading-relaxed whitespace-pre-line">
+                «{q}»
               </p>
-              <p className="text-muted-foreground text-xs tracking-wider uppercase">{q.note}</p>
             </div>
           ))}
         </div>
 
-        <div className="fact-box p-5 rounded-r-lg mt-6">
+        <div className="fact-box p-5 rounded-r-lg mt-6 text-left">
           <p className="text-foreground/85 font-medium leading-relaxed">
             <strong className="text-primary">"Фәвакиһелҗөләса фил әдәбият"</strong> — Насыйриның иң мәшһүр хезмәтләреннән берсе. Бу татар халык мәкальләре, мәзәкләре, хикәятләрен туплаган беренче татар энциклопедиясе.
           </p>

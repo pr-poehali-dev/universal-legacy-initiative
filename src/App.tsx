@@ -8,7 +8,7 @@ import Yazuchy from "./pages/Yazuchy";
 import Geograf from "./pages/Geograf";
 import Biolog from "./pages/Biolog";
 import AshSu from "./pages/AshSu";
-import Suzleklar from "./pages/Suzleklar";
+import TelGalime from "./pages/TelGalime";
 import SuzOstasy from "./pages/SuzOstasy";
 import NotFound from "./pages/NotFound";
 
@@ -26,7 +26,7 @@ const App = () => (
           <Route path="/geograf" element={<Geograf />} />
           <Route path="/biolog" element={<Biolog />} />
           <Route path="/ashsu" element={<AshSu />} />
-          <Route path="/suzleklar" element={<Suzleklar />} />
+          <Route path="/telgalime" element={<TelGalime />} />
           <Route path="/suzostasy" element={<SuzOstasy />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
