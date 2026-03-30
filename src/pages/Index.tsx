@@ -173,7 +173,7 @@ export default function Index() {
         </div>
 
         {/* Науки */}
-        <div className="w-full max-w-2xl mx-auto reveal-section opacity-0 mb-16">
+        <div className="w-full max-w-2xl mx-auto reveal-section opacity-0 mb-16 text-left">
           <h2 className="text-2xl md:text-3xl text-foreground mb-5 text-center" style={{ fontFamily: 'Bebas Neue, sans-serif' }}>
             Түбәндәге фәннәр буенча хезмәтләр авторы:
           </h2>
@@ -305,22 +305,28 @@ export default function Index() {
 type OnPhoto = (photos: PhotoItem[], idx: number) => void;
 
 /* ══ Вспомогательный компонент фотосетки ══ */
-function PhotoGrid({ photos, cols, onPhoto }: { photos: PhotoItem[]; cols: number; onPhoto: OnPhoto }) {
+function PhotoGrid({ photos, cols, ratio, onPhoto }: {
+  photos: PhotoItem[];
+  cols: number;
+  ratio?: string;
+  onPhoto: OnPhoto;
+}) {
   return (
-    <div className="grid gap-4 mb-10" style={{ gridTemplateColumns: `repeat(${cols}, 1fr)` }}>
+    <div className="grid gap-3 mb-10" style={{ gridTemplateColumns: `repeat(${cols}, 1fr)` }}>
       {photos.map((p, i) => (
         <div key={i} className="flex flex-col gap-2">
           <div
             className="cursor-pointer overflow-hidden rounded-xl border border-border/50 relative group"
+            style={ratio ? { aspectRatio: ratio } : undefined}
             onClick={() => onPhoto(photos, i)}
           >
             <img
               src={p.src}
               alt={p.caption}
-              className="w-full h-auto block group-hover:scale-105 transition-transform duration-500"
+              className={ratio ? 'w-full h-full object-cover group-hover:scale-105 transition-transform duration-500' : 'w-full h-auto block group-hover:scale-105 transition-transform duration-500'}
             />
             <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all flex items-center justify-center">
-              <Icon name="ZoomIn" size={24} className="opacity-0 group-hover:opacity-100 transition-opacity text-white drop-shadow" />
+              <Icon name="ZoomIn" size={22} className="opacity-0 group-hover:opacity-100 transition-opacity text-white drop-shadow" />
             </div>
           </div>
           {p.caption && (
@@ -362,7 +368,7 @@ function SectionYazuchy({ onPhoto }: { onPhoto: OnPhoto }) {
     <section id="yazuchy" className="border-t border-border/30 py-16 px-4">
       <div className="max-w-3xl mx-auto">
         <SectionHeader icon="BookOpen" title="Язучы" />
-        <PhotoGrid photos={yazuchyPhotos} cols={3} onPhoto={onPhoto} />
+        <PhotoGrid photos={yazuchyPhotos} cols={3} ratio="3/4" onPhoto={onPhoto} />
         <div className="space-y-4 text-center">
           <p className="section-body">Каюм Насыйриның татар әдәбиятына керткән өлеше шактый зур. Аның иҗаты татар халкының рухи мирасының аерылгысыз бер өлешенә әйләнде.</p>
           <p className="section-body">Әдип — "Әбүгалисина кыйссасы", "Кырык вәзир", "Әхлак рисаләсе", "Тәрбич китабы" кебек мәшһүр әсәрләрнең авторы.</p>
@@ -385,7 +391,7 @@ function SectionGeograf({ onPhoto }: { onPhoto: OnPhoto }) {
     <section id="geograf" className="border-t border-border/30 py-16 px-4">
       <div className="max-w-3xl mx-auto">
         <SectionHeader icon="Map" title="Географ" />
-        <PhotoGrid photos={geografPhotos} cols={2} onPhoto={onPhoto} />
+        <PhotoGrid photos={geografPhotos} cols={2} ratio="4/3" onPhoto={onPhoto} />
         <div className="space-y-4 text-center">
           <p className="section-body">Каюм Насыйри – Казан губернасының беренче картасы, Россия мәчетләрендә кыйбланы төгәл билгеләү картасы һ.б. дистәләгән карталар авторы.</p>
           <p className="section-body">Казан губернасының тәүге географик картасында ул мөселман мәчетләренең төп урыны – михрабның төгәл билгеләнешен ачыклауны максат итеп куйган.</p>
@@ -406,7 +412,7 @@ function SectionBiolog({ onPhoto }: { onPhoto: OnPhoto }) {
     <section id="biolog" className="border-t border-border/30 py-16 px-4">
       <div className="max-w-3xl mx-auto">
         <SectionHeader icon="Leaf" title="Биолог" />
-        <PhotoGrid photos={biologPhotos} cols={2} onPhoto={onPhoto} />
+        <PhotoGrid photos={biologPhotos} cols={2} ratio="4/3" onPhoto={onPhoto} />
         <div className="space-y-4 text-center">
           <p className="section-body">Каюм Насыйри дарулар кулланмаган. Ул гомер буе дару үләннәре җыйган, шулар белән үзе дә, башкаларны да дәвалаган.</p>
           <p className="section-body">Үзенең тәҗрибәсен "Гөлзар вә чаманзар" ("Чәчәкләр һәм үләннәр") китабында тасвирлаган. Бу китабында галим Россия территориясында үскән 192 үсемлекнең үзлекләрен, 155 авыруны һәм аларны үләннәр ярдәмендә дәвалау ысулларын тасвирлаган.</p>
@@ -425,8 +431,8 @@ function SectionAshSu({ onPhoto }: { onPhoto: OnPhoto }) {
     <section id="ashsu" className="border-t border-border/30 py-16 px-4">
       <div className="max-w-3xl mx-auto">
         <SectionHeader icon="UtensilsCrossed" title="Аш-су остасы" />
-        <div className="max-w-lg mx-auto mb-10">
-          <PhotoGrid photos={ashsuPhotos} cols={1} onPhoto={onPhoto} />
+        <div className="max-w-sm mx-auto mb-10">
+          <PhotoGrid photos={ashsuPhotos} cols={1} ratio="4/3" onPhoto={onPhoto} />
         </div>
         <div className="space-y-4 text-center">
           <p className="section-body">Каюм Насыйри татар ашлары буенча да кыйммәтле эшләр язган. Ул традицион татар ашларының рецептларын җыйган, аларның әзерләү ысулларын детальльләп тасвирлаган.</p>
@@ -438,10 +444,10 @@ function SectionAshSu({ onPhoto }: { onPhoto: OnPhoto }) {
 }
 
 const telgalimePhotos: PhotoItem[] = [
-  { src: 'https://cdn.poehali.dev/files/e735455e-6874-4c2d-bfa2-0957aef5610f.jpeg', caption: 'Русско-татарский словарь, 1892' },
-  { src: 'https://cdn.poehali.dev/files/04e43680-1d61-4876-aa41-8616e1d136ce.png', caption: 'Русская азбука, 1889' },
-  { src: 'https://cdn.poehali.dev/files/e7a75894-8763-4c07-9e15-a8a5e4c9d65b.jpeg', caption: 'Грамматика кулъязмасы' },
-  { src: 'https://cdn.poehali.dev/files/cee76dbe-a4d5-461c-a563-3883742edff0.jpeg', caption: 'Тел белеме хезмәте' },
+  { src: 'https://cdn.poehali.dev/files/e735455e-6874-4c2d-bfa2-0957aef5610f.jpeg', caption: '' },
+  { src: 'https://cdn.poehali.dev/files/04e43680-1d61-4876-aa41-8616e1d136ce.png', caption: '' },
+  { src: 'https://cdn.poehali.dev/files/e7a75894-8763-4c07-9e15-a8a5e4c9d65b.jpeg', caption: '' },
+  { src: 'https://cdn.poehali.dev/files/cee76dbe-a4d5-461c-a563-3883742edff0.jpeg', caption: '' },
 ];
 
 function SectionTelGalime({ onPhoto }: { onPhoto: OnPhoto }) {
@@ -449,7 +455,7 @@ function SectionTelGalime({ onPhoto }: { onPhoto: OnPhoto }) {
     <section id="telgalime" className="border-t border-border/30 py-16 px-4">
       <div className="max-w-3xl mx-auto">
         <SectionHeader icon="Languages" title="Тел галиме" />
-        <PhotoGrid photos={telgalimePhotos} cols={4} onPhoto={onPhoto} />
+        <PhotoGrid photos={telgalimePhotos} cols={4} ratio="3/4" onPhoto={onPhoto} />
         <div className="space-y-4 text-center">
           <p className="section-body">«Татар теле ул – урам теле, ломовойлар теле», дигән карашлар яшәгән заманда Насыйри халкыбызның туган телен яклап чыга: «Без – татарлар, телебез – татар теле, мөстәкыйль һәм төзек кагыйдәле камил тел».</p>
           <p className="section-body">Ул татар лексикографиясенең нигезен салучы — "Лөгать китабы" һәм "Ләһҗәи татари" сүзлекләренең авторы.</p>
