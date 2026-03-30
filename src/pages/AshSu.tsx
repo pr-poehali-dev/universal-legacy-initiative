@@ -17,7 +17,7 @@ export default function AshSu() {
       </div>
 
       <div className="space-y-6 reveal-section opacity-0 text-center">
-        <p className="text-foreground/80 leading-relaxed">
+        <p className="section-body">
           Каюм Насыйри татар ашлары буенча да кыйммәтле эшләр язган. Ул традицион татар ашларының рецептларын җыйган, аларның әзерләү ысулларын детальльләп тасвирлаган.
         </p>
 
@@ -58,7 +58,7 @@ export default function AshSu() {
 
           <div>
             <h4 className="text-primary text-sm font-semibold tracking-wider mb-2 uppercase text-center">Пешерү ысулы:</h4>
-            <p className="text-foreground/80 text-sm leading-relaxed">
+            <p className="section-body">
               Ун алманы юка гына тура. Камыр яса: биш йомырка сыт, ике кашык май сал, бик яхшы тугла, ике кашык вак шикәр сал, бер стакан каймак сал, он салып из — камыр яса, бик куе булмасын, кашык белән алырга мөмкин булсын. Табаңны яхшылап кыздыр, табага май сал. Кашык белән камырыңны алып, өстенә бер ике алма куй, табага сал. Мөрәбба белән аша.
             </p>
           </div>

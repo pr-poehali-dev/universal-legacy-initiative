@@ -64,26 +64,26 @@ export default function Yazuchy() {
       )}
 
       <div className="space-y-5 reveal-section opacity-0">
-        <p className="text-foreground/80 leading-relaxed">
+        <p className="section-body">
           Каюм Насыйриның татар әдәбиятына керткән өлеше шактый зур. Аның иҗаты татар халкының рухи мирасының аерылгысыз бер өлешенә әйләнде.
         </p>
 
         <div className="fact-box p-5 rounded-r-lg">
-          <p className="text-foreground/85 leading-relaxed">
+          <p className="section-body">
             Әдип — "Әбүгалисина кыйссасы", "Кырык вәзир", "Әхлак рисаләсе", "Тәрбич китабы" кебек мәшһүр әсәрләрнең авторы.
           </p>
         </div>
 
-        <p className="text-foreground/80 leading-relaxed">
+        <p className="section-body">
           Каюм Насыйри үз әсәрләрендә гореф-гадәтләр, традицияләр, әхлак, иман, гаилә мөнәсәбәтләре, бала тәрбиясе мәсьәләләрен яктырта. Уңай әхлакый сыйфатларны галим укучы өчен үрнәк итеп куя, ә кешенең рухи үсешенә комачаулый торган сыйфатларны тәнкыйтьләп фаш итә.
         </p>
 
-        <p className="text-foreground/80 leading-relaxed">
+        <p className="section-body">
           Татар укучысына борыңгы Шәрык галиме Ибн Синаны таныштырган беренче татар прозасының үрнәге — "Әбүгалисина кыйссасы". Насыйри бу хезмәтендә нафис стиль, тирән философик эчтәлек белән укучыны мәгърифәт юлына чакыра. Борыңгы Шәрык хикәяләренең татарча яңартылган тупланмасы "Кырык вәзир"дә Насыйри халыкка аңлаешлы тел белән дөнья әдәбиятының иң матур үрнәкләрен тәкъдим итте.
         </p>
 
         <div className="quote-block p-5 rounded-r-lg">
-          <p className="text-foreground/75 italic leading-relaxed">
+          <p className="section-body italic">
             Әсәрләрнең язылганнынан соң ике гасырга якын вакыт узуына карамастан, аларның эстетик әһәмияте әле дә үз кыйммәтен югалтмый.
           </p>
         </div>

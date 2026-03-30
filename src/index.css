@@ -64,7 +64,9 @@
   body {
     @apply bg-background text-foreground;
     font-family: "Outfit", sans-serif;
-    font-weight: 300;
+    font-weight: 400;
+    font-size: 17px;
+    line-height: 1.7;
   }
 
   h1,
@@ -222,4 +224,32 @@
   border-top-color: hsl(200 70% 55%);
   transform: translateY(-4px);
   box-shadow: 0 12px 40px hsl(152 55% 40% / 0.15);
+}
+
+/* Карточки меню разделов */
+.section-menu-card {
+  background: hsl(var(--card));
+  border: 1px solid hsl(var(--border));
+  border-radius: 12px;
+  transition: all 0.25s ease;
+}
+.section-menu-card:hover {
+  border-color: hsl(152 55% 40% / 0.6);
+  background: hsl(152 55% 40% / 0.07);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px hsl(152 55% 40% / 0.12);
+}
+
+/* Основной текст разделов */
+.section-body {
+  font-size: 1.05rem;
+  font-weight: 500;
+  line-height: 1.8;
+  color: hsl(var(--foreground) / 0.88);
+}
+
+@media (min-width: 768px) {
+  .section-body {
+    font-size: 1.15rem;
+  }
 }

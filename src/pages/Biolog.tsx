@@ -25,18 +25,18 @@ export default function Biolog() {
       </div>
 
       <div className="space-y-6 reveal-section opacity-0 text-center">
-        <p className="text-foreground/80 leading-relaxed">
+        <p className="section-body">
           Каюм Насыйри дарулар кулланмаган. Ул гомер буе дару үләннәре җыйган, шулар белән үзе дә, башкаларны да дәвалаган. Үзенең тәҗрибәсен "Гөлзар вә чаманзар" ("Чәчәкләр һәм үләннәр") китабында тасвирлаган.
         </p>
 
         <div className="fact-box p-5 rounded-r-lg text-left">
-          <p className="text-foreground/85 font-medium leading-relaxed">
+          <p className="section-body">
             Бу китабында галим Россия территориясында үскән 192 үсемлекнең үзлекләрен, 155 авыруны һәм аларны үләннәр ярдәмендә дәвалау ысулларын җентекләп тасвирлаган.
           </p>
         </div>
 
         <div className="quote-block p-5 rounded-r-lg text-left">
-          <p className="text-foreground/75 italic leading-relaxed">
+          <p className="section-body italic">
             Насыйри үсемлекләрне халык теленнән табиб теленә тәрҗемә иткән — ул халык дарулык белеме белән фән арасындагы күперне салган.
           </p>
         </div>
