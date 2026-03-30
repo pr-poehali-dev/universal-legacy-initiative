@@ -1,57 +1,101 @@
-import { useEffect, useRef } from 'react';
-import Navigation from './Navigation';
+import { useNavigate } from 'react-router-dom';
+import { useEffect, useRef, useState } from 'react';
+import Icon from '@/components/ui/icon';
 
-interface Props {
+const sections = [
+  { label: 'Язучы', path: '/yazuchy' },
+  { label: 'Географ', path: '/geograf' },
+  { label: 'Биолог', path: '/biolog' },
+  { label: 'Аш-су остасы', path: '/ashsu' },
+  { label: 'Сүзлекләр төзүче', path: '/suzleklar' },
+  { label: 'Суз остасы', path: '/suzostasy' },
+];
+
+interface PageLayoutProps {
+  title: string;
+  subtitle?: string;
   children: React.ReactNode;
-  title?: string;
 }
 
-export default function PageLayout({ children, title }: Props) {
+export default function PageLayout({ title, subtitle, children }: PageLayoutProps) {
+  const navigate = useNavigate();
   const bodyRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('animate-in');
-          }
-        });
-      },
-      { threshold: 0.1 }
+      (entries) => entries.forEach((e) => { if (e.isIntersecting) e.target.classList.add('animate-in'); }),
+      { threshold: 0.08 }
     );
-
-    const sections = bodyRef.current?.querySelectorAll('.reveal-section');
-    sections?.forEach((s) => observer.observe(s));
+    bodyRef.current?.querySelectorAll('.reveal-section').forEach((el) => observer.observe(el));
     return () => observer.disconnect();
   }, []);
 
   return (
     <div className="min-h-screen bg-background" ref={bodyRef}>
-      <Navigation />
-      <main className="pt-14">
-        {title && (
-          <div className="hero-pattern py-12 px-4">
-            <div className="max-w-4xl mx-auto text-center">
-              <h1 className="text-3xl md:text-4xl text-primary-foreground font-bold tracking-wide">
-                {title}
-              </h1>
-              <div className="ornament-divider mt-4 max-w-sm mx-auto" />
+      {/* NAVBAR */}
+      <nav className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-md border-b border-border/60">
+        <div className="max-w-7xl mx-auto px-4 md:px-6">
+          <div className="flex items-center justify-between h-14">
+            <button
+              onClick={() => navigate('/')}
+              className="font-black tracking-widest text-primary flex items-center gap-2"
+              style={{ fontFamily: 'Bebas Neue, sans-serif', fontSize: '1.1rem' }}
+            >
+              <Icon name="ArrowLeft" size={16} />
+              КАЮМ НАСЫЙРИ
+            </button>
+            <div className="hidden md:flex items-center gap-1">
+              {sections.map(s => (
+                <button
+                  key={s.path}
+                  onClick={() => navigate(s.path)}
+                  className="section-nav-btn px-3 py-1.5 rounded text-xs font-medium text-muted-foreground"
+                >
+                  {s.label}
+                </button>
+              ))}
             </div>
+            <button className="md:hidden text-foreground" onClick={() => setMenuOpen(!menuOpen)}>
+              <Icon name={menuOpen ? 'X' : 'Menu'} size={24} />
+            </button>
           </div>
-        )}
-        <div className="max-w-4xl mx-auto px-4 py-10">
-          {children}
+          {menuOpen && (
+            <div className="md:hidden pb-3 flex flex-col gap-1">
+              {sections.map(s => (
+                <button
+                  key={s.path}
+                  onClick={() => { navigate(s.path); setMenuOpen(false); }}
+                  className="section-nav-btn px-3 py-2 rounded text-sm font-medium text-muted-foreground text-left"
+                >
+                  {s.label}
+                </button>
+              ))}
+            </div>
+          )}
         </div>
+      </nav>
+
+      {/* Hero заголовок страницы */}
+      <div className="pt-14 hero-pattern">
+        <div className="max-w-3xl mx-auto px-4 py-14 text-center">
+          <p className="text-xs tracking-[0.3em] mb-2" style={{ color: 'hsl(200 70% 60%)' }}>КАЮМ НАСЫЙРИ</p>
+          <h1 className="text-4xl md:text-6xl text-foreground mb-3" style={{ fontFamily: 'Bebas Neue, sans-serif' }}>
+            {title}
+          </h1>
+          {subtitle && <p className="text-muted-foreground text-sm md:text-base">{subtitle}</p>}
+          <div className="gold-line max-w-32 mx-auto mt-4" />
+        </div>
+      </div>
+
+      {/* Контент */}
+      <main className="max-w-3xl mx-auto px-4 py-12">
+        {children}
       </main>
-      <footer className="bg-primary/10 border-t border-primary/20 py-8 mt-16">
-        <p className="text-center text-muted-foreground text-sm">
-          © 2026 — Муса Мостафа улы Җәлилов (1906–1944). Барлык хокуклар сакланган.
-        </p>
+
+      {/* Footer */}
+      <footer className="border-t border-border/40 py-6 text-center">
+        <p className="text-muted-foreground text-sm">© 2026 — Татар әдәбиятын өйрәнү һәм үстерү проекты. Лилия Кәримова</p>
       </footer>
     </div>
   );
