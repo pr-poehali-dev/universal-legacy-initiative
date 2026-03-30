@@ -36,7 +36,7 @@ export default function PageLayout({ title, subtitle, children }: PageLayoutProp
     <div className="min-h-screen bg-background" ref={bodyRef}>
       {/* NAVBAR */}
       <nav className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-md border-b border-border/60">
-        <div className="max-w-7xl mx-auto px-4 md:px-6">
+        <div className="max-w-full mx-auto px-6 md:px-12">
           <div className="flex items-center justify-between h-14">
             <button
               onClick={() => navigate('/')}
@@ -86,7 +86,7 @@ export default function PageLayout({ title, subtitle, children }: PageLayoutProp
 
       {/* Hero заголовок страницы */}
       <div className="pt-14 hero-pattern">
-        <div className="max-w-3xl mx-auto px-4 py-14 text-center">
+        <div className="max-w-6xl mx-auto px-6 md:px-12 py-14 text-center">
           <p className="text-xs tracking-[0.3em] mb-2" style={{ color: 'hsl(200 70% 60%)' }}>КАЮМ НАСЫЙРИ</p>
           <h1 className="gradient-title font-black leading-none mb-3"
             style={{ fontFamily: 'Bebas Neue, sans-serif', fontSize: 'clamp(2.5rem, 8vw, 5rem)' }}>
@@ -98,7 +98,7 @@ export default function PageLayout({ title, subtitle, children }: PageLayoutProp
       </div>
 
       {/* Контент */}
-      <main className="max-w-3xl mx-auto px-4 py-12">
+      <main className="max-w-6xl mx-auto px-6 md:px-12 py-12">
         {children}
       </main>
 

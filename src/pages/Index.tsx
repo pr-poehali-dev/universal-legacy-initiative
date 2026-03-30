@@ -55,7 +55,7 @@ export default function Index() {
 
       {/* ── NAVBAR ── */}
       <nav className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-md border-b border-border/60">
-        <div className="max-w-7xl mx-auto px-4 md:px-6">
+        <div className="max-w-full mx-auto px-6 md:px-12">
           <div className="flex items-center justify-between h-14">
             <button
               onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
@@ -132,13 +132,13 @@ export default function Index() {
           </h1>
           <p className="text-muted-foreground text-base md:text-lg mb-6">(1825–1902)</p>
           <div className="gold-line max-w-xs mx-auto mb-6" />
-          <p className="max-w-2xl mx-auto text-lg md:text-xl font-semibold leading-relaxed mb-8" style={{ color: 'hsl(var(--foreground) / 0.9)' }}>
+          <p className="max-w-4xl mx-auto text-lg md:text-xl font-semibold leading-relaxed mb-8" style={{ color: 'hsl(var(--foreground) / 0.9)' }}>
             Гомере буе халыкка фидакарьләрчә хезмәт итеп, милләт мәнфәгатьләрен үзенең яшәү кыйбласы дип билгеләгән Каюм Насыйри дөньяда 77 ел яшәп вафат булган. Аның ярты гасырдан артык гомере дәрвишләрчә милләткә хезмәт итүгә багышланган.
           </p>
         </div>
 
         {/* Видео */}
-        <div className="w-full max-w-2xl reveal-section opacity-0 mb-10">
+        <div className="w-full max-w-4xl reveal-section opacity-0 mb-10">
           <div className="relative rounded-xl overflow-hidden border border-border/60" style={{ paddingBottom: '56.25%' }}>
             <iframe
               src="https://drive.google.com/file/d/1gvSNY0J0R3XYS-d4-KbL15SmvBdJlb_g/preview"
@@ -149,14 +149,14 @@ export default function Index() {
           </div>
         </div>
 
-        <div className="max-w-2xl mx-auto reveal-section opacity-0 mb-6">
+        <div className="max-w-4xl mx-auto reveal-section opacity-0 mb-6">
           <p className="text-lg md:text-xl font-bold leading-relaxed text-center" style={{ color: 'hsl(var(--foreground))' }}>
             Каюм Насыйри тел гыйлеме, әдәбият, фольклор, тарих, педагогика һәм дидактика, география, биология, химия, медицина кебек фәннәрдә татар халкы һәм Казан губернасы өчен новатор була. Әдипнең гаять күпкырлы эшчәнлеге төп ике зур тармакка бүленә: гыйльми-мәгърифәтчелек һәм әдәби-тәрҗемәчелек юнәлешләре.
           </p>
         </div>
 
         {/* Ватаным Татарстан блок */}
-        <div className="max-w-2xl mx-auto reveal-section opacity-0 mb-12 fact-box p-5 rounded-r-lg text-left">
+        <div className="max-w-4xl mx-auto reveal-section opacity-0 mb-12 fact-box p-5 rounded-r-lg text-left">
           <p className="text-base md:text-lg leading-relaxed mb-3" style={{ color: 'hsl(var(--foreground) / 0.85)' }}>
             "Ватаным Татарстан" газетасы оештырган "Каюм бабай дәресе" конкурсының «Каюм Насыйри эзләреннән» номинациясенә укытучылар һәм тәрбиячеләр, Каюм Насыйри хезмәтләрен файдаланып, билгеле бер чара уздырырга һәм ул чарадан видеоязма әзерләргә тиеш иде. Бу юнәлештә иҗат эшләре арасында «Адымнар – белемгә һәм бердәмлеккә юл» күптелле мәгариф комплексы укытучылары Рамил Ханнанов һәм Нариман Фәхрисламов – җиңүчеләрнең берсе.
           </p>
@@ -173,7 +173,7 @@ export default function Index() {
         </div>
 
         {/* Науки */}
-        <div className="w-full max-w-2xl mx-auto reveal-section opacity-0 mb-16 text-left">
+        <div className="w-full max-w-4xl mx-auto reveal-section opacity-0 mb-16 text-left">
           <h2 className="text-2xl md:text-3xl text-foreground mb-5 text-center" style={{ fontFamily: 'Bebas Neue, sans-serif' }}>
             Түбәндәге фәннәр буенча хезмәтләр авторы:
           </h2>
@@ -189,7 +189,7 @@ export default function Index() {
         </div>
 
         {/* ── МЕНЮ РАЗДЕЛОВ — стильные карточки без цвета ── */}
-        <div className="w-full max-w-3xl mx-auto reveal-section opacity-0 pb-6 px-2">
+        <div className="w-full max-w-5xl mx-auto reveal-section opacity-0 pb-6 px-2">
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
             {navSections.map((s, i) => (
               <button
@@ -224,7 +224,7 @@ export default function Index() {
           <div className="gold-line mb-8" />
           <button
             onClick={() => navigate('/mengelek')}
-            className="inline-flex items-center gap-3 px-8 py-4 rounded-xl font-bold text-base transition-all hover:scale-105"
+            className="inline-flex items-center gap-3 px-10 py-4 rounded-xl font-bold text-base transition-all hover:scale-105"
             style={{
               background: 'linear-gradient(135deg, hsl(152 55% 35%), hsl(200 70% 45%), hsl(15 85% 55%))',
               color: 'white',
@@ -365,8 +365,8 @@ const yazuchyPhotos: PhotoItem[] = [
 
 function SectionYazuchy({ onPhoto }: { onPhoto: OnPhoto }) {
   return (
-    <section id="yazuchy" className="border-t border-border/30 py-16 px-4">
-      <div className="max-w-3xl mx-auto">
+    <section id="yazuchy" className="border-t border-border/30 py-16 px-6 md:px-12">
+      <div className="max-w-6xl mx-auto">
         <SectionHeader icon="BookOpen" title="Язучы" />
         <PhotoGrid photos={yazuchyPhotos} cols={3} ratio="3/4" onPhoto={onPhoto} />
         <div className="space-y-4 text-center">
@@ -388,8 +388,8 @@ const geografPhotos: PhotoItem[] = [
 
 function SectionGeograf({ onPhoto }: { onPhoto: OnPhoto }) {
   return (
-    <section id="geograf" className="border-t border-border/30 py-16 px-4">
-      <div className="max-w-3xl mx-auto">
+    <section id="geograf" className="border-t border-border/30 py-16 px-6 md:px-12">
+      <div className="max-w-6xl mx-auto">
         <SectionHeader icon="Map" title="Географ" />
         <PhotoGrid photos={geografPhotos} cols={2} ratio="4/3" onPhoto={onPhoto} />
         <div className="space-y-4 text-center">
@@ -409,8 +409,8 @@ const biologPhotos: PhotoItem[] = [
 
 function SectionBiolog({ onPhoto }: { onPhoto: OnPhoto }) {
   return (
-    <section id="biolog" className="border-t border-border/30 py-16 px-4">
-      <div className="max-w-3xl mx-auto">
+    <section id="biolog" className="border-t border-border/30 py-16 px-6 md:px-12">
+      <div className="max-w-6xl mx-auto">
         <SectionHeader icon="Leaf" title="Биолог" />
         <PhotoGrid photos={biologPhotos} cols={2} ratio="4/3" onPhoto={onPhoto} />
         <div className="space-y-4 text-center">
@@ -428,8 +428,8 @@ const ashsuPhotos: PhotoItem[] = [
 
 function SectionAshSu({ onPhoto }: { onPhoto: OnPhoto }) {
   return (
-    <section id="ashsu" className="border-t border-border/30 py-16 px-4">
-      <div className="max-w-3xl mx-auto">
+    <section id="ashsu" className="border-t border-border/30 py-16 px-6 md:px-12">
+      <div className="max-w-6xl mx-auto">
         <SectionHeader icon="UtensilsCrossed" title="Аш-су остасы" />
         <div className="max-w-sm mx-auto mb-10">
           <PhotoGrid photos={ashsuPhotos} cols={1} ratio="4/3" onPhoto={onPhoto} />
@@ -452,8 +452,8 @@ const telgalimePhotos: PhotoItem[] = [
 
 function SectionTelGalime({ onPhoto }: { onPhoto: OnPhoto }) {
   return (
-    <section id="telgalime" className="border-t border-border/30 py-16 px-4">
-      <div className="max-w-3xl mx-auto">
+    <section id="telgalime" className="border-t border-border/30 py-16 px-6 md:px-12">
+      <div className="max-w-6xl mx-auto">
         <SectionHeader icon="Languages" title="Тел галиме" />
         <PhotoGrid photos={telgalimePhotos} cols={4} ratio="3/4" onPhoto={onPhoto} />
         <div className="space-y-4 text-center">
@@ -467,8 +467,8 @@ function SectionTelGalime({ onPhoto }: { onPhoto: OnPhoto }) {
 
 function SectionSuzOstasy() {
   return (
-    <section id="suzostasy" className="border-t border-border/30 py-16 px-4">
-      <div className="max-w-3xl mx-auto">
+    <section id="suzostasy" className="border-t border-border/30 py-16 px-6 md:px-12">
+      <div className="max-w-6xl mx-auto">
         <SectionHeader icon="Quote" title="Суз остасы" />
         <div className="space-y-4 text-center">
           <p className="section-body italic">«Без — татарлар, телебез — татар теле, мөстәкыйль һәм төзек кагыйдәле камил тел ул»</p>
